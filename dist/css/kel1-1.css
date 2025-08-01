@@ -1,0 +1,142 @@
+*{
+    /* margin: 0;
+    padding: 0; */
+    font-family: 'Poppins', sans-serif;
+}
+
+.pembungkus{
+    display: flex;
+    min-height: 100vh;
+}
+
+/* -------------- CSS Punya Sidebar ------------------ */
+
+.sidebar{
+    background-color: #FFFFFF;
+    width: 340px;
+    padding: 40px 24px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+
+.profile{
+    display: flex;
+    /* background-color: honeydew; */
+    box-sizing: border-box;
+}
+
+.foto{
+    flex: 1;
+    order: 1;
+}
+
+.foto img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid #8f8f8f;
+}
+
+.description{
+    flex: 2;
+    order: 2;
+    box-sizing: border-box;
+    line-height: 5vh;
+    padding-top: 10px;
+    margin-left: 10px;
+
+}
+
+.sidebar .main{
+    margin-top: 30px;
+}
+
+/* .sidebar .list_item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 10px;
+    border-radius: 8px;
+} */
+
+.sidebar .main .list_item a{
+    font-style:normal;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #1F261F;
+}
+
+.sidebar .main .list_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 10px;
+    border-radius: 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.sidebar .main .list_item:hover{
+    background-color: #7C7D7C;
+    transition: all ease-in 0.3s;
+}
+
+.sidebar .main .list_item a svg{
+    margin-right: 5px;
+    text-align: center;
+}
+.btn_back a{
+    margin-left: 226px;
+}
+
+
+/* -------------- CSS Punya Main content ------------------ */
+
+.main-content{
+    background-color:#1F261F;
+    flex-grow: 1;
+    padding: 30px;
+    box-sizing: border-box;
+    height: 950px;
+    /* display: grid; */
+    /* grid-template-rows: 1fr 9fr; */
+}
+
+.komp{
+    display: grid;
+    background-color: #FFFFFF;
+    width: auto;
+    height: 100px;
+    color: #1F261F;
+    grid-template-columns: 2fr 2fr;
+    border-radius: 20px;
+}
+.komp .isi-komponen1 {
+    display: flex;
+    /* padding: 25px 30px; */
+    /* text-align: center; */
+    justify-content: center;
+    align-items: center;
+}
+.komp .isi-komponen2 {
+    display: grid;
+    /* padding: 25px 30px; */
+    /* text-align: center; */
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.komp_table{
+    /* width: auto auto; */
+    margin-top: 30px;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+}
+
+
+

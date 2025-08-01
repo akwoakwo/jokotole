@@ -1,0 +1,852 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+a:hover, a:active, a:focus {
+  text-decoration: none;
+}
+
+p {
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  z-index: 997;
+  height: 90px;
+}
+#header .logo {
+  font-size: 36px;
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+#header .logo a {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
+#header.header-scrolled {
+  background: rgb(76, 147, 255);
+  height: 70px;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
+}
+
+
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/**
+* Desktop Navigation 
+*/
+.navbar {
+  padding: 0;
+}
+.navbar ul {
+  margin: 0;
+  margin-right: 30px;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
+  color: #e6f703;
+}
+
+.navbar li {
+  position: relative;
+}
+.navbar a, .navbar a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 10px 24px;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+.ulasan{
+  font-size: 500px;
+  color: #000;
+}
+.nama{
+  text-align: right;
+  font-size: 40px;
+  font-weight: 700;
+  color:rgb(255, 49, 49);
+  text-shadow: 1px 1px 2px rgb(10,10,10);
+  font-family: "cooper black";
+}
+.navbar .dropdown ul {
+  display: block;
+  position: absolute;
+  left: 24px;
+  top: calc(100% + 30px);
+  margin: 0;
+  padding: 10px 0;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  background: rgb(0, 0, 0);
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  transition: 0.3s;
+}
+
+.navbar .dropdown ul a {
+  padding: 10px 20px;
+  text-transform: none;
+  font-weight: 400;
+}
+.navbar .dropdown ul a i {
+  font-size: 12px;
+}
+
+.navbar .dropdown:hover > ul {
+  opacity: 1;
+  top: 100%;
+  visibility: visible;
+}
+
+
+
+
+/**
+* Mobile Navigation 
+*/
+
+.navbar-mobile .dropdown ul {
+  position: static;
+  display: none;
+  margin: 10px 20px;
+  padding: 10px 0;
+  z-index: 99;
+  opacity: 1;
+  visibility: visible;
+  background: #fff;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+}
+
+#hero {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-image: url("../sumberdaya/oni3.jpg");
+  background-size: cover;
+  padding-top: 110px;
+}
+
+@media (min-width: 992px) {
+  #hero .intro-info {
+    padding-top: 100px;
+  }
+}
+
+#hero .intro-info h3 {
+  color: #01e1ff;
+  margin-bottom: 40px;
+  font-size: 48px;
+  font-weight: 700;
+  text-shadow:2px 3px 0px rgb(0, 0, 0) ;
+}
+#hero .intro-info h3 span {
+  color: #77DA59;
+  background-color: #14667c;
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 4px 6px;
+  text-shadow:2px 3px 5px rgb(46, 40, 40) ;
+}
+
+#hero .intro-info .btn-get-started {
+  font-family: poppins;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 20px;
+  transition: 0.5s;
+  color: #fff;
+  background: #28cee4;
+  text-shadow:1px 2px 5px rgb(0, 0, 0) ;
+  color: #fff;
+}
+#hero .intro-info .btn-get-started:hover {
+  background: #0a98c0;
+}
+
+/*--------------------------------------------------------------
+# Sections
+--------------------------------------------------------------*/
+section {
+  overflow: hidden;
+}
+
+
+
+/*login*/
+
+#register{
+  display: none;
+  width: 40%;
+  height: 50px;
+  margin: auto;
+  padding-bottom: 25px;
+  padding-left: 15px;
+}
+
+.tanya input[type="radio"]{
+  display: none;
+}
+
+.register,.register h1 {
+  text-align: center;
+}
+
+.login i {
+  padding: 5px;
+}
+
+.tanya h2{
+  font-size: 36px;
+  color: #413e66;
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+}
+.tanya{
+  margin: auto;
+  text-align: center;
+  align-items: center;
+}
+.tanyain{
+  background-color: rgb(119, 201, 255);
+  color: white;
+  font-size: 20px;
+  margin: 30px;
+  border-radius: 30px;
+  padding: 5px 20px;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+}
+
+
+.formlog{
+  display: block;
+  margin-top: 20%;
+}
+#login{
+  display: none;
+  width: 40%;
+  height: 50px;
+  margin: auto;
+  padding-bottom: 25px;
+  padding-left: 15px;
+}
+.simpan{
+  text-align: center;
+}
+.simpan input{
+  color: white;
+  background-color: #0a98c0;
+  border: 1px solid #0a98c0;
+  padding: 2px 5px;
+  border-radius: 10px;
+  width: 100px;
+  outline: 1.9px solid #0a98c0;
+  outline-offset: 0.2rem;
+}
+
+
+.login{
+  margin: auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.login h1{
+  color: #0a98c0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  padding: 5px 20px;
+  font-weight: 700;
+}
+.email{
+  border: none;
+  border-bottom: 1px solid #0a98c0;
+  color: rgb(51, 51, 51);
+  font-size: 14px;
+  margin-bottom: 15px;
+  padding: 0.5em 1em 0.5em 0;
+  width: 300px;
+}
+.email:focus{
+  border-bottom: 1px solid #000;
+  outline: none;
+}
+.psw {
+  margin-top: 30px;
+  border: none;
+  border-bottom: 1px solid #0a98c0;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 15px;
+  padding: 0.5em 1em 0.5em 0;
+  width: 300px;
+}
+.psw:focus{
+  border-bottom: 1px solid #000;
+  outline: none;
+}
+
+.emailLogin::after {
+  content: ":";
+  margin-left: 57px;
+  margin-right: 10px;
+}
+.pswLogin::after {
+  content: ":";
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+
+
+
+/*================*/
+.contenlog{
+  margin-top: 100px;
+  margin-bottom: 370px;
+}
+#register{
+  display: none;
+  width: 40%;
+  height: 50px;
+  margin: auto;
+  padding-bottom: 25px;
+  padding-left: 15px;
+}
+.contenlog label{
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  padding: 5px 20px;
+  font-weight: 700;
+}
+.register h1{
+  color: #0a98c0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  padding: 5px 20px;
+  font-weight: 700;
+}
+.email{
+  border: none;
+  border-bottom: 1px solid #0a98c0;
+  color: rgb(51, 51, 51);
+  font-size: 20px;
+  margin-bottom: 15px;
+  padding: 0.5em 1em 0.5em 0;
+  width: 300px;
+}
+.email:focus{
+  border-bottom: 1px solid #000;
+  outline: none;
+}
+.psw {
+  margin-top: 30px;
+  border: none;
+  border-bottom: 1px solid #0a98c0;
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 15px;
+  padding: 0.5em 1em 0.5em 0;
+  width: 300px;
+}
+.psw:focus{
+  border-bottom: 1px solid #000;
+  outline: none;
+}
+
+.emailLogin::after {
+  content: ":";
+  margin-left: 57px;
+  margin-right: 10px;
+}
+.pswLogin::after {
+  content: ":";
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.lastn{
+  border: none;
+  border-bottom: 1px solid #0a98c0;
+  color: rgb(51, 51, 51);
+  font-size: 20px;
+  margin-bottom: 15px;
+  padding: 0.5em 1em 0.5em 0;
+  width: 300px;
+}
+.lastn:focus{
+  border-bottom: 1px solid #000;
+  outline: none;
+}
+.firstn{
+  border: none;
+  border-bottom: 1px solid #0a98c0;
+  color: rgb(51, 51, 51);
+  font-size: 20px;
+  margin-bottom: 15px;
+  padding: 0.5em 1em 0.5em 0;
+  width: 300px;
+}
+.firstn:focus{
+  border-bottom: 1px solid #000;
+  outline: none;
+}
+.pass{
+  border: none;
+  border-bottom: 1px solid #0a98c0;
+  color: rgb(51, 51, 51);
+  font-size: 20px;
+  margin-bottom: 15px;
+  padding: 0.5em 1em 0.5em 0;
+  width: 300px;
+}
+.pass:focus{
+  border-bottom: 1px solid #000;
+  outline: none;
+}
+
+.firstl::after {
+  content: ":";
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.lastl::after {
+  content: ":";
+  margin-left: 12px;
+  margin-right: 10px;
+}
+.emaill::after {
+  content: ":";
+  margin-left: 60px;
+  margin-right: 10px;
+}
+.passs::after {
+  content: ":";
+  margin-left: 13px;
+  margin-right: 10px;
+}
+
+
+/*gerak geser*/
+.gerak{
+  margin: auto;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.slider{
+  width: 800px;
+  height: 500px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.slides{
+  width: 500%;
+  height: 500px;
+  display: flex;
+}
+
+.slides input{
+  display: none;
+}
+
+.slide{
+  width: 20%;
+  transition: 2s;
+}
+.gerak{
+  background-image: url("../sumberdaya/bg\ gerak2\ \(2\).jpg");
+}
+.slide img{
+  width: 100%;
+  height: 100%;
+}
+.slide p{
+  font-size: large;
+  text-align: center;
+  font-weight: 1000;
+  background-color: rgb(119, 201, 255);
+  color: white;
+}
+
+.slide h3{
+  text-align: center;
+  font-size:30px;
+}
+
+/*css for manual slide navigation*/
+
+.navigation-manual{
+  position: absolute;
+  width: 800px;
+  margin-top: -40px;
+  display: flex;
+  justify-content: center;
+}
+
+.manual-btn{
+  border: 2px solid #ffffff;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.manual-btn:not(:last-child){
+  margin-right: 40px;
+}
+
+.manual-btn:hover{
+  background: #ffffff;
+}
+
+#radio1:checked ~ .first{
+  margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+  margin-left: -20%;
+}
+
+#radio3:checked ~ .first{
+  margin-left: -40%;
+}
+
+#radio4:checked ~ .first{
+  margin-left: -60%;
+}
+
+/*css for automatic navigation*/
+
+.navigation-auto{
+  position: absolute;
+  display: flex;
+  width: 800px;
+  justify-content: center;
+  margin-top: 460px;
+}
+
+.navigation-auto div{
+  border: 2px solid #ffffff;
+  padding: 5px;
+  border-radius: 10px;
+  transition: 1s;
+}
+
+.navigation-auto div:not(:last-child){
+  margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1{
+  background: #ffffff;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2{
+  background: #ffffff;
+}
+
+#radio3:checked ~ .navigation-auto .auto-btn3{
+  background: #ffffff;
+}
+
+#radio4:checked ~ .navigation-auto .auto-btn4{
+  background: #ffffff;
+}
+
+
+
+
+
+
+
+/* Sections Header
+--------------------------------*/
+.section-header h3 {
+  font-size: 36px;
+  color: #413e66;
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+}
+.section-header p {
+  text-align: center;
+  margin: auto;
+  font-size: 15px;
+  padding-bottom: 60px;
+  color: #535074;
+  width: 50%;
+}
+@media (max-width: 767px) {
+  .section-header p {
+    width: 100%;
+  }
+}
+
+/* Team Section
+--------------------------------*/
+#team {
+  padding: 60px 0;
+}
+#team .member {
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+#team .member .member-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: 0.2s;
+  padding: 15px 0;
+  background: rgba(29, 78, 90, 0.6);
+}
+#team .member .member-info-content {
+  transition: margin 0.2s;
+  height: 36px;
+  transition: height 0.4s;
+}
+#team .member:hover .member-info {
+  transition: 0.4s;
+}
+#team .member:hover .member-info-content {
+  height: 70px;
+}
+#team .member h4 {
+  font-weight: 700;
+  margin-bottom: 2px;
+  font-size: 18px;
+  color: #fff;
+}
+#team .member span {
+  display: block;
+  font-size: 17px;
+  color: #fff;
+}
+#team .member p {
+  font-style: italic;
+  display: block;
+  font-size: 13px;
+  color: #fff;
+}
+
+
+
+
+
+/*--------------------------------------------------------------
+# Contact
+--------------------------------------------------------------*/
+.section-title h3 {
+  font-size: 36px;
+  color: #413e66;
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+}
+.section-title p {
+  text-align: center;
+  margin: auto;
+  font-size: 15px;
+  padding-bottom: 60px;
+  color: #535074;
+  width: 50%;
+}
+.contact .info {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+.contact .info i {
+  font-size: 20px;
+  color: #24c7dd;
+  float: left;
+  width: 44px;
+  height: 44px;
+  background: #eaf6e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+}
+.contact .info h4 {
+  padding: 0 0 0 60px;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #151515;
+}
+.contact .info p {
+  padding: 0 0 0 60px;
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #484848;
+}
+.contact .info .emailcon, .contact .info .phone {
+  margin-top: 40px;
+}
+.contact .info .emailcon:hover i, .contact .info .address:hover i, .contact .info .phone:hover i {
+  background: #24c7dd;
+  color: #fff;
+}
+.contact .php-email-form {
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+.contact .php-email-form .form-group {
+  padding-bottom: 8px;
+}
+.contact .php-email-form .error-message {
+  display: none;
+  color: #fff;
+  background: #ed3c0d;
+  text-align: left;
+  padding: 15px;
+  font-weight: 600;
+}
+.contact .php-email-form .error-message br + br {
+  margin-top: 25px;
+}
+.contact .php-email-form .sent-message {
+  display: none;
+  color: #fff;
+  background: #18d26e;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+.contact .php-email-form .loading {
+  display: none;
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+}
+.contact .php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #18d26e;
+  border-top-color: #eee;
+  -webkit-animation: animate-loading 1s linear infinite;
+  animation: animate-loading 1s linear infinite;
+}
+.contact .php-email-form input, .contact .php-email-form textarea {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+}
+.contact .php-email-form input {
+  height: 44px;
+}
+.contact .php-email-form textarea {
+  padding: 10px 12px;
+}
+.contact .php-email-form button[type=submit] {
+  background: #24c7dd;
+  border: 0;
+  padding: 10px 24px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+.contact .php-email-form button[type=submit]:hover {
+  background: #61b959;
+}
+@-webkit-keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/*--------------------------------------------------------------
+# About Us
+--------------------------------------------------------------*/
+.about .image {
+  width: 450px;
+  padding: 20px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.about .content p:last-child {
+  margin-bottom: 0;
+  text-indent: 10%;
+  text-align: justify;
+}
+.about{
+  margin-bottom: 200px;
+}
