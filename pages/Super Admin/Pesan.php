@@ -5,25 +5,9 @@ $hasil = mysqli_query($koneksi, $sql);
 ?>
 
 <?php
-include '../Koneksi.php';
-
-if (isset($_POST['balas'])) {
-    $id = $_POST['data_id'];
-    $balas = $_POST['balasan'];
-    // $id_message = $_POST['id_message'];
-
-    if (!empty($balas) && !empty($id)) {
-        $query = "UPDATE message SET balasan='$balas' WHERE id_message = $id";
-        $queryact = mysqli_query($conn, $query);
-
-        echo ("<script>location.href = 'Pesan.php';</script>");
-    } else {
-        echo 'Isi semua kolom yang diperlukan.';
-    }
-}
+    session_start();
+    require_once("../Koneksi.php");
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +15,7 @@ if (isset($_POST['balas'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Super Admin | Penjurusan Prestasi</title>
+    <title>Super Admin | Kotak Masuk</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -60,7 +44,6 @@ if (isset($_POST['balas'])) {
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars" style="color: #fff"></i></a>
                 </li>
             </ul>
-
         </nav>
         <!-- /.navbar -->
 
@@ -76,179 +59,10 @@ if (isset($_POST['balas'])) {
         $hasill = mysqli_query($conn, $sql);
         $bariss = mysqli_fetch_assoc($hasill);
         ?>
-        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #3B4045">
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="../../dist/img/<?php echo $bariss['foto'] ?>" class="img-circle elevation-3" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block"><?php echo $bariss['nama'] ?></a>
-                        <a href="#" style="font-size: 10px;"><i class="fa fa-circle text-success"></i> Super Admin</a>
-                    </div>
-                </div>
-
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-   with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="Dashboard_SuperAdmin.php" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Profil_Perguruan.php" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Profil Perguruan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Kelola_Merchandise.php" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart "></i>
-                                <p>
-                                    Merchandise
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Penjurusan_Prestasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-road"></i>
-                                <p>
-                                    Penjurusan Prestasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Kelayakan.php" class="nav-link">
-                                <i class="nav-icon fas fa-percent"></i>
-                                <p>
-                                    Kelayakan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Inventaris.php" class="nav-link">
-                                <i class="nav-icon fas fa-database"></i>
-                                <p>
-                                    Inventaris
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Pesan.php" class="nav-link">
-                                <i class="nav-icon fas fa-envelope "></i>
-                                <p>
-                                    Kotak Masuk
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Verifikasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-money-check-alt"></i>
-                                <p>
-                                    Verifikasi Pembayaran
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Materi.php" class="nav-link">
-                                <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                                <p>
-                                    Materi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Verifikasi_Pendaftaran.php" class="nav-link">
-                                <i class="nav-icon fas fa-user-plus"></i>
-                                <p>
-                                    Verifikasi Pendaftaran
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="galeriprestasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-trophy"></i>
-                                <p>
-                                    Galeri Prestasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="spp.php" class="nav-link">
-                                <i class="nav-icon fas fa-receipt"></i>
-                                <p>
-                                    Informasi SPP
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="strukturorganisasi.php" class="nav-link">
-                                <i class="nav-icon 	fas fa-sitemap"></i>
-                                <p>
-                                    Struktur Organisasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="beritaagenda_SuperAdmin.php" class="nav-link">
-                                <i class=" nav-icon fa fa-newspaper-o"></i>
-                                <p>
-                                    Berita dan Agenda
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="rekomendasilomba_SuperAdmin.php" class="nav-link">
-                                <i>
-                                    <i class="nav-icon fa fa-handshake-o"></i>
-                                </i>
-                                <p>
-                                    Rekomendasi Lomba
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Inventaris.php" class="nav-link">
-                                <i>
-                                    <i class="nav-icon fa fa-trophy"></i>
-                                </i>
-                                <p>
-                                    Pengajuan Lomba
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Pengaturan.php" class="nav-link">
-                                <i class="nav-icon fas fa-cog"></i>
-                                <p>
-                                    Pengaturan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../logout.php" class="nav-link">
-                                <i class="nav-icon fas fa fa-sign-out"></i>
-                                <p>
-                                    Logout
-                                </p>
-                            </a>
-                        </li>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
+        <?php
+            include 'sidebar/sidebar.php';
+        ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="background-color: #18191A;">
@@ -262,14 +76,40 @@ if (isset($_POST['balas'])) {
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="container mt-0">
-                        <!-- Konten halaman Inventaris.php -->
-                        <!-- ... -->
+
+            <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-id="">
+                <div class="modal-dialog modal-dialog-centered modal" role="document">
+                    <div class="modal-content shadow">
+                        <div class="modal-header bg-light shadow-sm" style="background-color: #BED2BE !important;">
+                            <h5 class="modal-title" id="exampleModalLabel">Balasan</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="modal-body">
+                                            <form action="" method="post">
+                                                <div class="form-group">
+                                                    <input type="text" name="data_id" id="data_id" class="form-control" value="" required>
+                                                    <label for="balasan">Balasan</label>
+                                                    <textarea name="balasan" id="balasan" class="form-control ckeditor" required></textarea>
+                                                </div><br><br>
+                                                <button type="button" class="btn bg-navy" data-dismiss="modal">Batal</button>
+                                                <button type="submit" name="balas" class="btn bg-olive" id="confirmBtn" onclick="return confirm('Apakah anda yakin ingin mengirim balasan ini ?')">Ya, Lanjutkan</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer shadow-sm" style="background-color: #BED2BE;">
+                        </div>
                     </div>
-                </div><!-- /.container-fluid -->
-            </section>
+                </div>
+            </div> -->
 
             <!-- Main content -->
             <section class="content">
@@ -277,52 +117,17 @@ if (isset($_POST['balas'])) {
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <!-- Default box -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-id="">
-                                <div class="modal-dialog modal-dialog-centered modal" role="document">
-                                    <div class="modal-content shadow">
-                                        <div class="modal-header bg-light shadow-sm" style="background-color: #BED2BE !important;">
-                                            <h5 class="modal-title" id="exampleModalLabel">Balasan</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="modal-body">
-                                                            <form action="" method="post">
-                                                                <div class="form-group">
-                                                                    <input type="text" name="data_id" id="data_id" class="form-control" value="" required>
-                                                                    <label for="balasan">Balasan</label>
-                                                                    <textarea name="balasan" id="balasan" class="form-control ckeditor" required></textarea>
-                                                                </div><br><br>
-                                                                <button type="button" class="btn bg-navy" data-dismiss="modal">Batal</button>
-                                                                <button type="submit" name="balas" class="btn bg-olive" id="confirmBtn" onclick="return confirm('Apakah anda yakin ingin mengirim balasan ini ?')">Ya, Lanjutkan</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer shadow-sm" style="background-color: #BED2BE;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="card">
 
                                 <div class="card-body">
-                                    <div class="box-header mb-3" style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div class="box-header mb-3" style="display: flex; justify-content: flex-end; align-items: center;">
                                         <div class="label-input-container">
                                             <label>Search:</label>
-                                            <input type="search" id="inPutbarang" onkeyup="myFunctionfunc()" class="form-control" data-table="table-bordered" placeholder="Mencari..." />
+                                            <input type="search" id="inPutbarang" onkeyup="myFunctionfunc()" class="form-control" data-table="table-bordered" placeholder="Cari Email" />
                                         </div>
-
                                     </div>
                                     <!-- /.box-header -->
+
                                     <div class="box-body">
                                         <table class="table table-bordered table-striped" id="taBelinventaris" style="text-align: center;">
                                             <thead>
@@ -331,7 +136,6 @@ if (isset($_POST['balas'])) {
                                                     <th>Email</th>
                                                     <th>Nama Pengirim</th>
                                                     <th>Komentar</th>
-                                                    <th>Balasan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -344,18 +148,6 @@ if (isset($_POST['balas'])) {
                                                         <td><?php echo $baris['email_pengirim'] ?></td>
                                                         <td><?php echo $baris['nama_pengirim'] ?></td>
                                                         <td><?php echo $baris['message'] ?></td>
-                                                        <td>
-                                                            <?php
-                                                            if ($baris['balasan'] == '') { ?>
-                                                                <button type="button" onclick="openModal(<?php echo $baris['id_message']; ?>)" class="btn btn-primary" style="width: 180px;" data-toggle="modal" data-target="#myModal">
-                                                                    <i class="fas fa-comment-medical"></i> Balas
-                                                                </button>
-
-                                                            <?php } else { ?>
-                                                            <?php
-                                                                echo $baris['balasan'];
-                                                            } ?>
-                                                        </td>
                                                     </tr>
                                                 <?php }; ?>
                                             </tbody>
@@ -369,6 +161,7 @@ if (isset($_POST['balas'])) {
                         </div>
                     </div>
                 </div>
+
             </section>
             <!-- /.content -->
         </div>
@@ -399,25 +192,8 @@ if (isset($_POST['balas'])) {
     <script type="text/javascript" src="../../dist/js/pages/search.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- jQuery library -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
     <!-- Bootstrap JavaScript library -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
-
-
-
-
-    <script>
-        function openModal(id) {
-            // Set the value of the hidden input field with the id
-            document.getElementById('data_id').value = id;
-
-            // Show the modal
-            $('#myModal').modal('show');
-        }
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 
 

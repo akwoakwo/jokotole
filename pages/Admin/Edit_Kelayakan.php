@@ -1,14 +1,33 @@
 <?php
 $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+?>
+
+<?php
 
 // Memanggil id edit dari file tampil_data.php
-$id = $_GET["id_edit"];
+session_start();
+require_once("../Koneksi.php");
 
-$query_murid = "SELECT id_kelayakan, aktor.nama, jumlah_pertemuan, salam_perguruan, dasar_kaki, dasar_tangan, jurus_tangan, jurus_kaki, langkah_segitiga, hindaran, zigzag_abc, pasangan, seni, pertemuan_latihan_fisik  FROM aktor inner join kelayakan_naik_tingkat on aktor.id_aktor = kelayakan_naik_tingkat.murid_id where id_kelayakan = $id";
-$data = mysqli_query($koneksi, $query_murid);
-$row = mysqli_fetch_assoc($data);
+if (!isset($_SESSION['id_aktor'])) {
+    header("Location: ../index.php");
+    exit();
+}
 
-$no = 1;
+if (!isset($_GET['id'])) {
+    echo "<script>alert('ID tidak ditemukan.'); window.location='Kelayakan.php';</script>";
+    exit();
+}
+
+$id = intval($_GET['id']);
+$query = "SELECT * FROM kelayakan_naik_tingkat WHERE murid_id = $id";
+$result = mysqli_query($conn, $query);
+
+if (!$result || mysqli_num_rows($result) == 0) {
+    echo "<script>alert('Data tidak ditemukan.'); window.location='Kelayakan.php';</script>";
+    exit();
+}
+
+$data = mysqli_fetch_assoc($result);
 
 
 // ------------------------------------------- update kelayakan
@@ -64,7 +83,7 @@ if (isset($_POST['update_kelayakan'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin | Evaluasi Murid</title>
+    <title>Admin | Edit Kelayakan Naik Tingkat</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -77,11 +96,7 @@ if (isset($_POST['update_kelayakan'])) {
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="icon" type="image/png" href="../../dist/img/Jokotole.png" />
-    <style>
-        td {
-            border: 1px solid black
-        }
-    </style>
+    <link href="../../dist/css/style.css" rel="stylesheet">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -95,7 +110,6 @@ if (isset($_POST['update_kelayakan'])) {
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars" style="color: #fff"></i></a>
                 </li>
             </ul>
-
         </nav>
         <!-- /.navbar -->
 
@@ -111,180 +125,10 @@ if (isset($_POST['update_kelayakan'])) {
         $hasill = mysqli_query($conn, $sql);
         $bariss = mysqli_fetch_assoc($hasill);
         ?>
-        <aside class="main-sidebar sidebar-light-primary elevation-4" style="background-color: #fff;color:white;">
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="../../dist/img/<?php echo $bariss['foto'] ?>" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block"><?php echo $bariss['nama'] ?></a>
-                        <a href="#" style="font-size: 12px;"><i class="fa fa-circle text-success"></i> Admin</a>
-                    </div>
-                </div>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item">
-                            <a href="Dashboard_Admin.php" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Profil_Perguruan.php" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Profil Perguruan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Merchandise.php" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart "></i>
-                                <p>
-                                    Merchandise
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Penjurusan_Prestasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-road"></i>
-                                <p>
-                                    Penjurusan Prestasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Kelayakan.php" class="nav-link">
-                                <i class="nav-icon fas fa-percent"></i>
-                                <p>
-                                    Kelayakan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Inventaris.php" class="nav-link">
-                                <i class="nav-icon fas fa-database"></i>
-                                <p>
-                                    Inventaris
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Pesan.php" class="nav-link">
-                                <i class="nav-icon fas fa-envelope "></i>
-                                <p>
-                                    Kotak Masuk
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Materi.php" class="nav-link">
-                                <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                                <p>
-                                    Materi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Evaluasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-info "></i>
-                                <p>
-                                    Evaluasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Data_Siswa.php" class="nav-link">
-                                <i class="nav-icon fas fa-graduation-cap "></i>
-                                <p>
-                                    Data Siswa
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Verifikasi_Absen_Siswa.php" class="nav-link">
-                                <i class="nav-icon fas fa-check "></i>
-                                <p>
-                                    Verifikasi Absensi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Jadwal.php" class="nav-link">
-                                <i class="nav-icon fas fa-clock-o "></i>
-                                <p>
-                                    Jadwal
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="galeriprestasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-trophy"></i>
-                                <p>
-                                    Galeri Prestasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="spp.php" class="nav-link">
-                                <i class="nav-icon fas fa-receipt"></i>
-                                <p>
-                                    Informasi SPP
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="struktur.php" class="nav-link">
-                                <i class="nav-icon 	fas fa-sitemap"></i>
-                                <p>
-                                    Struktur Organisasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="rekomendasilomba_Admin.php" class="nav-link">
-                                <i class="nav-icon fa fa-handshake-o"></i>
-                                <p>
-                                    Rekomendasi Lomba
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pengajuan_lomba.php" class="nav-link">
-                                <i class="nav-icon fa fa-trophy"></i>
-                                <p>
-                                    Pengajuan Lomba
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Pengaturan.php" class="nav-link">
-                                <i class="nav-icon fas fa-cog"></i>
-                                <p>
-                                    Pengaturan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../logout.php" class="nav-link">
-                                <i class="nav-icon fas fa fa-sign-out"></i>
-                                <p>
-                                    Logout
-                                </p>
-                            </a>
-                        </li>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
+        <?php
+        include 'siderbar/sidebar.php';
+        ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="background-color: #BED2BE;">
@@ -293,7 +137,7 @@ if (isset($_POST['update_kelayakan'])) {
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h1 style="color: #000; margin:70px 0px 0px;"><b>EDIT KELAYAKAN NAIK TINGKAT</b></h1>
+                            <h1 style="color: #000; margin:70px 0px 0px;"><b>Edit Kelayakan Naik Tingkat</b></h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -302,32 +146,33 @@ if (isset($_POST['update_kelayakan'])) {
 
             <!-- Main content -->
 
-            <section class="content" style="padding-bottom: 75px;">
+            <section class="content">
 
                 <div class="container-fluid">
-                    <div style="display: flex; justify-content: center; align-items: center;">
-                        <div class="row">
-                            <div class="col-15">
-                                <!-- Default box -->
-                                <div class="card" width=750px>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
 
-
-                                    <div class="card card-body">
+                                <div class="card-body">
+                                    <div class="box-header mb-3" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <a href="Kelayakan.php" class="btn btn-secondary">Kembali</a>
+                                            <button type="reset" class="btn btn-primary text-white shadow-none">Reset</button>
+                                            <button type="submit" name="update_kelayakan" class="btn btn-success text-white shadow-none">Simpan</button>
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
                                         <form action="" method="post">
                                             <input type="hidden" name="id_kelayakan" value="<?php echo $row["id_kelayakan"]; ?>">
-                                            <table style="border : 1px solid black; width: 750px; text-align: center;">
+                                            <table class="table table-bordered table-striped" id="taBelinventaris" style="text-align: center;">
                                                 <thead>
                                                     <tr>
-                                                        <td>No</td>
-                                                        <td>Nama</td>
-                                                        <td>Syarat Kelayakan</td>
-                                                        <td>Status</td>
+                                                        <th>Syarat Kelayakan</th>
+                                                        <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td rowspan="12" style="border : 1px solid black"><?php echo $no++ ?></td>
-                                                        <td rowspan="12" style="border : 1px solid black"><?php echo $row["nama"]; ?></td>
                                                         <td>Jumlah Pertemuan</td>
                                                         <td>
                                                             <input type="number" class="form-control shadow-none" name="jumlah_pertemuan" value="<?php echo $row["jumlah_pertemuan"]; ?>" min="<?php echo $row["jumlah_pertemuan"]; ?>" required>
@@ -446,41 +291,26 @@ if (isset($_POST['update_kelayakan'])) {
                                                     </tr>
                                                 </tbody>
                                             </table>
-
-                                            <br>
-                                            <button type="reset" class="btn btn-primary text-white shadow-none">reset</button>
-                                            <button type="submit" name="update_kelayakan" class="btn btn-success text-white shadow-none">Simpan</button>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                </td>
-                </tr>
+            </section>
+            <!-- /.content -->
         </div>
-
-
-
-        </section>
-
-        <!-- /.content -->
         <!-- /.content-wrapper -->
-    </div>
+        <footer class="main-footer" style="background-color: #818992;">
+            <strong style="color: #fff">Copyright &copy; 2023 <a href="https://localhost:PPL">Jokotole Kodim 0829</a>.</strong>
+        </footer>
 
-
-    <footer class="main-footer" style="background-color: #818992; position: fixed;bottom: 0;width: 100%;">
-        <strong style="color: #fff">Copyright &copy; 2023 <a href="https://jokotole" style="color: darkblue;">Jokotole
-                Kodim 0829</a>.</strong>
-    </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 

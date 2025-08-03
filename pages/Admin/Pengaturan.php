@@ -86,7 +86,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin | Profile</title>
+    <title>Admin | Pengaturan</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -166,207 +166,36 @@ if (isset($_POST['submit'])) {
 
         <!-- Main Sidebar Container -->
         <?php
-        session_start();
-        if (!isset($_SESSION['nama']) && !isset($_SESSION['id_aktor'])) {
-            header("Location: ../../index.php");
-        }
-        $aktorr = $_SESSION['id_aktor'];
-        $conn = mysqli_connect("localhost", "root", "", "jokotole");
-        $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
-        $hasill = mysqli_query($conn, $sql);
-        $bariss = mysqli_fetch_assoc($hasill);
+            session_start();
+            if (!isset($_SESSION['nama']) && !isset($_SESSION['id_aktor'])) {
+                header("Location: ../../index.php");
+            }
+            $aktorr = $_SESSION['id_aktor'];
+            $conn = mysqli_connect("localhost", "root", "", "jokotole");
+            $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
+            $hasill = mysqli_query($conn, $sql);
+            $bariss = mysqli_fetch_assoc($hasill);
         ?>
-        <aside class="main-sidebar sidebar-light-primary elevation-4" style="background-color: #fff;color:white;">
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="../../dist/img/<?php echo $bariss['foto'] ?>" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block"><?php echo $bariss['nama'] ?></a>
-                        <a href="#" style="font-size: 12px;"><i class="fa fa-circle text-success"></i> Admin</a>
-                    </div>
-                </div>
-
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-                        <li class="nav-item">
-                            <a href="Dashboard_Admin.php" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Profil_Perguruan.php" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Profil Perguruan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Merchandise.php" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart "></i>
-                                <p>
-                                    Merchandise
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Penjurusan_Prestasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-road"></i>
-                                <p>
-                                    Penjurusan Prestasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Kelayakan.php" class="nav-link">
-                                <i class="nav-icon fas fa-percent"></i>
-                                <p>
-                                    Kelayakan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Inventaris.php" class="nav-link">
-                                <i class="nav-icon fas fa-database"></i>
-                                <p>
-                                    Inventaris
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Pesan.php" class="nav-link">
-                                <i class="nav-icon fas fa-envelope "></i>
-                                <p>
-                                    Kotak Masuk
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Materi.php" class="nav-link">
-                                <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                                <p>
-                                    Materi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Evaluasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-info "></i>
-                                <p>
-                                    Evaluasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Data_Siswa.php" class="nav-link">
-                                <i class="nav-icon fas fa-graduation-cap "></i>
-                                <p>
-                                    Data Siswa
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Verifikasi_Absen_Siswa.php" class="nav-link">
-                                <i class="nav-icon fas fa-check "></i>
-                                <p>
-                                    Verifikasi Absensi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Jadwal.php" class="nav-link">
-                                <i class="nav-icon fas fa-clock-o "></i>
-                                <p>
-                                    Jadwal
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="galeriprestasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-trophy"></i>
-                                <p>
-                                    Galeri Prestasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="spp.php" class="nav-link">
-                                <i class="nav-icon fas fa-receipt"></i>
-                                <p>
-                                    Informasi SPP
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="struktur.php" class="nav-link">
-                                <i class="nav-icon 	fas fa-sitemap"></i>
-                                <p>
-                                    Struktur Organisasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="rekomendasilomba_Admin.php" class="nav-link">
-                                <i class="nav-icon fa fa-handshake-o"></i>
-                                <p>
-                                    Rekomendasi Lomba
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pengajuan_lomba.php" class="nav-link">
-                                <i class="nav-icon fa fa-trophy"></i>
-                                <p>
-                                    Pengajuan Lomba
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Pengaturan.php" class="nav-link">
-                                <i class="nav-icon fas fa-cog"></i>
-                                <p>
-                                    Pengaturan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../logout.php" class="nav-link">
-                                <i class="nav-icon fas fa fa-sign-out"></i>
-                                <p>
-                                    Logout
-                                </p>
-                            </a>
-                        </li>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
+        
+        <?php
+            include 'siderbar/sidebar.php';
+        ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="background-color: #BED2BE;">
             <!-- Content Header (Page header) -->
             <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 style="color: #000;margin-top:70px;"><b>Pengaturan</b></h1>
+                        </div>
+                    </div>
+                </div>
             </section>
             <!-- Main content -->
             <section class="content" style="padding-bottom: 75px;">
                 <div class="container-fluid">
-
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 style="color: #000"><b>Pengaturan</b></h1>
-                        </div>
-                    </div>
-
-
                     <!-- Modal untuk menampilkan pesan alert -->
                     <div class="modal fade" id="Danger" tabindex="-1" style="z-index: 10000;">
                         <div class="modal-dialog modal-sm" style="max-width: fit-content;  margin-left: auto; margin-right: 15px; margin-top: 15px;">
@@ -408,8 +237,8 @@ if (isset($_POST['submit'])) {
                         }
                         ?>
                         <!-- End modal -->
-                        <div class="col-lg-12 mb-4 px-lg-2" style="margin-right:auto; margin-left: auto">
-                            <div class="card mb-4 border-2 shadow">
+                        <div class="col-lg-12 mb-4 px-lg-2 p-3" style="margin-right:auto; margin-left: auto">
+                            <div class="card mb-4 shadow">
                                 <div class="row g-0 p-3 align-items-center">
                                     <div class="conten">
                                         <img id="profileImage" src="../../dist/img/profile/<?php echo $row["foto"]; ?>" alt="Gambar Materi" class="image" width="100">
@@ -424,52 +253,53 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="row g-0 p-3 align-items-center">
                                     <div class="">
-                                        <form action="" id="rooms-setting" method="post">
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-12 mb-3">
-                                                        <label class="form-label fw-bold" for="username"> Username </label>
-                                                        <input type="text" id="username" name="username" class="form-control shadow-none" value="<?php echo $row['username']; ?>" required>
-                                                    </div>
-                                                    <div class="col-md-12 mb-3">
-                                                        <label class="form-label fw-bold" for="passowrd"> Pasword </label>
-                                                        <input type="password" id="password" name="password" class="form-control shadow-none" value="<?php echo $row['password']; ?>" required>
-                                                        <input type="checkbox" id="showPassword"> Tampilkan Password
-                                                    </div>
-                                                    <div class="col-md-12 mb-3">
-                                                        <label class="form-label fw-bold" for="nama"> Nama </label>
-                                                        <input type="text" id="nama" name="nama" class="form-control shadow-none" value="<?php echo $row['nama']; ?>" required>
-                                                    </div>
-                                                    <div class="col-md-12 mb-3">
-                                                        <label class="form-label fw-bold" for="tanggal_lahir"> Tanggal lahir </label>
-                                                        <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control shadow-none" value="<?php echo $row['tanggal_lahir']; ?>" required>
-                                                    </div>
-                                                    <div class="col-md-12 mb-3">
-                                                        <label class="form-label fw-bold" for="email"> E-mail </label>
-                                                        <input type="text" id="email" name="email" class="form-control shadow-none" value="<?php echo $row['email']; ?>" required>
-                                                        <span id="error_email" style="color: red;"></span>
-                                                    </div>
-                                                    <div class="col-md-12 mb-3">
-                                                        <label class="form-label fw-bold"> Telepon </label>
-                                                        <input type="text" id="telepon" name="telepon" class="form-control shadow-none" value="<?php echo $row['telepon']; ?>" required>
-                                                        <span id="error_telepon" style="color: red;"></span>
-                                                    </div>
-                                                    <div class="col-md-12 mb-3">
-                                                        <label class="form-label fw-bold" for="gender"> Gender </label>
-                                                        <!-- <input type="text" id="gender" name="gender" class="form-control shadow-none" value="" required> -->
-                                                        <select name="gender" id="gender" class="form-control shadow-none">
-                                                            <option selected hidden><?php echo $row['gender']; ?></option>
-                                                            <option value="Laki-laki">Laki-laki</option>
-                                                            <option value="Perempuan">Perempuan</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-12 mb-3">
-                                                        <label class="form-label fw-bold"> Alamat </label>
-                                                        <input type="text" id="alamat" name="alamat" class="form-control shadow-none" value="<?php echo $row['alamat']; ?>" required>
-                                                    </div>
-                                                    <div class="col-md-12 mb-3">
-                                                        <label class="form-label fw-bold" for="tingkatan"> Tingkatan </label>
-                                                        <input type="text" id="tingkatan" name="tingkatan" class="form-control shadow-none" value="<?php echo $row['tingkatan']; ?>" disabled>
+                                        <form action="" method="post">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12 mb-3">
+                                                            <label class="form-label fw-bold" for="username"> Username </label>
+                                                            <input type="text" id="username" name="username" class="form-control shadow-none" value="<?php echo $row['username']; ?>" required>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label class="form-label fw-bold" for="passowrd"> Pasword </label>
+                                                            <input type="password" id="password" name="password" class="form-control shadow-none" value="<?php echo $row['password']; ?>" required>
+                                                            <input type="checkbox" id="showPassword"> Tampilkan Password
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label class="form-label fw-bold" for="nama"> Nama </label>
+                                                            <input type="text" id="nama" name="nama" class="form-control shadow-none" value="<?php echo $row['nama']; ?>" required>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label class="form-label fw-bold" for="tanggal_lahir"> Tanggal lahir </label>
+                                                            <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control shadow-none" value="<?php echo $row['tanggal_lahir']; ?>" required>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label class="form-label fw-bold" for="email"> E-mail </label>
+                                                            <input type="text" id="email" name="email" class="form-control shadow-none" value="<?php echo $row['email']; ?>" required>
+                                                            <span id="error_email" style="color: red;"></span>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label class="form-label fw-bold"> Telepon </label>
+                                                            <input type="text" id="telepon" name="telepon" class="form-control shadow-none" value="<?php echo $row['telepon']; ?>" required>
+                                                            <span id="error_telepon" style="color: red;"></span>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label class="form-label fw-bold" for="gender"> Gender </label>
+                                                            <select name="gender" id="gender" class="form-control shadow-none">
+                                                                <option selected hidden><?php echo $row['gender']; ?></option>
+                                                                <option value="Laki-laki">Laki-laki</option>
+                                                                <option value="Perempuan">Perempuan</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label class="form-label fw-bold"> Alamat </label>
+                                                            <input type="text" id="alamat" name="alamat" class="form-control shadow-none" value="<?php echo $row['alamat']; ?>" required>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label class="form-label fw-bold" for="tingkatan"> Tingkatan </label>
+                                                            <input type="text" id="tingkatan" name="tingkatan" class="form-control shadow-none" value="<?php echo $row['tingkatan']; ?>" disabled>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

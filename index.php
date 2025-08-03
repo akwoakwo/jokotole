@@ -4,7 +4,7 @@ session_start();
 
 if (isset($_SESSION['nama']) && isset($_SESSION['id_aktor'])) {
   if (isset($_SESSION['role']) == 'Siswa') {
-    header("Location: home.php");
+    header("Location: pages/Murid/pengaturan.php");
   }
   if (isset($_SESSION['role']) == 'Admin') {
     header("Location: pages/Admin/Dashboard_Admin.php");
@@ -77,190 +77,230 @@ $hasil = mysqli_query($koneksi, $sql);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Homepage</title>
 
-  <!-- My Own Styles -->
+  <!-- CSS -->
   <link rel="stylesheet" href="dist/css/styl.css">
   <link rel="stylesheet" href="dist/css/style2.css">
-
-
-  <!-- Favicons -->
+  <link href="dist/assets/css/main.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- icons -->
   <link rel="icon" type="image/png" href="dist/img/Jokotole.png" />
-
+  <!-- font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
   <!-- Vendor CSS Files -->
   <link href="dist/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="dist/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
   <link href="dist/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <!-- <link href="dist/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> -->
-
-  <!-- Template Main CSS File -->
-  <link href="dist/assets/css/main.css" rel="stylesheet">
-
 </head>
 
 <body style="background-color: darkslategray;">
   <!-- Menu header -->
-
   <nav>
-    <a href="#" class="logo"><img src="dist/img/logo.png"></a>
-    <div class="navbar">
+    <a href="#home" class="logo"><img src="dist/img/logo.png"></a>
+    <div class="navbar" style="margin-left: 10%;">
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="#home">Home</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="#Merchandise">Merchandise</a></li>
         <li><a href="#galeri">Galeri Prestasi</a></li>
-        <li><a class="nav-link nav-active" href="Contact" data-toggle="modal" data-target="#myModal">Contact</a></li>
+        <li><a href="#Contact">Contact</a></li>
       </ul>
     </div>
 
     <div class="log">
       <ul>
-        <li><a href="" onclick="confirmAction()" data-toggle="modal" data-target="#myModal">Login</a></li>
-        <li><a href="#" class="sign" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</a></li>
+        <li><a href="" onclick="confirmAction()" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
+        <li><a href="#" class="sign" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</a></li>
       </ul>
     </div>
   </nav>
 
-  <div class="content" style="background-image: url(dist/img/gmb.png);min-height: 100vh;">
+  <div class="content" id="home" style="background-image: url(dist/img/gmb.png);min-height: 100vh;">
     <div class="imgbox">
       <img src="dist/img/silat.png" class="silat">
     </div>
     <div class="textbox">
-      <h1>PPS JOKOTOLE<br> DIKLAT KODIM 0829</h1>
-      <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Daftar Sekarang</a>
+      <h1 class="fw-bold">PPS JOKOTOLE<br> DIKLAT KODIM 0829</h1>
+      <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Daftar Sekarang</a>
     </div>
   </div>
 
   <!-- Register -->
   <div class="modal fade" id="registerModal" tabindex="-1" style="z-index: 10000;">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Form Pendaftaran Murid Baru</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <form action="" method="post" enctype="multipart/form-data" class="row">
-            <div class="modal-body">
-              <div class="row">
-
-                <!-- Nama -->
-                <div class="m-1">
-                    <label for="" class="form-label">Nama Lengkap</label>
-                    <input class="form-control" type="text" name="nama" value="" required>
-                </div>
-        
-                <!-- Email -->
-                <div class="col-md-5 m-1">
-                    <label for="" class="form-label">Email</label>
-                    <input class="form-control" type="email" name="email" id="" required>
-                </div>
-
-                <!-- Telepon siswa -->
-                <div class="col-md-3 m-1">
-                  <label for="" class="form-label">No. telepon</label>
-                  <input class="form-control" name="telepon" id="telepon" type="number" required>
-                  <span id="error_telepon_siswa" style="color: red;"></span>
-                </div>
-
-                <!-- Telepon wali -->
-                <div class="col-md-3 m-1">
-                  <label for="" class="form-label">No. telepon Wali</label>
-                  <input class="form-control" name="telepon_wali" id="telepon_wali" type="number" required>
-                  <span id="error_telepon_wali" style="color: red;"></span>
-                </div>
-                
-                <!-- Jenis kelamin -->
-                <div class="col-md-4 m-1">
-                    <label for="" class="form-label">Jenis Kelamin</label>
-                    <div class="gender" style="display: flex;">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="jenis_kelamin" value="laki laki" required>
-                            <p for="laki_laki"> Laki-laki </p>
-                        </div>
-                        <div class="form-check" style="margin-left: 15px;">
-                            <input class="form-check-input" type="radio" name="jenis_kelamin" value="perempuan" required>
-                            <p for="perempuan"> Perempuan </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tanggal Lahir -->
-                <div class="col-md-3 m-1">
-                  <label for="" class="form-label">Tanggal Lahir</label>
-                  <input class="form-control" type="date" name="tanggal_lahir" id="" multiple required>
-                </div>
-
-                <!-- Foto -->
-                <div class="col-md-4 m-1">
-                  <label for="" class="form-label">Foto Formal (3x3)</label>
-                  <input class="form-control" name="foto" id="" type="file" accept="image/*" required>
-                </div>
-                
-                <!-- Alamat -->
-                <div class="m-1">
-                    <label for="" class="form-label">Alamat</label>
-                    <input class="form-control" name="alamat" id="" type="text" required>
-                </div>
-
-                <!-- Username -->
-                <div class="col-md-6 m-1">
-                    <label for="" class="form-label">Username</label>
-                    <input class="form-control" name="username" id="username" type="text" required>
-                    <span id="error_username" style="color: red;"></span>
-                </div>
-
-                <!-- Password -->
-                <div class=" col-md-5 m-1">
-                    <label for="" class="form-label">Password</label>
-                    <input class="form-control" name="password" id="" type="password" required>
-                </div>
-              </div>  
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" name="register" class="btn btn-success">Submit</button>
-            </div>
-          </form>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #BED25E !important;">
+          <h5 class="modal-title fw-bold">Form Pendaftaran Murid Baru</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <form action="" method="post" enctype="multipart/form-data" class="row">
+          <div class="modal-body">
+            <div class="row p-4">
+
+              <!-- Nama -->
+              <div class="m-1">
+                <label for="" class="form-label">Nama Lengkap</label>
+                <input class="form-control" type="text" name="nama" value="" required>
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-4 m-1">
+                <label for="" class="form-label">Email</label>
+                <input class="form-control" type="email" name="email" id="" required>
+              </div>
+
+              <!-- Telepon siswa -->
+              <div class="col-md-4 m-1">
+                <label for="" class="form-label">No. telepon</label>
+                <input class="form-control" name="telepon" id="telepon" type="number" required>
+                <span id="error_telepon_siswa" style="color: red;"></span>
+              </div>
+
+              <!-- Tanggal Lahir -->
+              <div class="col-md-3 m-1">
+                <label for="" class="form-label">Tanggal Lahir</label>
+                <input class="form-control" type="date" name="tanggal_lahir" id="" multiple required>
+              </div>
+
+              <!-- Jenis kelamin -->
+              <div class="col-md-4 m-1">
+                <label for="" class="form-label">Jenis Kelamin</label>
+                <div class="gender" style="display: flex;">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="jenis_kelamin" value="laki laki" required>
+                    <p for="laki_laki"> Laki-laki </p>
+                  </div>
+                  <div class="form-check" style="margin-left: 15px;">
+                    <input class="form-check-input" type="radio" name="jenis_kelamin" value="perempuan" required>
+                    <p for="perempuan"> Perempuan </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Telepon wali -->
+              <div class="col-md-4 m-1">
+                <label for="" class="form-label">No. telepon Wali</label>
+                <input class="form-control" name="telepon_wali" id="telepon_wali" type="number" required>
+                <span id="error_telepon_wali" style="color: red;"></span>
+              </div>
+
+              <!-- Foto -->
+              <div class="col-md-3 m-1">
+                <label for="" class="form-label">Foto Formal (3x4)</label>
+                <input class="form-control" name="foto" id="" type="file" accept="image/*" required>
+              </div>
+
+              <!-- Alamat -->
+              <div class="m-1">
+                <label for="" class="form-label">Alamat</label>
+                <textarea class="form-control" name="alamat" id="" type="text" required></textarea>
+              </div>
+
+              <!-- Username -->
+              <div class="col-md-6">
+                <label for="" class="form-label">Username</label>
+                <input class="form-control" name="username" id="username" type="text" required>
+                <span id="error_username" style="color: red;"></span>
+              </div>
+
+              <!-- Password -->
+              <div class="col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                  <input class="form-control" name="password" id="password" type="password" required>
+                  <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
+                    <i class="bi bi-eye" id="eyeIcon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" name="register" class="btn btn-warning">Submit</button>
+          </div>
+        </form>
       </div>
     </div>
-    <!-- Modal untuk menampilkan pesan alert -->
-    <div class="modal fade" id="Danger" tabindex="-1" style="z-index: 10000;">
-      <div class="modal-dialog modal-sm" style="max-width: fit-content;  margin-left: auto; margin-right: 15px; margin-top: 15px;">
-          <div class="modal-header alert alert-danger fade show" style="height: 50px;">
-              <i class="bi bi-exclamation-octagon me-1"></i>
-              <p class="modal-title" id="alertDanger"></p>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-        </div>
+  </div>
+
+  <!-- Modal untuk menampilkan pesan alert -->
+  <div class="modal fade" id="Danger" tabindex="-1" style="z-index: 10000;">
+    <div class="modal-dialog modal-sm" style="max-width: fit-content;  margin-left: auto; margin-right: 15px; margin-top: 15px;">
+      <div class="modal-header alert alert-danger fade show" style="height: 50px;">
+        <i class="bi bi-exclamation-octagon me-1"></i>
+        <p class="modal-title" id="alertDanger"></p>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
     </div>
-    <div class="modal fade" id="Success" tabindex="-1" style="z-index: 10000;">
-      <div class="modal-dialog modal-sm" style="max-width: fit-content;  margin-left: auto; margin-right: 15px; margin-top: 15px;">
-          <div class="modal-header alert alert-success fade show" style="height: 50px;">
-              <i class="bi bi-check-circle me-1"></i>
-              <p class="modal-title" id="alertSuccess"></p>
-              <br>
-              <a style="pointer-events: auto;" target="_blank" href="./pages/Murid/cetak_data.php">Download Data</a>
-          </div>
-        </div>
+  </div>
+  <div class="modal fade" id="Success" tabindex="-1" style="z-index: 10000;">
+    <div class="modal-dialog modal-sm" style="max-width: fit-content;  margin-left: auto; margin-right: 15px; margin-top: 15px;">
+      <div class="modal-header alert alert-success fade show" style="height: 50px;">
+        <i class="bi bi-check-circle me-1"></i>
+        <p class="modal-title" id="alertSuccess"></p>
+        <br>
+        <a style="pointer-events: auto;" target="_blank" href="./pages/Murid/cetak_data.php">Download Data</a>
+      </div>
     </div>
+  </div>
+
+  <!-- Login -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" style="z-index: 10000;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <form action="" method="POST" class="login-email">
+          <div class="modal-header" style="background-color: #BED25E !important;">
+            <h5 class="modal-title login-text fw-bold" id="loginModalLabel">Login</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+
+            <div class="d-flex align-items-center">
+              <div class="me-3">
+                <img src="dist/img/Jokotole.png" alt="Logo" style="height: 130px;"> 
+              </div>
+
+              <div class="flex-grow-1 w-100">
+                <div class="input-group mb-3">
+                  <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                  <input type="text" class="form-control" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                  <input type="password" class="form-control" placeholder="Password" name="password" id="password" value="<?php echo $_POST['password']; ?>" required>
+                  <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
+                    <i class="bi bi-eye" id="eyeIcon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex flex-column align-items-start">
+            <button type="submit" name="submit" class="btn btn-warning w-100 mb-2">Login</button>
+            <p class="login-register-text">Anda belum punya akun? <a href="register.php">Register</a></p>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
 
   <main id="main">
 
     <!-- ======= About Us Section ======= -->
     <section id="about" class="about" style="color: white;">
-
-      <!-- Modal -->
-
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal" role="document">
           <div class="modal-content shadow">
             <div class="modal-header bg-light shadow-sm" style="background-color: #BED25E !important;">
@@ -290,7 +330,6 @@ $hasil = mysqli_query($koneksi, $sql);
                       <div class="input-group">
                         <button name="submit" class="btn btn-primary">Login</button>
                       </div>
-                      <!-- <p class="login-register-text">Anda belum punya akun? <a href="register.php">Register</a></p> -->
                     </form>
                     <br>
                   </div>
@@ -301,13 +340,12 @@ $hasil = mysqli_query($koneksi, $sql);
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="container" id="about" data-aos="fade-up">
 
         <div class="section-header">
           <h2>Profil Perguruan</h2>
-          <p style="color: white;">Jokotole merupakan sebuah Perguruan pencak silat yang ada di madura, jawa timur.</p>
         </div>
 
         <div class="row gy-4">
@@ -357,7 +395,6 @@ $hasil = mysqli_query($koneksi, $sql);
           /* Memaksa teks untuk mematahkan secara otomatis */
         }
 
-
         .flex-contain {
           display: flex;
           flex-direction: row;
@@ -396,8 +433,6 @@ $hasil = mysqli_query($koneksi, $sql);
           object-fit: cover;
         }
 
-
-
         .grid>article {
           box-shadow: 10px 5px 5px 0px black;
           border-radius: 30px;
@@ -431,41 +466,38 @@ $hasil = mysqli_query($koneksi, $sql);
           }
         }
       </style>
+
       <?php
       require 'pages/Super Admin/koneksidbMerch.php';
-
       $merchandise = query("SELECT * FROM merchandise");
-
-
       ?>
-      <div class="container" data-aos="fade-up" id="Merchandise">
-        <div class="section-header" style="color: white;">
-          <h2> MERCHANDISE</h2>
-          <div style="justify-content: center;">
-            <main class="grid">
-              <?php foreach ($merchandise as $row) : ?>
-                <article>
-                  <img src="dist/img/<?php echo $row["foto_merchandise"]; ?>" width="350px" height="210px" />
-                  <div class="konten">
-                    <div class="flex-contain">
-                      <div class="konten1" style=" flex-grow:8;">
-                        <h2 style="margin-left: 5px; margin-top: 1px; ont-family:'Poppins', sans-serif;  color:white;"><?= $row["nama_merchandise"]; ?></h2>
-                        <h3 style="margin-left: 5px; margin-top: 1px; font-family:'Poppins', sans-serif;  color:white; font-size:medium;">Rp.<?= $row["harga_merchandise"]; ?></h3>
-                        <p style="margin-left: 7px; margin-top: 1px; font-family:'Poppins', sans-serif;  color:white; font-size:x-small;"><?= $row["deskripsi_merchandise"]; ?></p>
-                      </div>
-                      <div class="konten2">
-                        <a href="pages/Murid/Beli_Merchandise.php"><button class="btpesan">Pesan Sekarang</button></a>
-                      </div>
-                    </div>
+
+      <div class="container py-5" data-aos="fade-up" id="Merchandise">
+        <div class="section-header text-center text-white mb-4">
+          <h2>MERCHANDISE</h2>
+        </div>
+
+        <div class="row justify-content-center">
+          <?php foreach ($merchandise as $row) : ?>
+            <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
+              <div class="card bg-dark text-white shadow w-100" style="border-radius: 15px;">
+                <img src="dist/img/<?php echo $row["foto_merchandise"]; ?>"
+                  class="card-img-top"
+                  alt="Merchandise Image"
+                  style="width: 100%; padding:5px; height: 250px; object-fit: cover; aspect-ratio: 1 / 1; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mb-0" style="font-size: 1.5rem; font-weight: 600;"><?= $row["nama_merchandise"]; ?></h6>
+                    <span class="text-warning" style="font-size: 1.5rem; font-weight: 600;">Rp <?= number_format($row["harga_merchandise"], 0, ',', '.'); ?></span>
                   </div>
-                </article>
-              <?php endforeach; ?>
-            </main>
-          </div>
+                  <a href="pages/Murid/Beli_Merchandise.php" class="btn btn-warning fw-bold w-100 mt-auto">Pesan Sekarang</a>
+                </div>
+              </div>
+            </div>
+          <?php endforeach; ?>
         </div>
       </div>
     </section>
-
 
     <!-- ======= Call To Action Section ======= -->
     <section id="call-to-action" class="call-to-action">
@@ -478,6 +510,79 @@ $hasil = mysqli_query($koneksi, $sql);
     </section><!-- End Call To Action Section -->
 
 
+    <?php
+      if (isset($_POST['submit'])) {
+        $nama    = htmlspecialchars($_POST['nama_pengirim']);
+        $email   = htmlspecialchars($_POST['email_pengirim']);
+        $pesan   = htmlspecialchars($_POST['message']);
+
+        $query = mysqli_query($conn, "INSERT INTO message (nama_pengirim, email_pengirim, message) VALUES ('$nama', '$email', '$pesan')");
+
+        if ($query) {
+          echo "<script>
+            alert('Pesan berhasil dikirim.');
+            window.location.href = 'index.php#Contact';
+          </script>";
+        } else {
+          echo "<script>alert('Terjadi kesalahan saat mengirim pesan.');</script>";
+        }
+      }
+    ?>
+    <section id="Contact" class="contact section-bg" style="background-color: white;">
+      <div class="container">
+        <div class="section-header text-center text-dark mb-4">
+          <h2>CONTACT</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="info d-flex flex-column justify-content-center" data-aos="fade-right">
+              <div class="address">
+                <i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                  </svg></i>
+                <h4>Location:</h4>
+                <p>Jl. KH. Ach. Marzuki,<br>Pangeranan, Bangkalan</p>
+              </div>
+              <div class="emailcon">
+                <i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                    <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                  </svg></i>
+                <h4>Email:</h4>
+                <p>mubarijojo.ummah11@gmail.com</p>
+              </div>
+              <div class="phone">
+                <i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 28.314 28.323">
+                    <path d="m27.728 20.384-4.242-4.242a1.982 1.982 0 0 0-1.413-.586h-.002c-.534 0-1.036.209-1.413.586L17.83 18.97l-8.485-8.485 2.828-2.828c.78-.78.78-2.05-.001-2.83L7.929.585A1.986 1.986 0 0 0 6.516 0h-.001C5.98 0 5.478.209 5.101.587L.858 4.83C.729 4.958-.389 6.168.142 8.827c.626 3.129 3.246 7.019 7.787 11.56 6.499 6.499 10.598 7.937 12.953 7.937 1.63 0 2.426-.689 2.604-.867l4.242-4.242c.378-.378.587-.881.586-1.416 0-.534-.208-1.037-.586-1.415zm-5.656 5.658c-.028.028-3.409 2.249-12.729-7.07C-.178 9.452 2.276 6.243 2.272 6.244L6.515 2l4.243 4.244-3.535 3.535a.999.999 0 0 0 0 1.414l9.899 9.899a.999.999 0 0 0 1.414 0l3.535-3.536 4.243 4.244-4.242 4.242z" />
+                  </svg>
+                </i>
+                <h4>Call:</h4>
+                <p>082139732198</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 mt-5 mt-lg-0">
+            <form action="" method="post" role="form" class="php-email-form" data-aos="fade-left" style="background-color: transparent;">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="nama_pengirim" class="form-control" placeholder="Nama Anda" required>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" name="email_pengirim" class="form-control" placeholder="Email Anda" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="pesan" rows="5" placeholder="Pesan Anda" required></textarea>
+              </div>
+              <div class="text-center">
+                <button type="submit" name="submit" onclick="return confirm('Apakah anda yakin ingin menambah ini ?')"><i class="fa fa-save"> Kirim Pesan</i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <br><br><br><br>
+    </section>
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
@@ -533,13 +638,14 @@ $hasil = mysqli_query($koneksi, $sql);
         </div>
       </div>
 
-    </footer><!-- End Footer -->
+    </footer>
     <!-- End Footer -->
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- <div id="preloader"></div> -->
-
+    <!-- JS -->
+    <script src="dist/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Vendor JS Files -->
     <script src="dist/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="dist/assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -550,9 +656,9 @@ $hasil = mysqli_query($koneksi, $sql);
     <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
-
     <!-- Template Main JS File -->
     <script src="dist/assets/js/main.js"></script>
+
     <script>
       $(document).ready(function() {
         $("#myBtn").click(function() {
@@ -563,94 +669,100 @@ $hasil = mysqli_query($koneksi, $sql);
 
     <!-- Registrasi Area -->
     <script>
-        <?php
+      <?php
 
-        if (isset($_POST["register"])) {
-          $nama = $_POST["nama"];
-          $tanggal_lahir = $_POST["tanggal_lahir"];
-          $email = $_POST["email"];
-          $telepon = $_POST["telepon"];
-          $jenis_kelamin = isset($_POST["jenis_kelamin"]) ? $_POST["jenis_kelamin"] : "";
-          $alamat = $_POST["alamat"];
-          $telepon_wali = $_POST["telepon_wali"];
-          $username = $_POST["username"];
-          // $password = md5($_POST["password"]);
-          $password = $_POST["password"];
+      if (isset($_POST["register"])) {
+        $nama = $_POST["nama"];
+        $tanggal_lahir = $_POST["tanggal_lahir"];
+        $email = $_POST["email"];
+        $telepon = $_POST["telepon"];
+        $jenis_kelamin = isset($_POST["jenis_kelamin"]) ? $_POST["jenis_kelamin"] : "";
+        $alamat = $_POST["alamat"];
+        $telepon_wali = $_POST["telepon_wali"];
+        $username = $_POST["username"];
+        // $password = md5($_POST["password"]);
+        $password = $_POST["password"];
 
-          // Menangani unggah gambar
-          $nama_file = str_replace(' ', '_', $nama); // Ganti spasi dengan garis bawah
-          $foto = $_FILES["foto"]["name"];
-          $temp_file = $_FILES["foto"]["tmp_name"];
-          $ext = pathinfo($foto, PATHINFO_EXTENSION);  // Ekstensi gambar
-          $upload_dir = "./dist/assets/img/profile/"; 
-          $db_foto =  $nama_file . '.' . $ext;
-          $target_file = $upload_dir . $nama_file . '.' . $ext; // Nama file foto disesuaikan dengan inputan nama
+        // Menangani unggah gambar
+        $nama_file = str_replace(' ', '_', $nama); // Ganti spasi dengan garis bawah
+        $foto = $_FILES["foto"]["name"];
+        $temp_file = $_FILES["foto"]["tmp_name"];
+        $ext = pathinfo($foto, PATHINFO_EXTENSION);  // Ekstensi gambar
+        $upload_dir = "./dist/assets/img/profile/";
+        $db_foto =  $nama_file . '.' . $ext;
+        $target_file = $upload_dir . $nama_file . '.' . $ext; // Nama file foto disesuaikan dengan inputan nama
 
-          // Melakukan pengecekan
-          $cek_username = "SELECT * FROM aktor WHERE username = '$username'";
-          $cek_nama = "SELECT * FROM aktor WHERE nama = '$nama'";
-          $cek_email = "SELECT * FROM aktor WHERE email = '$email'";
+        // Melakukan pengecekan
+        $cek_username = "SELECT * FROM aktor WHERE username = '$username'";
+        $cek_nama = "SELECT * FROM aktor WHERE nama = '$nama'";
+        $cek_email = "SELECT * FROM aktor WHERE email = '$email'";
 
-          if (mysqli_num_rows(mysqli_query($koneksi, $cek_nama)) > 0) {
-            $message_danger = "Nama Tersedia, Gagal Menambahkan Data!";
-            echo "showDanger('$message_danger')";
-          } elseif (mysqli_num_rows(mysqli_query($koneksi, $cek_nama)) > 0) {
-            $message_danger = "Email Tersedia, Gagal Menambahkan Data!";
-            echo "showDanger('$message_danger')";
-          } elseif (mysqli_num_rows(mysqli_query($koneksi, $cek_username)) > 0) {
-            $message_danger = "Username Tersedia, Gagal Menambahkan Data!";
-            echo "showDanger('$message_danger')";
-          } else {
-              if (move_uploaded_file($temp_file, $target_file)) {
+        if (mysqli_num_rows(mysqli_query($koneksi, $cek_nama)) > 0) {
+          $message_danger = "Nama Tersedia, Gagal Menambahkan Data!";
+          echo "showDanger('$message_danger')";
+        } elseif (mysqli_num_rows(mysqli_query($koneksi, $cek_nama)) > 0) {
+          $message_danger = "Email Tersedia, Gagal Menambahkan Data!";
+          echo "showDanger('$message_danger')";
+        } elseif (mysqli_num_rows(mysqli_query($koneksi, $cek_username)) > 0) {
+          $message_danger = "Username Tersedia, Gagal Menambahkan Data!";
+          echo "showDanger('$message_danger')";
+        } else {
+          if (move_uploaded_file($temp_file, $target_file)) {
 
-                $query_max_id = "SELECT MAX(id_aktor) as max_id FROM aktor";
-                $result_max_id = mysqli_query($koneksi, $query_max_id);
-                $row_max_id = mysqli_fetch_assoc($result_max_id);
-                $max_id = $row_max_id['max_id'];
+            $query_max_id = "SELECT MAX(id_aktor) as max_id FROM aktor";
+            $result_max_id = mysqli_query($koneksi, $query_max_id);
+            $row_max_id = mysqli_fetch_assoc($result_max_id);
+            $max_id = $row_max_id['max_id'];
 
-                if ($max_id === null) {
-                  $max_id = 1;
-                } else {
-                    $max_id++;
-                    $tambah_data = "INSERT INTO aktor (id_aktor, jurusan_id, nama, tanggal_lahir, email, telepon, gender, alamat, foto, telepon_wali, tingkatan, username, password, role, status) VALUES ($max_id, 1, '$nama', '$tanggal_lahir', '$email', '$telepon', '$jenis_kelamin', '$alamat', '$db_foto', '$telepon_wali', 'putih', '$username', '$password', 'Siswa', 'calon')";
-                    $hasil = mysqli_query($koneksi, $tambah_data);
-                }
-      
-                if ($hasil) {
-                    $message_success = "Data Anda Berhasil Disimpan !";
-                    echo "showSuccess('$message_success')";
-                } 
-                else {
-                    $message_success = "Gagal Menambahkan Data !";
-                    echo "showDanger('$message_success')";
-                }
-              //   if ($hasil) {
-              //     echo '<script>window.open("coba.php", "_blank");</script>';
-              // } else {
-              //     $message_success = "Gagal Menambahkan Data !";
-              //     echo "showDanger('$message_success')";
-              //   }
-              } 
+            if ($max_id === null) {
+              $max_id = 1;
+            } else {
+              $max_id++;
+              $tambah_data = "INSERT INTO aktor (id_aktor, jurusan_id, nama, tanggal_lahir, email, telepon, gender, alamat, foto, telepon_wali, tingkatan, username, password, role, status) VALUES ($max_id, 1, '$nama', '$tanggal_lahir', '$email', '$telepon', '$jenis_kelamin', '$alamat', '$db_foto', '$telepon_wali', 'putih', '$username', '$password', 'Siswa', 'calon')";
+              $hasil = mysqli_query($koneksi, $tambah_data);
+            }
+
+            if ($hasil) {
+              $message_success = "Data Anda Berhasil Disimpan !";
+              echo "showSuccess('$message_success')";
+            } else {
+              $message_success = "Gagal Menambahkan Data !";
+              echo "showDanger('$message_success')";
             }
           }
-        ?>
+        }
+      }
+      ?>
 
-        function showDanger(message) {
-            document.getElementById('alertDanger').innerText = message;
-            var modalDanger = new bootstrap.Modal(document.getElementById('Danger'));
-            modalDanger.show();
+      function showDanger(message) {
+        document.getElementById('alertDanger').innerText = message;
+        var modalDanger = new bootstrap.Modal(document.getElementById('Danger'));
+        modalDanger.show();
+      }
+
+      function showSuccess(messageee) {
+        document.getElementById('alertSuccess').innerText = messageee;
+        var modalSuccess = new bootstrap.Modal(document.getElementById('Success'));
+        modalSuccess.show();
+      }
+    </script>
+
+    <script>
+      function togglePassword() {
+        const passwordInput = document.getElementById("password");
+        const eyeIcon = document.getElementById("eyeIcon");
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          eyeIcon.classList.remove("bi-eye");
+          eyeIcon.classList.add("bi-eye-slash");
+        } else {
+          passwordInput.type = "password";
+          eyeIcon.classList.remove("bi-eye-slash");
+          eyeIcon.classList.add("bi-eye");
         }
-        function showSuccess(messageee) {
-            document.getElementById('alertSuccess').innerText = messageee;
-            var modalSuccess = new bootstrap.Modal(document.getElementById('Success'));
-            modalSuccess.show();
-        }
+      }
     </script>
 
 </body>
 
 </html>
-<!-- javascript -->
-<script src="dist/js/script.js"></script>
-
-</body>

@@ -1,12 +1,31 @@
 <?php
 $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
-$query_murid = "SELECT * FROM kelayakan_naik_tingkat inner join aktor on kelayakan_naik_tingkat.murid_id= aktor.id_aktor  where role='Siswa'";
-$hasil = mysqli_query($koneksi, $query_murid);
 ?>
 
 <?php
 session_start();
 require_once("../Koneksi.php");
+
+if (!isset($_SESSION['id_aktor'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
+if (!isset($_GET['id'])) {
+    echo "<script>alert('ID tidak ditemukan.'); window.location='Kelayakan.php';</script>";
+    exit();
+}
+
+$id = intval($_GET['id']);
+$query = "SELECT * FROM kelayakan_naik_tingkat WHERE murid_id = $id";
+$result = mysqli_query($conn, $query);
+
+if (!$result || mysqli_num_rows($result) == 0) {
+    echo "<script>alert('Data tidak ditemukan.'); window.location='Kelayakan.php';</script>";
+    exit();
+}
+
+$data = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +34,7 @@ require_once("../Koneksi.php");
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Super Admin | Kelayakan Naik Tingkat</title>
+    <title>Super Admin | Detail Kelayakan Naik Tingkat</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -29,6 +48,7 @@ require_once("../Koneksi.php");
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="icon" type="image/png" href="../../dist/img/Jokotole.png" />
     <link href="../../dist/css/style.css" rel="stylesheet">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -59,7 +79,7 @@ require_once("../Koneksi.php");
         ?>
 
         <?php
-            include 'sidebar/sidebar.php';
+        include 'sidebar/sidebar.php';
         ?>
 
         <!-- Content Wrapper. Contains page content -->
@@ -69,7 +89,7 @@ require_once("../Koneksi.php");
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 style="color: #fff;margin-top:70px;"><b>Kelayakan</b></h1>
+                            <h1 style="color: #fff;margin-top:70px;"><b> Detail Kelayakan</b></h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -84,10 +104,9 @@ require_once("../Koneksi.php");
                             <div class="card">
 
                                 <div class="card-body">
-                                    <div class="box-header mb-3" style="display: flex; justify-content: flex-end; align-items: center;">
-                                        <div class="label-input-container">
-                                            <label>Search:</label>
-                                            <input type="search" id="inPutbarang" onkeyup="myFunctionfunc()" class="form-control" data-table="table-bordered" placeholder="Cari Siswa" />
+                                    <div class="box-header mb-3" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <a href="Kelayakan.php" class="btn btn-secondary">Kembali</a>
                                         </div>
                                     </div>
 
@@ -95,24 +114,59 @@ require_once("../Koneksi.php");
                                         <table class="table table-bordered table-striped" id="taBelinventaris" style="text-align: center;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Nama</th>
-                                                    <th>Status</th>
-                                                    <th>Detail Kelayakan</th>
+                                                    <th>Syarat Kelayakan</th>
+                                                    <th>Nilai</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
-                                                $no = 1;
-                                                while ($data_baru = mysqli_fetch_assoc($hasil)) {
-                                                ?>
-                                                    <tr>
-                                                        <td rowspan="12"><?php echo $no++ ?></td>
-                                                        <td rowspan="12"><?php echo $data_baru["nama"]; ?></td>
-                                                        <td rowspan="12"><?php echo $data_baru["status_kelayakan"]; ?></td>
-                                                        <td><a href="detail_kelayakan.php?id=<?= $data_baru['murid_id'] ?>" class="btn btn-warning">Detail</a></td>
-                                                    </tr>
-                                                <?php } ?>
+                                                <tr>
+                                                    <td>Jumlah Pertemuan</td>
+                                                    <td><?= $data['jumlah_pertemuan'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Salam Perguruan</td>
+                                                    <td><?= $data['salam_perguruan'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Dasar Kaki</td>
+                                                    <td><?= $data['dasar_kaki'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Dasar Tangan</td>
+                                                    <td><?= $data['dasar_tangan'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jurus Tangan</td>
+                                                    <td><?= $data['jurus_tangan'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jurus Kaki</td>
+                                                    <td><?= $data['jurus_kaki'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Langkah Segitiga</td>
+                                                    <td><?= $data['langkah_segitiga'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Hindaran</td>
+                                                    <td><?= $data['hindaran'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Zigzag ABC</td>
+                                                    <td><?= $data['zigzag_abc'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Pasangan</td>
+                                                    <td><?= $data['pasangan'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Seni</td>
+                                                    <td><?= $data['seni'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Pertemuan Latihan Fisik</td>
+                                                    <td><?= $data['pertemuan_latihan_fisik'] ?></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -128,8 +182,8 @@ require_once("../Koneksi.php");
         </div>
         <!-- /.content-wrapper -->
 
-        <footer class="main-footer" style="background-color: #292C30; position: fixed;bottom: 0;width: 100%;">
-            <strong style="color: #fff">Copyright &copy; 2023 <a href="https://jokotole">Jokotole Kodim 0829</a>.</strong>
+        <footer class="main-footer" style="background-color: #292C30">
+            <strong style="color: #fff">Copyright &copy; 2023 <a href="https://localhost:PPL">Jokotole Kodim 0829</a>.</strong>
         </footer>
 
         <!-- Control Sidebar -->
