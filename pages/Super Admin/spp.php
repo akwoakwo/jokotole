@@ -152,14 +152,14 @@ $hasil = mysqli_query($koneksi, $sql);
                                         <table class="table table-bordered table-striped" id="taBelinventaris" style="text-align: center;">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>NAMA_MURID</th>
-                                                    <th>BULAN</th>
-                                                    <th>TANGGAL_BAYAR</th>
-                                                    <th>NOMINAL</th>
-                                                    <th>DEADLINE_BAYAR</th>
-                                                    <th>STATUS</th>
-                                                    <th>ACTION</th>
+                                                    <th>No</th>
+                                                    <th>Nama Murid</th>
+                                                    <th>Bulan</th>
+                                                    <th>Tanggal Bayar</th>
+                                                    <th>Nominal</th>
+                                                    <th>Deadline Bayar</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

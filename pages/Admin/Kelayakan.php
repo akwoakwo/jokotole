@@ -93,8 +93,8 @@ require_once("../Koneksi.php");
                                     </div>
 
                                     <div class="box-body">
-                                        <table class="table table-bordered table-striped" id="taBelinventaris" style="text-align: center;">
-                                            <thead>
+                                        <table class="table" id="taBelinventaris" style="text-align: center;">
+                                            <thead class="table-dark">
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Nama</th>

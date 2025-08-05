@@ -162,8 +162,8 @@ if (isset($_GET['id_hapus'])) {
                                     <div class="collapse" id="murid_baru">
                                         <div class="card card-body">
                                             <?php if (mysqli_num_rows($hasil_2) != 0) { ?>
-                                                <table>
-                                                    <thead class="table-dark text-center">
+                                                <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                                    <thead class="text-center">
                                                         <tr>
                                                             <!-- <th>No.</th> -->
                                                             <th>Nama</th>
@@ -174,7 +174,7 @@ if (isset($_GET['id_hapus'])) {
                                                             <th>Operasi</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody class="text-center">
                                                         <?php while ($data_baru = mysqli_fetch_assoc($hasil_2)) { ?>
                                                             <tr class="kolom">
 
@@ -238,8 +238,8 @@ if (isset($_GET['id_hapus'])) {
                                         </div>
                                     </div>
 
-                                    <table class="table">
-                                        <thead class="table-dark">
+                                    <table class="table table-striped table-bordered">
+                                        <thead class="text-center">
                                             <tr>
                                                 <th>No.</th>
                                                 <th>Nama</th>
@@ -250,7 +250,7 @@ if (isset($_GET['id_hapus'])) {
                                                 <th>Telepon Wali</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="text-center">
                                             <!-- Menampilkan data yang ada di database -->
                                             <?php while ($murid_tetap = mysqli_fetch_assoc($hasil_1)) { ?>
                                                 <tr class="kolom">

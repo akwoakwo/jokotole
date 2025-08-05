@@ -1,7 +1,10 @@
+
+
 <?php
 session_start();
 if (!isset($_SESSION['nama']) && !isset($_SESSION['id_aktor'])) {
     header("Location: index.php");
+    exit();
 }
 $aktorr = $_SESSION['id_aktor'];
 $conn = mysqli_connect("localhost", "root", "", "jokotole");
@@ -9,18 +12,22 @@ $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
 $hasill = mysqli_query($conn, $sql);
 $bariss = mysqli_fetch_assoc($hasill);
 
-?>
-<?php
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Query untuk mengambil bulan-bulan unik dari tabel pembayaran_spp
+$sql_bulan = "SELECT DISTINCT bulan FROM pembayaran_spp ORDER BY bulan ASC";
+$tampil_bulan = mysqli_query($conn, $sql_bulan);
+
+// Logika untuk filter berdasarkan bulan
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['bulan']) && !empty($_POST['bulan'])) {
     $selectedBulan = $_POST["bulan"];
-    $sql = "SELECT * FROM pembayaran_spp WHERE bulan = '$selectedBulan'";
+    // Query dengan JOIN untuk menampilkan nama murid
+    $sql_tampil = "SELECT ps.*, a.nama AS nama_murid FROM pembayaran_spp ps JOIN aktor a ON ps.murid_id = a.id_aktor WHERE ps.bulan = '$selectedBulan' ORDER BY ps.status_bayar ASC";
 } else {
-    $sql = "SELECT * FROM pembayaran_spp";
+    // Query default tanpa filter, dengan JOIN untuk menampilkan nama murid
+    $sql_tampil = "SELECT ps.*, a.nama AS nama_murid FROM pembayaran_spp ps JOIN aktor a ON ps.murid_id = a.id_aktor ORDER BY ps.status_bayar ASC";
 }
-$sql2 = "SELECT * FROM pembayaran_spp";
-$tampil = mysqli_query($koneksi, $sql);
-$tampil2 = mysqli_query($koneksi, $sql2);
+$tampil = mysqli_query($conn, $sql_tampil);
+
+// Menghilangkan duplikasi session start
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +36,7 @@ $tampil2 = mysqli_query($koneksi, $sql2);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Super Admin | Veerifikasi Pembayaran</title>
+    <title>Super Admin | Verifikasi Pembayaran</title>
 
     <!-- Google Font: Source Sans Pro -->
     <!-- <link rel="stylesheet" href="../../dist/css/kel1-3.css"> -->
@@ -50,6 +57,24 @@ $tampil2 = mysqli_query($koneksi, $sql2);
 </head>
 <style>
     /* -------------- CSS Punya Main content ------------------ */
+
+        .komp-filter {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .komp-filter form {
+        display: flex;
+        gap: 10px;
+    }
+    .komp-filter .form-select {
+        min-width: 200px;
+    }
+    .table thead th {
+        text-align: center;
+    }
 
     .komp {
         display: grid;
@@ -121,57 +146,38 @@ $tampil2 = mysqli_query($koneksi, $sql2);
 
             <!-- Main content -->
             <section class="content">
-
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <!-- Default box -->
                             <div class="card">
-
                                 <div class="card-body">
-                                    <div class="komp">
-                                        <div class="isi-komponen1">
-                                            <h4>CARI BULAN </h4>
-                                        </div>
-                                        <div class="isi-komponen2">
-                                            <form action="" method="post">
-                                                <select class="form-select" aria-label="Default select example" id="bulan" name="bulan">
-                                                    <option selected>PILIH BULAN </option>
-                                                    <?php
-                                                    while ($baris1 = mysqli_fetch_assoc($tampil2)) {
-                                                    ?>
-                                                        <option value="<?php echo $baris1["bulan"]; ?>"><?php echo $baris1["bulan"]; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                                <!-- <div class="box-header mb-3" style="display: flex; justify-content: space-between; align-items: center;">
-                                                    <div>
-                                                        <a href="" class="btn btn-danger" id="resetFilter"><i class="fa fa-plus-circle"></i> Reset</a>
-                                                        <button type="submit" name="submit" class="btn btn-success">
-                                                            <i class="fa fa-print"></i> Cari
-                                                        </button>
-                                                    </div>
-
-
-                                                </div> -->
-                                                <div style="margin-left:1.4rem;">
-                                                    <!-- -->
-                                                    <button type="submit" class="btn btn-success">Cari</button>
-                                                    <a href="" class="btn btn-danger" id="resetFilter">Reset</a>
-                                                </div>
-                                            </form>
-                                        </div>
+                                    <div class="komp-filter">
+                                        <form action="" method="post" id="filterForm">
+                                            <select class="form-select" aria-label="Default select example" id="bulan" name="bulan">
+                                                <option value="">Pilih Bulan</option>
+                                                <?php
+                                                while ($baris_bulan = mysqli_fetch_assoc($tampil_bulan)) {
+                                                ?>
+                                                    <option value="<?php echo $baris_bulan["bulan"]; ?>" <?php echo (isset($selectedBulan) && $selectedBulan == $baris_bulan["bulan"]) ? 'selected' : ''; ?>>
+                                                        <?php echo ucwords(str_replace('_', ' ', strtolower($baris_bulan["bulan"]))); ?>
+                                                    </option>
+                                                <?php } ?>
+                                            </select>
+                                            <button type="submit" class="btn btn-success">Cari</button>
+                                            <a href="Verifikasi.php" class="btn btn-danger" id="resetFilter">Reset</a>
+                                        </form>
                                     </div>
                                     <div class="komp_table">
-                                        <table class="table border table-bordered border-dark" style="text-align: center;">
+                                        <table class="table table-striped table-bordered" style="text-align: center;">
                                             <thead class="fw-bold">
                                                 <tr>
-                                                    <td>ID MURID</td>
-                                                    <td>BULAN</td>
-                                                    <td>TANGGAL BAYAR</td>
-                                                    <td>NOMINAL BAYAR</td>
-                                                    <td>DEADLINE</td>
-                                                    <td>STATUS</td>
-                                                    <td>AKSI</td>
+                                                    <th>Nama</th>
+                                                    <th>Bulan</th>
+                                                    <th>Tanggal Bayar</th>
+                                                    <th>Nominal Bayar</th>
+                                                    <th>Deadline</th>
+                                                    <th>Status</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -179,12 +185,12 @@ $tampil2 = mysqli_query($koneksi, $sql2);
                                                 while ($baris = mysqli_fetch_assoc($tampil)) {
                                                 ?>
                                                     <tr>
-                                                        <td><?php echo $baris['murid_id']; ?></td>
-                                                        <td><?php echo $baris["bulan"]; ?></td>
+                                                        <td><?php echo ucwords($baris['nama_murid']); ?></td>
+                                                        <td><?php echo ucwords(str_replace('_', ' ', strtolower($baris["bulan"]))); ?></td>
                                                         <td><?php echo $baris["tanggal_bayar"]; ?></td>
                                                         <td><?php echo $baris["nominal_bayar"]; ?></td>
                                                         <td><?php echo $baris["deadline_pembayaran"]; ?></td>
-                                                        <td><?php echo $baris["status_bayar"]; ?></td>
+                                                        <td><?php echo ucwords(strtolower($baris["status_bayar"])); ?></td>
                                                         <td>
                                                             <a href="../verifikasi_pembayaran.php?id=<?php echo $baris['id_pembayaran']; ?>" class="btn btn-primary">Verifikasi</a>
                                                             <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" onclick="setDeleteURL(<?php echo $baris['id_pembayaran']; ?>)">Hapus</a>
@@ -194,7 +200,6 @@ $tampil2 = mysqli_query($koneksi, $sql2);
                                             </tbody>
                                         </table>
                                     </div>
-                                    <!-- Modal -->
                                     <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -213,10 +218,7 @@ $tampil2 = mysqli_query($koneksi, $sql2);
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
-                            <!-- /.card -->
                         </div>
                     </div>
                 </div>

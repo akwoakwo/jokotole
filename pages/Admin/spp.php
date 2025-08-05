@@ -109,7 +109,7 @@ $hasil = mysqli_query($koneksi, $sql);
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 style="color: #000;margin-top:70px;"><b>INFORMASI PEMBAYARAN SPP</b></h1>
+                            <h1 style="color: #000;margin-top:70px;"><b>Informasi Pembayaran SPP</b></h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -147,16 +147,16 @@ $hasil = mysqli_query($koneksi, $sql);
 
                                     <!-- /.box-header -->
                                     <div class="box-body">
-                                        <table class="table table-bordered table-striped" id="taBelinventaris" style="text-align: center;">
-                                            <thead>
+                                        <table class="table" id="taBelinventaris" style="text-align: center;">
+                                            <thead class="table-dark">
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>NAMA_MURID</th>
-                                                    <th>BULAN</th>
-                                                    <th>TANGGAL_BAYAR</th>
-                                                    <th>NOMINAL</th>
-                                                    <th>DEADLINE_BAYAR</th>
-                                                    <th>STATUS</th>
+                                                    <th>No</th>
+                                                    <th>Nama Murid</th>
+                                                    <th>Bulan</th>
+                                                    <th>Tanggal Bayar</th>
+                                                    <th>Nominal</th>
+                                                    <th>Deadline Bayar</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

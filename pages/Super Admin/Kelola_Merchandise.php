@@ -16,9 +16,6 @@ $merchandise = query("SELECT * FROM merchandise");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Super Admin | Merchandise</title>
 
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -88,23 +85,22 @@ $merchandise = query("SELECT * FROM merchandise");
                             <div class="card">
 
                                 <div class="card-body">
-
-                                    <a href="Tambah_Merchandise.php"><button class="btn btn-sm btn-primary" style="margin-left: 2rem; margin-bottom:1rem;" onclick=""> + Tambah Produk</button></a>
-                                    <a href="Edit_Wa_Merchandise.php"><button class="btn btn-sm btn-primary" style="margin-right: 1.5rem; margin-bottom:1rem; float:right;" onclick=""> Edit Nomer Wa</button></a>
-                                    <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                        <thead>
+                                    <div class="d-flex justify-content-between align-items-center mb-3 p-2">
+                                        <a href="Tambah_Merchandise.php"><button class="btn btn-sm btn-primary" onclick=""> + Tambah Produk</button></a>
+                                        <a href="Edit_Wa_Merchandise.php"><button class="btn btn-sm btn-primary" onclick=""> Edit Nomer Wa</button></a>
+                                    </div>
+                                    <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead class="text-center">
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Barang</th>
-                                                <th style="width: 25%;">Deskripsi</th>
+                                                <th>Deskripsi</th>
                                                 <th>Harga</th>
                                                 <th>Gambar</th>
-                                                <th style="width:125px;">Aksi
-                                                    </p>
-                                                </th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="text-center">
                                             <?php $i = 1; ?>
                                             <?php foreach ($merchandise as $row) : ?>
                                                 <tr>
@@ -158,18 +154,11 @@ $merchandise = query("SELECT * FROM merchandise");
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#table_id').DataTable();
-        });
-    </script>
 </body>
 
 </html>

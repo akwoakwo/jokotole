@@ -91,7 +91,7 @@ $no_semua = 1;
                             <!-- Default box -->
                             <div class="card">
                                 <div class="card-body">
-                                    <table class="table">
+                                    <table class="table text-center">
                                         <thead class="table-dark">
                                             <tr>
                                                 <th>No.</th>

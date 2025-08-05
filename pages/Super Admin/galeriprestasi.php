@@ -1,4 +1,5 @@
 <?php
+session_start();
 $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
 $sql = "SELECT id_prestasi, nama_prestasi, tingkat_prestasi, deskripsi_prestasi, foto_prestasi, nama 
 FROM galeri_prestasi m, aktor p where m.murid_id=p.id_aktor";
@@ -53,6 +54,14 @@ $hasil = mysqli_query($koneksi, $sql);
         </nav>
         <!-- /.navbar -->
 
+        <?php
+        // session_start();
+        $aktorr = $_SESSION['id_aktor'];
+        $conn = mysqli_connect("localhost", "root", "", "jokotole");
+        $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
+        $hasill = mysqli_query($conn, $sql);
+        $bariss = mysqli_fetch_assoc($hasill);
+        ?>
         <!-- Main Sidebar Container -->
         <?php
             include 'sidebar/sidebar.php';
@@ -98,13 +107,13 @@ $hasil = mysqli_query($koneksi, $sql);
                                         <table class="table table-bordered table-striped" id="taBelinventaris" style="text-align: center;">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>NAMA_PRESTASI</th>
-                                                    <th>TINGKAT</th>
-                                                    <th>DESKRIPSI</th>
-                                                    <th>FOTO PRESTASI</th>
-                                                    <th>MURID</th>
-                                                    <th>ACTION</th>
+                                                    <th>No</th>
+                                                    <th>Prestasi</th>
+                                                    <th>Tingkat</th>
+                                                    <th>Deskripsi</th>
+                                                    <th>Foro Prestasi</th>
+                                                    <th>Murid</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

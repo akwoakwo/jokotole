@@ -133,15 +133,15 @@ if (isset($_GET['id_hapus'])) {
                                         </div>
                                     </div>
                                     <div class="komp_table">
-                                        <table class="table border table-bordered border-dark" style="text-align: center;">
-                                            <thead class="fw-bold">
+                                        <table class="table" style="text-align: center;">
+                                            <thead class="table-dark">
                                                 <tr>
-                                                    <td>NO</td>
-                                                    <td>JADWAL LATIHAN</td>
-                                                    <td>TANGGAL ABSENSI</td>
-                                                    <td>RESUME</td>
-                                                    <td>STATUS</td>
-                                                    <td>AKSI</td>
+                                                    <td>No</td>
+                                                    <td>Jadwal Latihan</td>
+                                                    <td>Tanggal Absensi</td>
+                                                    <td>Resume</td>
+                                                    <td>Status</td>
+                                                    <td>Aksi</td>
                                                 </tr>
                                             </thead>
                                             <tbody>

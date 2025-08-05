@@ -11,14 +11,14 @@ if (isset($_SESSION['pesantambah'])) { ?>
 ?>
 
 <?php
-    if (!isset($_SESSION['nama']) && !isset($_SESSION['id_aktor'])) {
-        header("Location: ../../index.php");
-    }
-    $aktorr = $_SESSION['id_aktor'];
-    $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
-    $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
-    $hasill = mysqli_query($koneksi, $sql);
-    $bariss = mysqli_fetch_assoc($hasill);
+if (!isset($_SESSION['nama']) && !isset($_SESSION['id_aktor'])) {
+    header("Location: ../../index.php");
+}
+$aktorr = $_SESSION['id_aktor'];
+$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
+$hasill = mysqli_query($koneksi, $sql);
+$bariss = mysqli_fetch_assoc($hasill);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,19 +43,16 @@ if (isset($_SESSION['pesantambah'])) { ?>
     <link rel="icon" type="image/png" href="../../dist/img/Jokotole.png" />
     <style>
         table {
-        border-collapse: collapse;
-        width: 100%;
-    }
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-    th, td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left;
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -76,19 +73,19 @@ if (isset($_SESSION['pesantambah'])) { ?>
 
         <!-- Main Sidebar Container -->
         <?php
-            session_start();
-            if (!isset($_SESSION['nama']) && !isset($_SESSION['id_aktor'])) {
-                header("Location: ../../index.php");
-            }
-            $aktorr = $_SESSION['id_aktor'];
-            $conn = mysqli_connect("localhost", "root", "", "jokotole");
-            $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
-            $hasill = mysqli_query($conn, $sql);
-            $bariss = mysqli_fetch_assoc($hasill);
+        session_start();
+        if (!isset($_SESSION['nama']) && !isset($_SESSION['id_aktor'])) {
+            header("Location: ../../index.php");
+        }
+        $aktorr = $_SESSION['id_aktor'];
+        $conn = mysqli_connect("localhost", "root", "", "jokotole");
+        $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
+        $hasill = mysqli_query($conn, $sql);
+        $bariss = mysqli_fetch_assoc($hasill);
         ?>
-        
+
         <?php
-            include 'siderbar/sidebar.php';
+        include 'siderbar/sidebar.php';
         ?>
 
         <!-- Content Wrapper. Contains page content -->
@@ -105,57 +102,54 @@ if (isset($_SESSION['pesantambah'])) { ?>
                             <!-- Default box -->
                             <div class="card">
                                 <div class="card-body">
+                                    <table class="table">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Nama Murid</th>
+                                                    <th>Nama Lomba</th>
+                                                    <th>Status</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                // include '../config.php';
+                                                $query = mysqli_query($koneksi, "SELECT * FROM pengajuan_lomba ");
+                                                while ($row = mysqli_fetch_assoc($query)) {
+                                                    // Ambil informasi lomba berdasarkan id lomba
+                                                    $id_murid = $row['murid_id'];
+                                                    $id_lomba = $row['rekomendasi_id'];
+                                                    $query_murid = mysqli_query($koneksi, "SELECT * FROM aktor WHERE id_aktor='$id_murid'");
+                                                    $query_lomba = mysqli_query($koneksi, "SELECT * FROM rekomendasi_lomba WHERE id_rekomendasi='$id_lomba'");
+                                                    $data_murid = mysqli_fetch_assoc($query_murid);
+                                                    $data_lomba = mysqli_fetch_assoc($query_lomba);
 
-                                    <div class="container">
-                                        <div class="row">
-                                        <table border="1">
-                                            <tr>
-                                                <th>Nama Murid</th>
-                                                <th>Nama Lomba</th>
-                                                <th>Status</th>
-                                                
-                                            </tr>
-                                            <?php
-                                            // include '../config.php';
-                                            $query = mysqli_query($koneksi, "SELECT * FROM pengajuan_lomba ");
-                                            while ($row = mysqli_fetch_assoc($query)) {
-                                                // Ambil informasi lomba berdasarkan id lomba
-                                                $id_murid = $row['murid_id'];
-                                                $id_lomba = $row['rekomendasi_id'];
-                                                $query_murid = mysqli_query($koneksi, "SELECT * FROM aktor WHERE id_aktor='$id_murid'");
-                                                $query_lomba = mysqli_query($koneksi, "SELECT * FROM rekomendasi_lomba WHERE id_rekomendasi='$id_lomba'");
-                                                $data_murid = mysqli_fetch_assoc($query_murid);
-                                                $data_lomba = mysqli_fetch_assoc($query_lomba);
-
-                                                echo "<tr>";
-                                                echo "<td>" . $data_murid['nama'] . "</td>";
-                                                echo "<td>" . $data_lomba['nama_perlombaan'] . "</td>"; // Tampilkan nama lomba
-                                                echo "<td>";
-                                                // Buat formulir untuk memilih status
-                                                echo "<form action='proses_ubah_status.php' method='post'>";
-                                                echo "<input type='hidden' name='id_pengajuan' value='" . $row['id_pengajuan'] . "'>"; // Sertakan id_pengajuan untuk identifikasi entri yang akan diubah
-                                                echo "<select name='status' onchange='this.form.submit()'>";
-                                                echo "<option value='diproses' " . ($row['status_pengajuan'] == 'diproses' ? 'selected' : '') . ">Diproses</option>";
-                                                echo "<option value='diterima' " . ($row['status_pengajuan'] == 'diterima' ? 'selected' : '') . ">Diterima</option>";
-                                                echo "<option value='ditolak' " . ($row['status_pengajuan'] == 'ditolak' ? 'selected' : '') . ">Ditolak</option>";
-                                                echo "</select>";
-                                                echo "</form>";
-                                                echo "</td>";
-                                                //echo "<td><a href='hapus_pengajuan.php?id_pengajuan=" . $row['id_pengajuan'] . "'>Hapus</a></td>"; // Tambahkan link untuk menghapus pengajuan
-                                                echo "</tr>";
-                                            }
-                                            ?>
+                                                    echo "<tr>";
+                                                    echo "<td>" . $data_murid['nama'] . "</td>";
+                                                    echo "<td>" . $data_lomba['nama_perlombaan'] . "</td>"; // Tampilkan nama lomba
+                                                    echo "<td>";
+                                                    // Buat formulir untuk memilih status
+                                                    echo "<form action='proses_ubah_status.php' method='post'>";
+                                                    echo "<input type='hidden' name='id_pengajuan' value='" . $row['id_pengajuan'] . "'>"; // Sertakan id_pengajuan untuk identifikasi entri yang akan diubah
+                                                    echo "<select name='status' onchange='this.form.submit()'>";
+                                                    echo "<option value='diproses' " . ($row['status_pengajuan'] == 'diproses' ? 'selected' : '') . ">Diproses</option>";
+                                                    echo "<option value='diterima' " . ($row['status_pengajuan'] == 'diterima' ? 'selected' : '') . ">Diterima</option>";
+                                                    echo "<option value='ditolak' " . ($row['status_pengajuan'] == 'ditolak' ? 'selected' : '') . ">Ditolak</option>";
+                                                    echo "</select>";
+                                                    echo "</form>";
+                                                    echo "</td>";
+                                                    //echo "<td><a href='hapus_pengajuan.php?id_pengajuan=" . $row['id_pengajuan'] . "'>Hapus</a></td>"; // Tambahkan link untuk menghapus pengajuan
+                                                    echo "</tr>";
+                                                }
+                                                ?>
+                                            </tbody>
                                         </table>
-
-                                    </div>
-                                    
                                 </div>
-                            </div>
 
-                            <!-- /.card -->
+                                <!-- /.card -->
+                            </div>
                         </div>
                     </div>
-                </div>
             </section>
             <!-- /.content -->
         </div>
@@ -181,8 +175,6 @@ if (isset($_SESSION['pesantambah'])) { ?>
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
 </body>
 
 </html>

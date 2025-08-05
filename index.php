@@ -40,6 +40,7 @@ if (isset($_POST['submit'])) {
       $_SESSION['id_aktor'] = $row['id_aktor'];
       $_SESSION['jurusan_id'] = $row['jurusan_id'];
       $_SESSION['email'] = $row['email'];
+      $_SESSION['role'] = $row['role'];
       $_SESSION['password'] = $row['password'];
       $_SESSION['tingkat'] = $row['tingkat'];
       header("Location: pages/Admin/Dashboard_Admin.php");
@@ -50,6 +51,7 @@ if (isset($_POST['submit'])) {
       $_SESSION['id_aktor'] = $row['id_aktor'];
       $_SESSION['jurusan_id'] = $row['jurusan_id'];
       $_SESSION['email'] = $row['email'];
+      $_SESSION['role'] = $row['role'];
       $_SESSION['password'] = $row['password'];
       $_SESSION['tingkat'] = $row['tingkat'];
       header("Location: pages/Super Admin/Dashboard_SuperAdmin.php");
@@ -65,8 +67,19 @@ if (isset($_POST['submit'])) {
 ?>
 <?php
 $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+
+// Mengambil nomor telepon penjual
+$sql_penjual = "SELECT no_hp FROM penjual WHERE id_penjual = 0";
+$hasil_penjual = mysqli_query($koneksi, $sql_penjual);
+$penjual = mysqli_fetch_assoc($hasil_penjual);
+$nomor_penjual = $penjual ? $penjual['no_hp'] : 'Nomor tidak ditemukan';
+
 $sql = "SELECT * FROM aktor a";
 $hasil = mysqli_query($koneksi, $sql);
+
+$sql_profile = "SELECT * FROM profile_perguruan pm";
+$hasil_profile = mysqli_query($koneksi, $sql_profile);
+$baris = mysqli_fetch_assoc($hasil_profile);
 ?>
 
 <!DOCTYPE html>
@@ -96,6 +109,62 @@ $hasil = mysqli_query($koneksi, $sql);
   <link href="dist/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="dist/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="dist/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <style>
+        .accordion-item {
+            margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-title {
+            background-color: dimgrey;
+            color: yellow;
+            padding: 2%;
+            border-radius: 20px;
+            border: 4px solid white;
+            cursor: pointer;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .accordion-title::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .accordion-item.active .accordion-title::after {
+            content: '-';
+        }
+        
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 20px;
+            max-height: 500px; /* Nilai yang cukup besar agar konten bisa ditampilkan penuh */
+            border-top: none;
+        }
+        .accordion-content p {
+            margin: 0;
+        }
+
+        .accordion-content p,
+        .accordion-content li {
+            text-align: justify;
+        }
+        .accordion-content ol {
+            padding-left: 20px; /* Opsional: untuk indentasi list */
+        }
+    </style>
 </head>
 
 <body style="background-color: darkslategray;">
@@ -212,9 +281,9 @@ $hasil = mysqli_query($koneksi, $sql);
               <div class="col-md-6">
                 <label for="password" class="form-label">Password</label>
                 <div class="input-group">
-                  <input class="form-control" name="password" id="password" type="password" required>
-                  <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
-                    <i class="bi bi-eye" id="eyeIcon"></i>
+                  <input class="form-control" name="password" id="registerPassword" type="password" required>
+                  <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('registerPassword', 'registerEyeIcon')">
+                    <i class="bi bi-eye-slash" id="registerEyeIcon"></i>
                   </button>
                 </div>
               </div>
@@ -252,132 +321,90 @@ $hasil = mysqli_query($koneksi, $sql);
 
   <!-- Login -->
   <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" style="z-index: 10000;">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <form action="" method="POST" class="login-email">
-          <div class="modal-header" style="background-color: #BED25E !important;">
-            <h5 class="modal-title login-text fw-bold" id="loginModalLabel">Login</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-
-          <div class="modal-body">
-
-            <div class="d-flex align-items-center">
-              <div class="me-3">
-                <img src="dist/img/Jokotole.png" alt="Logo" style="height: 130px;"> 
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="" method="POST" class="login-email">
+        <div class="modal-header" style="background-color: #BED25E !important;">
+          <h5 class="modal-title login-text fw-bold" id="loginModalLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex align-items-center">
+            <div class="me-3">
+              <img src="dist/img/Jokotole.png" alt="Logo" style="height: 130px;">
+            </div>
+            <div class="flex-grow-1 w-100">
+              <label for="email"><b>Email</b></label>
+              <div class="input-group mb-3 mt-2">
+                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                <input type="text" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $email ?? ''; ?>" required>
               </div>
-
-              <div class="flex-grow-1 w-100">
-                <div class="input-group mb-3">
-                  <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                  <input type="text" class="form-control" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
-                </div>
-
-                <div class="input-group mb-3">
-                  <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                  <input type="password" class="form-control" placeholder="Password" name="password" id="password" value="<?php echo $_POST['password']; ?>" required>
-                  <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
-                    <i class="bi bi-eye" id="eyeIcon"></i>
-                  </button>
-                </div>
+              <label for="email"><b>Password</b></label>
+              <div class="input-group mb-3 mt-2">
+                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <input type="password" class="form-control" placeholder="Password" name="password" id="loginPassword" value="<?php echo $_POST['password'] ?? ''; ?>" required>
+                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('loginPassword', 'loginEyeIcon')">
+                  <i class="bi bi-eye-slash" id="loginEyeIcon"></i>
+                </button>
               </div>
             </div>
-
           </div>
-          <div class="modal-footer d-flex flex-column align-items-start">
-            <button type="submit" name="submit" class="btn btn-warning w-100 mb-2">Login</button>
-            <p class="login-register-text">Anda belum punya akun? <a href="register.php">Register</a></p>
-          </div>
-
-        </form>
-
-      </div>
+        </div>
+        <div class="modal-footer d-flex flex-column align-items-start">
+          <button type="submit" name="submit" class="btn btn-warning w-100 mb-2">Login</button>
+          <p class="login-register-text">Anda belum punya akun? <a href="register.php">Register</a></p>
+        </div>
+      </form>
     </div>
   </div>
+</div>
 
   <main id="main">
 
     <!-- ======= About Us Section ======= -->
     <section id="about" class="about" style="color: white;">
-      <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal" role="document">
-          <div class="modal-content shadow">
-            <div class="modal-header bg-light shadow-sm" style="background-color: #BED25E !important;">
-              <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="image">
-                      <img src="dist/img/Jokotole.png" width="150" class="img-fluid" alt="">
-                    </div>
-                  </div>
-                  <div class="col-md-7">
-                    <form action="" method="POST" class="login-email">
-                      <p class="login-text">Login</p>
-                      <div class="input-group">
-                        <label for="email" style="color: slategray;">Email : </label>
-                        <input type="email" class="form-control form-control-sm" style="width: 20%;" id="email" name="email" placeholder="Enter email" required>
-                      </div>
-                      <br>
-                      <div class="input-group">
-                        <label for="password" style="color: slategray;">Password : </label>
-                        <input type="password" class="form-control form-control-sm" style="width: 20%;" placeholder="Password" name="password" required>
-                      </div><br>
-                      <div class="input-group">
-                        <button name="submit" class="btn btn-primary">Login</button>
-                      </div>
-                    </form>
-                    <br>
-                  </div>
+            <div class="container" id="about" data-aos="fade-up">
+
+                <div class="section-header">
+                    <h2>Profil Perguruan</h2>
                 </div>
-              </div>
+
+                <div class="row gy-4">
+                    <div class="col-lg-6">
+                        <img src="dist/img/Jokotole.png" style="width: 60%;" class="img-fluid rounded-4 mb-4" alt="">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="accordion-item active">
+                            <h3 class="accordion-title">Sejarah</h3>
+                            <div class="accordion-content">
+                                <p style="text-align: justify;">
+                                    <?php echo $baris['sejarah']; ?>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-title">Visi & Misi</h3>
+                            <div class="accordion-content">
+                                <p style="text-align: justify;">
+                                    <?php echo $baris['visi_misi']; ?>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-title">Makna Lambang</h3>
+                            <div class="accordion-content">
+                                <p style="text-align: justify;">
+                                    <?php echo $baris['arti_lambang']; ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer shadow-sm" style="background-color: #BED25E;">
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-      <div class="container" id="about" data-aos="fade-up">
-
-        <div class="section-header">
-          <h2>Profil Perguruan</h2>
-        </div>
-
-        <div class="row gy-4">
-          <div class="col-lg-6">
-            <img src="dist/img/Jokotole.png" style="width: 60%;" class="img-fluid rounded-4 mb-4" alt="">
-          </div>
-          <div class="col-lg-6">
-            <h3 style="background-color: dimgrey; color:yellow; padding:2%; border-radius:20px; border:4px solid white;">Sejarah</h3>
-            <p class="fst-italic" style="text-align: justify;">
-              <?php
-              $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
-              $sql = "SELECT * FROM profile_perguruan pm";
-              $hasil = mysqli_query($koneksi, $sql);
-              $baris = mysqli_fetch_assoc($hasil);
-              echo $baris['sejarah']
-              ?>
-            </p>
-            <h3 style="background-color: dimgrey; color:yellow; padding:2%; border-radius:20px; border:4px solid white;">Visi & Misi</h3>
-            <p class="fst-italic" style="text-align: justify;">
-              <?php
-              echo $baris['visi_misi']
-              ?>
-            <h3 style="background-color: dimgrey; color:yellow; padding:2%; border-radius:20px; border:4px solid white;">Makna Lambang</h3>
-            <p class="fst-italic" style="text-align: justify;">
-              <?php
-              echo $baris['arti_lambang']
-              ?>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section><!-- End About Us Section -->
+        </section>
+    <!-- End About Us Section -->
 
     <section>
       <div class="container" data-aos="fade-up">
@@ -467,37 +494,60 @@ $hasil = mysqli_query($koneksi, $sql);
         }
       </style>
 
-      <?php
-      require 'pages/Super Admin/koneksidbMerch.php';
-      $merchandise = query("SELECT * FROM merchandise");
-      ?>
-
-      <div class="container py-5" data-aos="fade-up" id="Merchandise">
-        <div class="section-header text-center text-white mb-4">
-          <h2>MERCHANDISE</h2>
-        </div>
-
-        <div class="row justify-content-center">
-          <?php foreach ($merchandise as $row) : ?>
-            <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
-              <div class="card bg-dark text-white shadow w-100" style="border-radius: 15px;">
-                <img src="dist/img/<?php echo $row["foto_merchandise"]; ?>"
-                  class="card-img-top"
-                  alt="Merchandise Image"
-                  style="width: 100%; padding:5px; height: 250px; object-fit: cover; aspect-ratio: 1 / 1; border-top-left-radius: 15px; border-top-right-radius: 15px;">
-                <div class="card-body d-flex flex-column justify-content-between">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="mb-0" style="font-size: 1.5rem; font-weight: 600;"><?= $row["nama_merchandise"]; ?></h6>
-                    <span class="text-warning" style="font-size: 1.5rem; font-weight: 600;">Rp <?= number_format($row["harga_merchandise"], 0, ',', '.'); ?></span>
-                  </div>
-                  <a href="pages/Murid/Beli_Merchandise.php" class="btn btn-warning fw-bold w-100 mt-auto">Pesan Sekarang</a>
+       <?php
+            require 'pages/Super Admin/koneksidbMerch.php';
+            $merchandise = query("SELECT * FROM merchandise");
+            ?>
+            <div class="container py-5" data-aos="fade-up" id="Merchandise">
+                <div class="section-header text-center text-white mb-4">
+                    <h2>MERCHANDISE</h2>
                 </div>
-              </div>
+                <div class="row justify-content-center">
+                    <?php foreach ($merchandise as $row) : ?>
+                        <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
+                            <div class="card bg-dark text-white shadow w-100" style="border-radius: 15px;">
+                                <img src="dist/img/<?php echo $row["foto_merchandise"]; ?>" class="card-img-top" alt="Merchandise Image" style="width: 100%; padding:5px; height: 250px; object-fit: cover; aspect-ratio: 1 / 1; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="mb-0" style="font-size: 1.5rem; font-weight: 600;"><?= $row["nama_merchandise"]; ?></h6>
+                                        <span class="text-warning" style="font-size: 1.5rem; font-weight: 600;">Rp <?= number_format($row["harga_merchandise"], 0, ',', '.'); ?></span>
+                                    </div>
+                                    <button class="btn btn-warning fw-bold w-100 mt-auto btn-pesan-wa" data-bs-toggle="modal" data-bs-target="#whatsappModal" data-nama-merchandise="<?= htmlspecialchars($row["nama_merchandise"]); ?>" data-harga-merchandise="<?= number_format($row["harga_merchandise"], 0, ',', '.'); ?>">Pesan Sekarang</button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
-          <?php endforeach; ?>
+        </section>
+        <div class="modal fade modal-dialog modal-dialog-centered" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="whatsappModalLabel">Pemesanan Via Whatsapp</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="whatsappForm">
+                            <input type="hidden" id="merchandiseNamaModal">
+                            <input type="hidden" id="merchandiseHargaModal">
+                            <div class="mb-3">
+                                <label for="namaPemesan" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="namaPemesan" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="deskripsiPesanan" class="form-label">Deskripsi</label>
+                                <textarea class="form-control" id="deskripsiPesanan" rows="3" placeholder="Contoh: Ukuran L, Warna Hitam"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <a id="sendWhatsappBtn" class="btn btn-success" href="#" target="_blank" rel="noopener noreferrer">Send</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
 
     <!-- ======= Call To Action Section ======= -->
     <section id="call-to-action" class="call-to-action">
@@ -586,6 +636,24 @@ $hasil = mysqli_query($koneksi, $sql);
 
     <script>
       $(document).ready(function() {
+        // Logika untuk accordion
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        accordionItems.forEach(item => {
+            const title = item.querySelector('.accordion-title');
+
+            title.addEventListener('click', () => {
+                // Tutup semua item accordion
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                // Buka/tutup item yang diklik
+                item.classList.toggle('active');
+            });
+        });
+
         $("#myBtn").click(function() {
           $("#myModal").modal();
         });
@@ -673,19 +741,62 @@ $hasil = mysqli_query($koneksi, $sql);
     </script>
 
     <script>
-      function togglePassword() {
-        const passwordInput = document.getElementById("password");
-        const eyeIcon = document.getElementById("eyeIcon");
+      function togglePassword(passwordId, eyeIconId) {
+        const passwordInput = document.getElementById(passwordId);
+        const eyeIcon = document.getElementById(eyeIconId);
         if (passwordInput.type === "password") {
           passwordInput.type = "text";
-          eyeIcon.classList.remove("bi-eye");
-          eyeIcon.classList.add("bi-eye-slash");
-        } else {
-          passwordInput.type = "password";
           eyeIcon.classList.remove("bi-eye-slash");
           eyeIcon.classList.add("bi-eye");
+        } else {
+          passwordInput.type = "password";
+          eyeIcon.classList.remove("bi-eye");
+          eyeIcon.classList.add("bi-eye-slash");
         }
       }
+
+      document.addEventListener('DOMContentLoaded', function () {
+            var whatsappModal = document.getElementById('whatsappModal');
+            whatsappModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget;
+                var namaMerchandise = button.getAttribute('data-nama-merchandise');
+                var hargaMerchandise = button.getAttribute('data-harga-merchandise');
+                var modalTitle = whatsappModal.querySelector('.modal-title');
+                var namaPemesanInput = whatsappModal.querySelector('#namaPemesan');
+                var merchandiseNamaInput = whatsappModal.querySelector('#merchandiseNamaModal');
+                var merchandiseHargaInput = whatsappModal.querySelector('#merchandiseHargaModal');
+                var sendBtn = whatsappModal.querySelector('#sendWhatsappBtn');
+                
+                modalTitle.textContent = 'Pemesanan ' + namaMerchandise + ' via Whatsapp';
+                merchandiseNamaInput.value = namaMerchandise;
+                merchandiseHargaInput.value = hargaMerchandise;
+                namaPemesanInput.value = '<?php echo isset($_SESSION['nama']) ? htmlspecialchars($_SESSION['nama']) : ''; ?>';
+            });
+
+            var sendWhatsappBtn = document.getElementById('sendWhatsappBtn');
+            sendWhatsappBtn.addEventListener('click', function () {
+                var nama = document.getElementById('namaPemesan').value;
+                var deskripsi = document.getElementById('deskripsiPesanan').value;
+                var namaMerchandise = document.getElementById('merchandiseNamaModal').value;
+                var hargaMerchandise = document.getElementById('merchandiseHargaModal').value;
+                var nomorPenjual = '<?php echo htmlspecialchars($nomor_penjual); ?>';
+                
+                if (nama && namaMerchandise) {
+                    var message = "Halo, saya ingin memesan merchandise:\n\n";
+                    message += "Nama Barang: " + namaMerchandise + "\n";
+                    message += "Harga: Rp " + hargaMerchandise + "\n";
+                    message += "Nama Pemesan: " + nama + "\n";
+                    if (deskripsi) {
+                        message += "Deskripsi: " + deskripsi + "\n";
+                    }
+                    var url = "https://wa.me/" + nomorPenjual + "?text=" + encodeURIComponent(message);
+                    sendWhatsappBtn.href = url;
+                } else {
+                    alert('Nama pemesan dan Nama barang harus diisi!');
+                    sendWhatsappBtn.href = "#";
+                }
+            });
+        });
     </script>
 
 </body>
