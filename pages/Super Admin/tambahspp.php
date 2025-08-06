@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Super Admin | Dashboard</title>
+    <title>Super Admin | Informasi SPP</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -257,9 +257,19 @@
                                                 <label for="id_pembayaran">ID Pembayaran:</label>
                                                 <input type="number" class="form-control" id="id_pembayaran" placeholder="Masukkan ID" name="id_pembayaran">
                                             </div>
+                                            <?php
+                                                $conn = mysqli_connect("localhost", "root", "", "jokotole");
+                                                $data_murid = "SELECT * FROM aktor WHERE role = 'siswa'";
+                                                $result = mysqli_query($conn, $data_murid);
+                                            ?>
                                             <div class="form-group">
-                                                <label for="murid_id">ID Murid:</label>
-                                                <input type="number" class="form-control" id="murid_id" placeholder="Masukkan Nama Prestasi..." name="murid_id" required>
+                                                <label for="murid_id">Pilih Murid:</label>
+                                                <select class="form-control" id="murid_id" name="murid_id" required>
+                                                    <option value="">-- Pilih Murid --</option>
+                                                    <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                                                        <option value="<?= $row['id_aktor'] ?>"><?= $row['nama'] ?></option>
+                                                    <?php endwhile; ?>
+                                                </select>
                                             </div>
 
                                             <div class="form-group">
@@ -301,7 +311,7 @@
     </div>
     <!-- ./wrapper -->
 
-    <!-- jQuery -->
+    <!data_murid-->
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

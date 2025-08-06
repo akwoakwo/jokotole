@@ -172,10 +172,12 @@ $hasil = mysqli_query($koneksi, $sql);
                                                         <tr>
                                                             <td><?php echo $i; ?></td>
                                                             <td><?php echo $baris['nama']; ?></td>
-                                                            <td><?php
+                                                            <td>
+                                                                <?php
                                                                 // menampilkan data bulan dan tahun berupa teks
                                                                 $formattedDate = date('F Y', strtotime($baris['deadline_pembayaran']));
-                                                                echo $formattedDate; ?></td>
+                                                                echo $formattedDate; ?>
+                                                            </td>
                                                             <td><?php echo $baris['tanggal_bayar']; ?></td>
                                                             <td><?php echo $baris['nominal_bayar']; ?></td>
                                                             <td><?php echo $baris['deadline_pembayaran']; ?></td>

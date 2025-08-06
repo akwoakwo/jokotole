@@ -29,7 +29,12 @@ require_once("../Koneksi.php");
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="icon" type="image/png" href="../../dist/img/Jokotole.png" />
     <link href="../../dist/css/style.css" rel="stylesheet">
-
+    <style>
+        .table thead th {
+            background-color: #343a40;
+            color: white;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -146,27 +151,18 @@ require_once("../Koneksi.php");
         </div>
         <!-- /.content-wrapper -->
 
-        <footer class="main-footer" style="background-color: #292C30; position: fixed; width: 100%;">
-            <strong style="color: #fff">Copyright &copy; 2023 <a href="https://localhost:PPL">Jokotole Kodim 0829</a>.</strong>
+        <footer class="main-footer" style="background-color: #292C30; position: fixed; bottom: 0; width: 100%;">
+            <strong style="color: #fff">Copyright &copy; 2023 <a href="https://localhost:PPL" style="color: #fff;">Jokotole Kodim 0829</a>.</strong>
         </footer>
 
-        <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
-
-    <!-- jQuery -->
+            </aside>
+        </div>
     <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- overlayScrollbars -->
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
+
 
     <script type="text/javascript" src="../../dist/js/pages/search.js"></script>
 

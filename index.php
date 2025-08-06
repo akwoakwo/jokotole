@@ -4,7 +4,7 @@ session_start();
 
 if (isset($_SESSION['nama']) && isset($_SESSION['id_aktor'])) {
   if (isset($_SESSION['role']) == 'Siswa') {
-    header("Location: pages/Murid/pengaturan.php");
+    header("Location: pages/Murid/Jadwal.php");
   }
   if (isset($_SESSION['role']) == 'Admin') {
     header("Location: pages/Admin/Dashboard_Admin.php");
@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
       $_SESSION['role'] = $row['role'];
       $_SESSION['password'] = $row['password'];
       $_SESSION['tingkat'] = $row['tingkat'];
-      header("Location: home.php");
+      header("Location: pages/Murid/Jadwal.php");
       exit();
     }
     if ($row['role'] == 'Admin') {
@@ -80,6 +80,9 @@ $hasil = mysqli_query($koneksi, $sql);
 $sql_profile = "SELECT * FROM profile_perguruan pm";
 $hasil_profile = mysqli_query($koneksi, $sql_profile);
 $baris = mysqli_fetch_assoc($hasil_profile);
+
+$galeri = "SELECT galeri_prestasi.*, aktor.nama FROM galeri_prestasi JOIN aktor ON galeri_prestasi.murid_id = aktor.id_aktor";
+$hasil_galeri = mysqli_query($koneksi, $galeri);
 ?>
 
 <!DOCTYPE html>
@@ -204,6 +207,7 @@ $baris = mysqli_fetch_assoc($hasil_profile);
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #BED25E !important;">
+          <img src="dist/img/logo.png" style="width: 25px; margin-right: 5px;">
           <h5 class="modal-title fw-bold">Form Pendaftaran Murid Baru</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -408,16 +412,16 @@ $baris = mysqli_fetch_assoc($hasil_profile);
 
     <section>
       <div class="container" data-aos="fade-up">
-        <div class="section-header" style="color: white;">
+        <div class="section-header" style="color: white; min-width:1000px">
           <h2>Maps Perguruan</h2>
           <?php
           echo $baris['frame_map']
           ?>
         </div>
       </div>
-      <style>
+      <!-- <style>
         p.konten1 {
-          max-width: 180px;
+          max-width: 280px;
           word-wrap: break-word;
           /* Memaksa teks untuk mematahkan secara otomatis */
         }
@@ -492,7 +496,7 @@ $baris = mysqli_fetch_assoc($hasil_profile);
             align-items: center;
           }
         }
-      </style>
+      </style> -->
 
        <?php
             require 'pages/Super Admin/koneksidbMerch.php';
@@ -500,19 +504,45 @@ $baris = mysqli_fetch_assoc($hasil_profile);
             ?>
             <div class="container py-5" data-aos="fade-up" id="Merchandise">
                 <div class="section-header text-center text-white mb-4">
-                    <h2>MERCHANDISE</h2>
+                    <h2>Merchandise</h2>
                 </div>
                 <div class="row justify-content-center">
                     <?php foreach ($merchandise as $row) : ?>
                         <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
                             <div class="card bg-dark text-white shadow w-100" style="border-radius: 15px;">
-                                <img src="dist/img/<?php echo $row["foto_merchandise"]; ?>" class="card-img-top" alt="Merchandise Image" style="width: 100%; padding:5px; height: 250px; object-fit: cover; aspect-ratio: 1 / 1; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                                <img src="dist/img/<?php echo $row["foto_merchandise"]; ?>" class="card-img-top" alt="Merchandise Image" style="width: 100%; padding:15px; height: 250px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="mb-0" style="font-size: 1.5rem; font-weight: 600;"><?= $row["nama_merchandise"]; ?></h6>
                                         <span class="text-warning" style="font-size: 1.5rem; font-weight: 600;">Rp <?= number_format($row["harga_merchandise"], 0, ',', '.'); ?></span>
                                     </div>
                                     <button class="btn btn-warning fw-bold w-100 mt-auto btn-pesan-wa" data-bs-toggle="modal" data-bs-target="#whatsappModal" data-nama-merchandise="<?= htmlspecialchars($row["nama_merchandise"]); ?>" data-harga-merchandise="<?= number_format($row["harga_merchandise"], 0, ',', '.'); ?>">Pesan Sekarang</button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+            <div class="container my-5" data-aos="fade-up" id="galeri">
+              <div class="section-header" style="color: white; min-width:1000px">
+                <h2>Galeri Prestasi</h2>
+              </div>
+                <div class="row justify-content-center">
+                    <?php foreach ($hasil_galeri as $row) : ?>
+                        <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
+                            <div class="card shadow w-100" style="border-radius: 15px;">
+                                <img src="dist/img/prestasi/<?php echo $row["foto_prestasi"]; ?>" class="card-img-top" alt="Image" style="width: 100%; padding:15px; height: 250px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div class="d-flex justify-content-center align-items-center mb-2">
+                                      <div class="text-center">
+                                          <h5 class="mb-0" style="font-size: 1.5rem; font-weight: 600;"><?= $row["nama_prestasi"]; ?></h5>
+                                          <h5 class="mb-0" style="font-size: 1.5rem; font-weight: 600;">Tingkat : <?= $row["tingkat_prestasi"]; ?></h5>
+                                          <p>
+                                            <?= $row["nama"]; ?>
+                                          </p>
+                                      </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -552,10 +582,10 @@ $baris = mysqli_fetch_assoc($hasil_profile);
     <!-- ======= Call To Action Section ======= -->
     <section id="call-to-action" class="call-to-action">
       <div class="container text-center" data-aos="zoom-out">
-        <a href="https://youtu.be/Fd3pnuK7nqU?si=t7n6ZE1QjYF3oJ2Q" class="glightbox play-btn"></a>
+        <a href="https://youtu.be/Fd3pnuK7nqU?si=t7n6ZE1QjYF3oJ2Q" target="_blank" class="glightbox play-btn"></a>
         <h3>Video Latihan</h3>
         <p> Perguruan Pencak Silat Jokotole Diklat Kodim 0829.</p>
-        <a class="cta-btn" href="https://youtu.be/Fd3pnuK7nqU?si=t7n6ZE1QjYF3oJ2Q" target="_blank">Tonton</a>
+        <!-- <a class="cta-btn" href="https://youtu.be/Fd3pnuK7nqU?si=t7n6ZE1QjYF3oJ2Q" target="_blank">Tonton</a> -->
       </div>
     </section><!-- End Call To Action Section -->
 

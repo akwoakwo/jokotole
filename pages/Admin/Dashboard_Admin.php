@@ -70,89 +70,101 @@
 
             <!-- Main content -->
             <section class="content">
-
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-12">
-                            <!-- Default box -->
-                            <div class="card">
-
-                                <div class="card-body">
-                                <div class="icon-boxes position-relative" style="background-color: transparent;">
-                                        <div class="container position-relative" style="background-color: transparent;">
-                                            <div class="row gy-4 mt-5 mb-5" style="border:1px solid black">
-                                                <h4 class="title text-center text-bold">JUMLAH SISWA</h4>
-                                                <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100" style="border:1px solid black">
-                                                    <div class="icon-box">
-                                                        <?php
-                                                        $sql2 = "SELECT COUNT(*) as seni FROM aktor JOIN jurusan ON aktor.jurusan_id = jurusan.id_jurusan WHERE jurusan.id_jurusan = 1 AND aktor.role = 'Siswa';";
-                                                        $hasil2 = mysqli_query($koneksi, $sql2);
-                                                        $data = mysqli_fetch_assoc($hasil2);
-                                                        $jumlahSiswaSeni = $data['seni'];
-                                                        ?>
-
-                                                        <br>
-                                                        <h2 class="title text-center"><a href="" class="stretched-link"><?php echo $jumlahSiswaSeni; ?></a></h2>
-
-                                                        <h4 class="title text-center"><a href="" class="stretched-link">Siswa Seni</a></h4>
-                                                    </div>
-                                                </div><!--End Icon Box -->
-
-                                                <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100" style="border:1px solid black">
-                                                    <div class="icon-box">
-                                                        <?php
-                                                        $sql3 = "SELECT COUNT(*) as tanding FROM aktor JOIN jurusan ON aktor.jurusan_id = jurusan.id_jurusan WHERE jurusan.id_jurusan = 2 AND aktor.role = 'Siswa';";
-                                                        $hasil3 = mysqli_query($koneksi, $sql3);
-                                                        $data3 = mysqli_fetch_assoc($hasil3);
-                                                        $jumlahSiswaTanding = $data3['tanding'];
-                                                        ?>
-
-                                                        <br>
-                                                        <h2 class="title text-center"><a href="" class="stretched-link"><?php echo $jumlahSiswaTanding; ?></a></h2>
-
-                                                        <h4 class="title text-center"><a href="" class="stretched-link">Siswa Tanding</a></h4>
-                                                    </div>
-                                                </div><!--End Icon Box -->
-
-                                                <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100" style="border: 1px solid black;">
-                                                    <div class="icon-box">
-                                                        <?php
-                                                        $sql4 = "SELECT COUNT(*) as belum FROM aktor JOIN jurusan ON aktor.jurusan_id = jurusan.id_jurusan WHERE jurusan.id_jurusan = 0 AND aktor.role = 'Siswa';";
-                                                        $hasil4 = mysqli_query($koneksi, $sql4);
-                                                        $data4 = mysqli_fetch_assoc($hasil4);
-                                                        $BelumMenentukan = $data4['belum'];
-                                                        ?>
-                                                        <br>
-                                                        <h2 class="title text-center"><a href="" class="stretched-link"><?php echo $BelumMenentukan; ?></a></h2>
-                                                        <h4 class="title text-center"><a href="" class="stretched-link">Belum Menentukan Jurusan</a></h4>
-                                                    </div>
-                                                </div><!--End Icon Box -->
-
-                                                <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100" style="border: 1px solid black;">
-                                                    <div class="icon-box">
-                                                        <?php
-                                                        $sql5 = "SELECT COUNT(*) as calon FROM aktor WHERE role = 'Siswa' AND status = 'calon';";
-                                                        $hasil5 = mysqli_query($koneksi, $sql5);
-                                                        $data5 = mysqli_fetch_assoc($hasil5);
-                                                        $calon = $data5['calon'];
-                                                        ?>
-                                                        <br>
-                                                        <h2 class="title text-center"><a href="" class="stretched-link"><?php echo $calon; ?></a></h2>
-                                                        <h4 class="title text-center"><a href="" class="stretched-link">Calon Siswa</a></h4>
-                                                    </div>
-                                                </div><!--End Icon Box -->
-
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div class="info-box mb-3 bg-gradient-info">
+                                <span class="info-box-icon"><i class="fas fa-users"></i></span>
+                                <?php
+                                $sql = "SELECT COUNT(*) as jumlah_pelatih FROM aktor WHERE role = 'Admin'";
+                                $hasil = mysqli_query($koneksi, $sql);
+                                $data = mysqli_fetch_assoc($hasil);
+                                $jumlah_pelatih = $data['jumlah_pelatih'];
+                                ?>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Jumlah Pelatih</span>
+                                    <span class="info-box-number"><?php echo $jumlah_pelatih; ?></span>
                                 </div>
-
-
                             </div>
-                            <!-- /.card -->
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div class="info-box mb-3 bg-gradient-warning">
+                                <span class="info-box-icon"><i class="fas fa-book"></i></span>
+                                <?php
+                                $sql1 = "SELECT COUNT(*) as jumlah_materi from materi";
+                                $hasil2 = mysqli_query($koneksi, $sql1);
+                                $data4 = mysqli_fetch_assoc($hasil2);
+                                $jumlah_materi = $data4['jumlah_materi'];
+                                ?>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Jumlah Materi Dasar</span>
+                                    <span class="info-box-number"><?php echo $jumlah_materi; ?></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-lg-4 col-6">
+                            <div class="small-box bg-info">
+                                <?php
+                                $sql2 = "SELECT COUNT(*) as seni FROM aktor JOIN jurusan ON aktor.jurusan_id = jurusan.id_jurusan WHERE jurusan.id_jurusan = 3 AND aktor.role = 'Siswa';";
+                                $hasil2 = mysqli_query($koneksi, $sql2);
+                                $data = mysqli_fetch_assoc($hasil2);
+                                $jumlahSiswaSeni = $data['seni'];
+                                ?>
+                                <div class="inner">
+                                    <h3><?php echo $jumlahSiswaSeni; ?></h3>
+                                    <p>Siswa Seni</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <a href="Penjurusan_Prestasi.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-6">
+                            <div class="small-box bg-success">
+                                <?php
+                                $sql3 = "SELECT COUNT(*) as tanding FROM aktor JOIN jurusan ON aktor.jurusan_id = jurusan.id_jurusan WHERE jurusan.id_jurusan = 2 AND aktor.role = 'Siswa';";
+                                $hasil3 = mysqli_query($koneksi, $sql3);
+                                $data3 = mysqli_fetch_assoc($hasil3);
+                                $jumlahSiswaTanding = $data3['tanding'];
+                                ?>
+                                <div class="inner">
+                                    <h3><?php echo $jumlahSiswaTanding; ?></h3>
+                                    <p>Siswa Tanding</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-fist-raised"></i>
+                                </div>
+                                <a href="Penjurusan_Prestasi.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-6">
+                            <div class="small-box bg-warning">
+                                <?php
+                                $sql4 = "SELECT COUNT(*) as belum FROM aktor JOIN jurusan ON aktor.jurusan_id = jurusan.id_jurusan WHERE jurusan.id_jurusan = 1 AND aktor.role = 'Siswa';";
+                                $hasil4 = mysqli_query($koneksi, $sql4);
+                                $data4 = mysqli_fetch_assoc($hasil4);
+                                $BelumMenentukan = $data4['belum'];
+                                ?>
+                                <div class="inner">
+                                    <h3><?php echo $BelumMenentukan; ?></h3>
+                                    <p>Belum Menentukan Jurusan</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-question-circle"></i>
+                                </div>
+                                <a href="Penjurusan_Prestasi.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
             </section>
             <!-- /.content -->
         </div>
