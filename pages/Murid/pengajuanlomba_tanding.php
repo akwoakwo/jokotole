@@ -13,6 +13,20 @@ $aktorr = $_SESSION['id_aktor'];
 $sqlAktor = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
 $hasilAktor = mysqli_query($koneksi, $sqlAktor);
 $bariss = mysqli_fetch_assoc($hasilAktor);
+
+$warna = $bariss['jurusan_id'];
+if ($warna == '1') {
+    $background = 'background-color:seagreen;';
+    $namajurusan = 'Belum Menentukan Jurusan';
+}
+if ($warna == '2') {
+    $background = 'background-color:tomato;';
+    $namajurusan = 'Jurusan Tanding';
+}
+if ($warna == '3') {
+    $background = 'background-color:steelblue;';
+    $namajurusan = 'Jurusan Seni';
+}
 ?>
 
 <!DOCTYPE html>

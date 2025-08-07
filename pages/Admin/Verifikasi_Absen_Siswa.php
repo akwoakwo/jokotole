@@ -54,6 +54,8 @@ if (isset($_GET['id_hapus'])) {
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="icon" type="image/png" href="../../dist/img/Jokotole.png" />
+    <!-- Bootstrap 5 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -111,28 +113,20 @@ if (isset($_GET['id_hapus'])) {
                             <div class="card">
 
                                 <div class="card-body">
-                                    <div class="komp">
-                                        <div class="isi-komponen1">
-                                            <h4>CARI JADWAL LATIHAN</h4>
-                                        </div>
-                                        <div class="isi-komponen2">
-                                            <form action="" method="post">
-                                                <select class="form-select" aria-label="Default select example" id="id_jadwal" name="id_jadwal">
-                                                    <option selected>PILIH JADWAL LATIHAN</option>
-                                                    <?php
-                                                    while ($baris1 = mysqli_fetch_assoc($tampil2)) {
-                                                    ?>
-                                                        <option value="<?php echo $baris1["id_jadwal"]; ?>"><?php echo $baris1["jadwal_latihan"]; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                                <div style="margin-left:2.8rem;">
-                                                    <button type="submit" class="btn btn-success">Cari</button>
-                                                    <a href="" class="btn btn-danger" id="resetFilter">Reset</a>
-                                                </div>
-                                            </form>
-                                        </div>
+                                    <div class="d-flex justify-content-end my-4">
+                                        <form action="" method="post" class="d-flex align-items-center gap-2">
+                                            <select class="form-control shadow-none" id="id_jadwal" name="id_jadwal" required>
+                                                <option selected disabled>Pilih Jadwal Latihan</option>
+                                                <?php while ($baris1 = mysqli_fetch_assoc($tampil2)) { ?>
+                                                    <option value="<?= $baris1["id_jadwal"]; ?>"><?= $baris1["jadwal_latihan"]; ?></option>
+                                                <?php } ?>
+                                            </select>
+
+                                            <button type="submit" class="btn btn-success">Cari</button>
+                                            <a href="Verifikasi_Absen_Siswa.php" class="btn btn-danger" id="resetFilter">Reset</a>
+                                        </form>
                                     </div>
-                                    <div class="komp_table">
+                                    <div class="table-responsive">
                                         <table class="table" style="text-align: center;">
                                             <thead class="table-dark">
                                                 <tr>

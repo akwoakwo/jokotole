@@ -313,11 +313,10 @@ if (isset($_GET['id_materi'])) {
                                                 <thead class="table-dark" width="30px">
                                                     <tr>
                                                         <th>No</th>
-
                                                         <th>Gambar</th>
                                                         <th>Nama Teknik</th>
                                                         <th style="width: 250px;">Deskripsi</th>
-                                                        <th></th>
+                                                        <th>Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

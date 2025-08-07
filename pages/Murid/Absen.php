@@ -99,19 +99,17 @@ if ($warna == '3') {
                                     <div class="box-header mb-3" style="display: flex; justify-content: flex-end; align-items: center;">
                                         <div class="label-input-container">
                                             <label>Search:</label>
-                                            <input type="search" id="inPutnamalatihan" onkeyup="myFunctionfunc()" class="form-control" data-table="table-bordered" placeholder="Cari Nama Latihan" />
+                                            <input type="search" id="inPutnamalatihan" onkeyup="myFunctionfunc()" class="form-control" data-table="table-bordered" placeholder="Cari Jadwal Latihan" />
                                         </div>
                                     </div>
                                     <div class="box-body">
                                         <table class="table table-bordered table-striped" style="text-align: center;">
                                             <thead>
-                                                <tr>
-                                                    <td>NO</td>
-                                                    <td>Absensi</td>
-                                                    <td>TANGGAL ABSENSI</td>
-                                                    <td>RESUME</td>
-                                                    <td>STATUS</td>
-                                                </tr>
+                                                <th>NO</th>
+                                                <th>Absensi</th>
+                                                <th>Tanggal Absensi</th>
+                                                <th>Resume</th>
+                                                <th>Status</th>
                                             </thead>
                                             <tbody>
                                                 <?php
@@ -158,7 +156,7 @@ if ($warna == '3') {
             table = document.getElementById("taBeljadwalatihan");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[4]; // Kolom Nama Latihan ada di indeks ke-4 (indeks dimulai dari 0)
+                td = tr[i].getElementsByTagName("td")[0]; // Kolom Nama Latihan ada di indeks ke-4 (indeks dimulai dari 0)
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {

@@ -14,123 +14,97 @@
         </div>
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
-                    <a href="Dashboard_SuperAdmin.php" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="Profil_Perguruan.php" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>
-                            Profil Perguruan
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="Kelola_Merchandise.php" class="nav-link">
-                        <i class="nav-icon fas fa-shopping-cart "></i>
-                        <p>
-                            Merchandise
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="Penjurusan_Prestasi.php" class="nav-link">
-                        <i class="nav-icon fas fa-road"></i>
-                        <p>
-                            Penjurusan Prestasi
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="Kelayakan.php" class="nav-link">
-                        <i class="nav-icon fas fa-percent"></i>
-                        <p>
-                            Kelayakan
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="Inventaris.php" class="nav-link">
-                        <i class="nav-icon fas fa-database"></i>
-                        <p>
-                            Inventaris
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="Verifikasi.php" class="nav-link">
-                        <i class="nav-icon fas fa-money-check-alt"></i>
-                        <p>
-                            Verifikasi Pembayaran
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="Materi.php" class="nav-link">
-                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                        <p>
-                            Materi
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="Verifikasi_Pendaftaran.php" class="nav-link">
-                        <i class="nav-icon fas fa-user-plus"></i>
-                        <p>
-                            Verifikasi Pendaftaran
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="galeriprestasi.php" class="nav-link">
-                        <i class="nav-icon fas fa-trophy"></i>
-                        <p>
-                            Galeri Prestasi
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="spp.php" class="nav-link">
-                        <i class="nav-icon fas fa-receipt"></i>
-                        <p>
-                            Informasi SPP
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i>
-                            <i class="nav-icon fa fa-trophy"></i>
-                        </i>
-                        <p>
-                            Pengajuan Lomba
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="Pengaturan.php" class="nav-link">
-                        <i class="nav-icon fas fa-cog"></i>
-                        <p>
-                            Pengaturan
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../logout.php" class="nav-link">
-                        <i class="nav-icon fas fa fa-sign-out"></i>
-                        <p>
-                            Logout
-                        </p>
-                    </a>
-                </li>
-        </nav>
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="Dashboard_SuperAdmin.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Dashboard_SuperAdmin.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Profil_Perguruan.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Profil_Perguruan.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>Profil Perguruan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Kelola_Merchandise.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Kelola_Merchandise.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-shopping-cart"></i>
+                            <p>Merchandise</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Penjurusan_Prestasi.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Penjurusan_Prestasi.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-road"></i>
+                            <p>Penjurusan Prestasi</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Kelayakan.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Kelayakan.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-percent"></i>
+                            <p>Kelayakan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Inventaris.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Inventaris.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-database"></i>
+                            <p>Inventaris</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Verifikasi.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Verifikasi.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-money-check-alt"></i>
+                            <p>Verifikasi Pembayaran</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Materi.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Materi.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                            <p>Materi</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Verifikasi_Pendaftaran.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Verifikasi_Pendaftaran.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-user-plus"></i>
+                            <p>Verifikasi Pendaftaran</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="galeriprestasi.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'galeriprestasi.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-trophy"></i>
+                            <p>Galeri Prestasi</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="spp.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'spp.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-receipt"></i>
+                            <p>Informasi SPP</p>
+                        </a>
+                    </li>
+                    <!-- Pengajuan Lomba -->
+                    <!--
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-trophy"></i>
+                            <p>Pengajuan Lomba</p>
+                        </a>
+                    </li>
+                    -->
+                    <li class="nav-item">
+                        <a href="Pengaturan.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Pengaturan.php' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-cog"></i>
+                            <p>Pengaturan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../logout.php" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

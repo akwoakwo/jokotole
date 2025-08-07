@@ -13,97 +13,91 @@
         </div>
 
         <!-- Sidebar Menu -->
+         <?php $current_page = basename($_SERVER['PHP_SELF']); ?>
+
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                
                 <li class="nav-item">
-                    <a href="Dashboard_Admin.php" class="nav-link">
+                    <a href="Dashboard_Admin.php" class="nav-link <?= $current_page == 'Dashboard_Admin.php' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
+                        <p>Dashboard</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="Kelayakan.php" class="nav-link">
+                    <a href="Kelayakan.php" class="nav-link <?= $current_page == 'Kelayakan.php' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-percent"></i>
-                        <p>
-                            Kelayakan
-                        </p>
+                        <p>Kelayakan</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="Materi.php" class="nav-link">
+                    <a href="Materi.php" class="nav-link <?= $current_page == 'Materi.php' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                        <p>
-                            Materi
-                        </p>
+                        <p>Materi</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="Evaluasi.php" class="nav-link">
-                        <i class="nav-icon fas fa-info "></i>
-                        <p>
-                            Evaluasi
-                        </p>
+                    <a href="Evaluasi.php" class="nav-link <?= $current_page == 'Evaluasi.php' ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-info"></i>
+                        <p>Evaluasi</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="Data_Siswa.php" class="nav-link">
-                        <i class="nav-icon fas fa-graduation-cap "></i>
-                        <p>
-                            Data Siswa
-                        </p>
+                    <a href="Data_Siswa.php" class="nav-link <?= $current_page == 'Data_Siswa.php' ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-graduation-cap"></i>
+                        <p>Data Siswa</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="Verifikasi_Absen_Siswa.php" class="nav-link">
-                        <i class="nav-icon fas fa-check "></i>
-                        <p>
-                            Verifikasi Absensi
-                        </p>
+                    <a href="Verifikasi_Absen_Siswa.php" class="nav-link <?= $current_page == 'Verifikasi_Absen_Siswa.php' ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-check"></i>
+                        <p>Verifikasi Absensi</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="Jadwal.php" class="nav-link">
-                        <i class="nav-icon fas fa-clock-o "></i>
-                        <p>
-                            Jadwal
-                        </p>
+                    <a href="Jadwal.php" class="nav-link <?= $current_page == 'Jadwal.php' ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-clock-o"></i>
+                        <p>Jadwal</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="spp.php" class="nav-link">
+                    <a href="spp.php" class="nav-link <?= $current_page == 'spp.php' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-receipt"></i>
-                        <p>
-                            Informasi SPP
-                        </p>
+                        <p>Informasi SPP</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="pengajuan_lomba.php" class="nav-link">
+                    <a href="pengajuan_lomba.php" class="nav-link <?= $current_page == 'pengajuan_lomba.php' ? 'active' : '' ?>">
                         <i class="nav-icon fa fa-trophy"></i>
-                        <p>
-                            Pengajuan Lomba
-                        </p>
+                        <p>Pengajuan Lomba</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="Pengaturan.php" class="nav-link">
+                    <a href="Pengaturan.php" class="nav-link <?= $current_page == 'Pengaturan.php' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-cog"></i>
-                        <p>
-                            Pengaturan
-                        </p>
+                        <p>Pengaturan</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="../logout.php" class="nav-link">
-                        <i class="nav-icon fas fa fa-sign-out"></i>
-                        <p>
-                            Logout
-                        </p>
+                        <i class="nav-icon fas fa-sign-out"></i>
+                        <p>Logout</p>
                     </a>
                 </li>
+
+            </ul>
         </nav>
+
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

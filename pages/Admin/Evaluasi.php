@@ -145,8 +145,8 @@ if (isset($_POST["kirim"])) {
                                             <div class="row">
                                                 <div class="col-md-12 mb-3">
                                                     <label class="form-label fw-bold"> Jadwal Latihan </label>
-                                                    <select class="form-select custom-select fw-bold" id="id_jadwal" name="id_jadwal" required>
-                                                        <option value="" disabled selected>PILIH JADWAL LATIHAN</option>
+                                                    <select class="form-select custom-select" id="id_jadwal" name="id_jadwal" required>
+                                                        <option value="" disabled selected>Pilih Jadwal Latihan</option>
                                                         <?php while ($jadwal = mysqli_fetch_assoc($tampil)) { ?>
                                                             <option value="<?php echo $jadwal["id_jadwal"]; ?>"><?php echo $jadwal["jadwal_latihan"]; ?></option>
                                                         <?php } ?>
@@ -154,8 +154,8 @@ if (isset($_POST["kirim"])) {
                                                 </div>
                                                 <div class="col-md-12 mb-3">
                                                     <label class="form-label fw-bold"> Data Murid </label>
-                                                    <select class="form-select custom-select fw-bold" id="id_aktor" name="id_aktor" required>
-                                                        <option value="" disabled selected>PILIH DATA MURID</option>
+                                                    <select class="form-select custom-select" id="id_aktor" name="id_aktor" required>
+                                                        <option value="" disabled selected>Pilih Data Murid</option>
                                                         <?php while ($murid = mysqli_fetch_assoc($tampil2)) { ?>
                                                             <option value="<?php echo $murid["id_aktor"]; ?>"><?php echo $murid["nama"]; ?></option>
                                                         <?php } ?>
