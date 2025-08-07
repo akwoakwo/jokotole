@@ -178,9 +178,9 @@ $hasil_galeri = mysqli_query($koneksi, $galeri);
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About Us</a></li>
+        <li><a href="#Lokasi">Maps</a></li>
         <li><a href="#Merchandise">Merchandise</a></li>
         <li><a href="#galeri">Galeri Prestasi</a></li>
-        <li><a href="#Contact">Contact</a></li>
       </ul>
     </div>
 
@@ -412,7 +412,7 @@ $hasil_galeri = mysqli_query($koneksi, $galeri);
 
     <section>
       <div class="container" data-aos="fade-up">
-        <div class="section-header" style="color: white; min-width:1000px">
+        <div class="section-header" style="color: white; min-width:1000px" id="Lokasi">
           <h2>Maps Perguruan</h2>
           <?php
           echo $baris['frame_map']
@@ -523,6 +523,34 @@ $hasil_galeri = mysqli_query($koneksi, $galeri);
                     <?php endforeach; ?>
                 </div>
             </div>
+            <div class="modal fade" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="whatsappModalLabel">Pemesanan Via Whatsapp</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="whatsappForm">
+                      <input type="hidden" id="merchandiseNamaModal">
+                      <input type="hidden" id="merchandiseHargaModal">
+                      <div class="mb-3">
+                        <label for="namaPemesan" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="namaPemesan" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="deskripsiPesanan" class="form-label">Deskripsi</label>
+                        <textarea class="form-control" id="deskripsiPesanan" rows="3" placeholder="Contoh: Ukuran L, Warna Hitam"></textarea>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <a id="sendWhatsappBtn" class="btn btn-success" href="#" target="_blank" rel="noopener noreferrer">Send</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div class="container my-5" data-aos="fade-up" id="galeri">
               <div class="section-header" style="color: white; min-width:1000px">
@@ -550,34 +578,6 @@ $hasil_galeri = mysqli_query($koneksi, $galeri);
                 </div>
             </div>
         </section>
-        <div class="modal fade modal-dialog modal-dialog-centered" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="whatsappModalLabel">Pemesanan Via Whatsapp</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="whatsappForm">
-                            <input type="hidden" id="merchandiseNamaModal">
-                            <input type="hidden" id="merchandiseHargaModal">
-                            <div class="mb-3">
-                                <label for="namaPemesan" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="namaPemesan" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="deskripsiPesanan" class="form-label">Deskripsi</label>
-                                <textarea class="form-control" id="deskripsiPesanan" rows="3" placeholder="Contoh: Ukuran L, Warna Hitam"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <a id="sendWhatsappBtn" class="btn btn-success" href="#" target="_blank" rel="noopener noreferrer">Send</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     <!-- ======= Call To Action Section ======= -->
     <section id="call-to-action" class="call-to-action">
@@ -595,10 +595,10 @@ $hasil_galeri = mysqli_query($koneksi, $galeri);
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-5 col-md-12 footer-info">
-            <a href="index.html" class="logo d-flex align-items-center">
-              <span>Joktole Kodim 0829</span>
+            <a href="./index.php" class="logo d-flex align-items-center">
+              <span>Jokotole Kodim 0829</span>
             </a>
-            <p>xnjnjnj djndknfkd kmkmkd mkmkmkd</p>
+            <p>Perguruan Pencak Silat Jokotole</p>
             <div class="social-links d-flex mt-4">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -610,11 +610,11 @@ $hasil_galeri = mysqli_query($koneksi, $galeri);
           <div class="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Merchandise</a></li>
-              <li><a href="#">Galeri Prestasi</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#Lokasi">Maps</a></li>
+              <li><a href="#Merchandise">Merchandise</a></li>
+              <li><a href="#galeri">Galeri Prestasi</a></li>
             </ul>
           </div>
 

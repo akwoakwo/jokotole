@@ -9,10 +9,11 @@ $nowa = @query("SELECT * FROM penjual ")[0];
 if (!empty($nowa[0]) || isset($nowa["no_hp"])) {
     // Data Ada
     $nomorWa = $nowa["no_hp"];
-} else {
-    // Data kosong atau indeks "no_hp" tidak ada
-    $nomorWa = 'Data No Kosong, Maka isi Nomer Wa !'; // Atau beri nilai default yang sesuai
-}
+} 
+// else {
+//     // Data kosong atau indeks "no_hp" tidak ada
+//     $nomorWa = 'Data No Kosong, Maka isi Nomer Wa !'; // Atau beri nilai default yang sesuai
+// }
 
 
 
@@ -52,7 +53,7 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Super Admin | Dashboard</title>
+    <title>Super Admin | Merchandise</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -128,159 +129,9 @@ if (isset($_POST["submit"])) {
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-   with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="Dashboard_SuperAdmin.php" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Profil_Perguruan.php" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Profil Perguruan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Kelola_Merchandise.php" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart "></i>
-                                <p>
-                                    Merchandise
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Penjurusan_Prestasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-road"></i>
-                                <p>
-                                    Penjurusan Prestasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Kelayakan.php" class="nav-link">
-                                <i class="nav-icon fas fa-percent"></i>
-                                <p>
-                                    Kelayakan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Inventaris.php" class="nav-link">
-                                <i class="nav-icon fas fa-database"></i>
-                                <p>
-                                    Inventaris
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Pesan.php" class="nav-link">
-                                <i class="nav-icon fas fa-envelope "></i>
-                                <p>
-                                    Kotak Masuk
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Verifikasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-money-check-alt"></i>
-                                <p>
-                                    Verifikasi Pembayaran
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Materi.php" class="nav-link">
-                                <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                                <p>
-                                    Materi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Verifikasi_Pendaftaran.php" class="nav-link">
-                                <i class="nav-icon fas fa-user-plus"></i>
-                                <p>
-                                    Verifikasi Pendaftaran
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="galeriprestasi.php" class="nav-link">
-                                <i class="nav-icon fas fa-trophy"></i>
-                                <p>
-                                    Galeri Prestasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="spp.php" class="nav-link">
-                                <i class="nav-icon fas fa-receipt"></i>
-                                <p>
-                                    Informasi SPP
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="strukturorganisasi.php" class="nav-link">
-                                <i class="nav-icon 	fas fa-sitemap"></i>
-                                <p>
-                                    Struktur Organisasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="beritaagenda_SuperAdmin.php" class="nav-link">
-                                <i class=" nav-icon fa fa-newspaper-o"></i>
-                                <p>
-                                    Berita dan Agenda
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="rekomendasilomba_SuperAdmin.php" class="nav-link">
-                                <i>
-                                    <i class="nav-icon fa fa-handshake-o"></i>
-                                </i>
-                                <p>
-                                    Rekomendasi Lomba
-                                </p>
-                            </a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a href="Inventaris.php" class="nav-link">
-                                <i>
-                                    <i class="nav-icon fa fa-trophy"></i>
-                                </i>
-                                <p>
-                                    Pengajuan Lomba
-                                </p>
-                            </a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a href="Pengaturan.php" class="nav-link">
-                                <i class="nav-icon fas fa-cog"></i>
-                                <p>
-                                    Pengaturan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../logout.php" class="nav-link">
-                                <i class="nav-icon fas fa fa-sign-out"></i>
-                                <p>
-                                    Logout
-                                </p>
-                            </a>
-                        </li>
-                </nav>
+                    <?php
+                    include 'sidebar/sidebar.php';
+                    ?>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -314,7 +165,7 @@ if (isset($_POST["submit"])) {
                                             <h2> Edit Wa Penjual Merchandise </h2>
                                             <div class="mb-3">
                                                 <label for="InputWaPenjual" class="form-label">Nomer Wa Penjual :</label>
-                                                <input type="text" name="no_hp" class="form-control" id="InputWaPenjual" aria-describedby="waPenjual" required value="<?= $nomorWa; ?>">
+                                                <input type="text" name="no_hp" class="form-control" id="InputWaPenjual" aria-describedby="waPenjual" placeholder="Data No Kosong, Maka isi Nomer Wa !" required value="<?= $nomorWa; ?>">
                                                 <div id="waPenjual" class="form-text">Isi No wa Dengan Format Internasional, Contoh: +6285378796564 </div>
                                             </div>
 

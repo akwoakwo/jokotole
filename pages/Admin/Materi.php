@@ -174,19 +174,6 @@ if (isset($_GET['id_materi'])) {
 
     <!-- Template Main CSS File -->
     <link href="dist/assets/css/main.css" rel="stylesheet">
-
-    <style>
-        th {
-            padding-top: 10px;
-            padding-left: 25px;
-            padding-right: 25px;
-            padding-bottom: 10px;
-        }
-
-        td {
-            padding: 20px;
-        }
-    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -237,128 +224,124 @@ if (isset($_GET['id_materi'])) {
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
+                    <!-- Default box -->
                     <div class="row">
-                        <div class="col-15" style="padding-bottom: 75px;">
-                            <!-- Default box -->
-                            <div class="card" width=750px>
+                        <div class="col-12">
+                            <div class="card">
 
-                                <div class="card-body">
+                            <div class="card-body">
 
-                                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#tambah_materi">
-                                        <i class="bi bi-plus-square"></i> Tambah
-                                    </button>
-                                    <br><br>
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#tambah_materi">
+                                    <i class="bi bi-plus-square"></i> Tambah
+                                </button>
+                                <br><br>
 
-                                    <!-- Modal untuk menampilkan pesan alert -->
-                                    <?php
-                                    if (isset($_SESSION['success'])) {
-                                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                                    <i class='bi bi-check-circle me-1'></i>
-                                                    {$_SESSION['success']}
-                                                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                                </div>";
-                                        unset($_SESSION['success']);
-                                    }
+                                <!-- Modal untuk menampilkan pesan alert -->
+                                <?php
+                                if (isset($_SESSION['success'])) {
+                                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                                <i class='bi bi-check-circle me-1'></i>
+                                                {$_SESSION['success']}
+                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                            </div>";
+                                    unset($_SESSION['success']);
+                                }
 
-                                    if (isset($_SESSION['error'])) {
-                                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                                    <i class='bi bi-exclamation-circle me-1'></i>
-                                                    {$_SESSION['error']}
-                                                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                                </div>";
-                                        unset($_SESSION['error']);
-                                    }
-                                    ?>
-                                    <!-- End modal -->
+                                if (isset($_SESSION['error'])) {
+                                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                                <i class='bi bi-exclamation-circle me-1'></i>
+                                                {$_SESSION['error']}
+                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                            </div>";
+                                    unset($_SESSION['error']);
+                                }
+                                ?>
+                                <!-- End modal -->
 
-                                    <div class="modal fade" id="tambah_materi" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <form action="" method="post" enctype="multipart/form-data">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Materi Baru</h5>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-md-12 mb-3">
-                                                                <label>Nama Materi</label>
-                                                                <input type="text" name="nama_materi" class="form-control shadow-none" required>
-                                                            </div>
-                                                            <div class="col-md-12 mb-3">
-                                                                <label>Deskripsi Materi</label>
-                                                                <textarea name="deskripsi_materi" class="form-control shadow-none" required></textarea>
-                                                            </div>
-                                                            <div class="col-md-12 mb-3">
-                                                                <label>Foto Materi</label>
-                                                                <input type="file" name="foto_materi" class="form-control shadow-none" required accept="image/*">
-                                                            </div>
+                                <div class="modal fade" id="tambah_materi" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <form action="" method="post" enctype="multipart/form-data">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Materi Baru</h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12 mb-3">
+                                                            <label>Nama Materi</label>
+                                                            <input type="text" name="nama_materi" class="form-control shadow-none" required>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label>Deskripsi Materi</label>
+                                                            <textarea name="deskripsi_materi" class="form-control shadow-none" required></textarea>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label>Foto Materi</label>
+                                                            <input type="file" name="foto_materi" class="form-control shadow-none" accept="image/*">
                                                         </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Batal</button>
-                                                        <button type="submit" name="tambah_materi" class="btn btn-success text-white shadow-none">Tambah</button>
-                                                    </div>
                                                 </div>
-                                            </form>
-
-                                        </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" name="tambah_materi" class="btn btn-success text-white shadow-none">Tambah</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
+                                </div>
 
-                                    <?php if ($jumlah_materi === '0') {
-                                        echo "<p style='text-align:center; color: red;'>Belum Ada Materi Pembelajaran</p>";
-                                    } else {
-                                    ?>
-                                        <div class="card card-body">
-                                            <table>
-                                                <thead class="table-dark" width="30px">
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Gambar</th>
-                                                        <th>Nama Teknik</th>
-                                                        <th style="width: 250px;">Deskripsi</th>
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php while ($data_baru = mysqli_fetch_assoc($hasil)) { ?>
-                                                        <tr class="kolom">
-                                                            <td><?php echo $no++ ?></td>
-                                                            <td><img src="../../dist/assets/img/materi/<?php echo $data_baru["foto_materi"]; ?>" alt="Gambar Materi" width="150"></td>
-                                                            <td><?php echo $data_baru["nama_materi"]; ?></td>
-                                                            <td style="width: 250px;"><?php echo $data_baru["deskripsi_materi"]; ?></td>
-                                                            <td class="aksi">
-                                                                <a href='materi_edit.php?id_edit=<?php echo $data_baru['id_materi']; ?>' class="btn btn-success">Edit</a>
+                                <?php if ($jumlah_materi === '0') {
+                                    echo "<p style='text-align:center; color: red;'>Belum Ada Materi Pembelajaran</p>";
+                                } else {
+                                ?>
+                                    <table class="table">
+                                        <thead class="table-dark">
+                                            <th>No</th>
+                                            <th>Gambar</th>
+                                            <th>Nama Teknik</th>
+                                            <th>Deskripsi</th>
+                                            <th>Aksi</th>
+                                        </thead>
+                                        <tbody>
+                                            <?php while ($data_baru = mysqli_fetch_assoc($hasil)) { ?>
+                                                <tr class="kolom">
+                                                    <td><?php echo $no++ ?></td>
+                                                    <td><img src="../../dist/assets/img/materi/<?php echo $data_baru["foto_materi"]; ?>" alt="Gambar Materi" width="150"></td>
+                                                    <td><?php echo $data_baru["nama_materi"]; ?></td>
+                                                    <td><?php echo $data_baru["deskripsi_materi"]; ?></td>
+                                                    <td class="aksi">
+                                                        <a href='materi_edit.php?id_edit=<?php echo $data_baru['id_materi']; ?>' class="btn btn-success">Edit</a>
 
-                                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $data_baru['id_materi'] ?>">Delete</button>
-                                                                <div class="modal fade" id="hapus<?php echo $data_baru['id_materi'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data Materi</h5>
-                                                                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                Apakah anda yakin untuk menghapus materi <b><?php echo $data_baru['nama_materi']; ?></b> ?
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                                                                                <a href="?id_materi=<?php echo $data_baru['id_materi']; ?>" class="btn btn-danger">Iya</a>
-                                                                            </div>
-                                                                        </div>
+                                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $data_baru['id_materi'] ?>">Delete</button>
+                                                        <div class="modal fade" id="hapus<?php echo $data_baru['id_materi'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Hapus Data Materi</h5>
+                                                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Apakah anda yakin untuk menghapus materi <b><?php echo $data_baru['nama_materi']; ?></b> ?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                                                        <a href="?id_materi=<?php echo $data_baru['id_materi']; ?>" class="btn btn-danger">Iya</a>
                                                                     </div>
                                                                 </div>
-                                                            </td>
-                                                        </tr>
-                                                    <?php } ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    <?php } ?>
-                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                <?php } ?>
                             </div>
-                            <!-- /.card -->
+
+                            </div>
                         </div>
                     </div>
+                    <!-- /.card -->
                 </div>
             </section>
             <!-- /.content -->

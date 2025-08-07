@@ -146,13 +146,9 @@ function editwa($data)
 
     $no_hp = htmlspecialchars($data["no_hp"]);
 
-    mysqli_query($conn, "DELETE FROM penjual");
-
-    $query = "INSERT INTO penjual
-                VALUES
-                ('', '$no_hp')
-                ";
-
+    $query = "UPDATE penjual SET no_hp = '$no_hp' WHERE id_penjual = 1";
     mysqli_query($conn, $query);
+
     return mysqli_affected_rows($conn);
 }
+
