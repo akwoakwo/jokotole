@@ -12,7 +12,7 @@ $tampil2 = mysqli_query($koneksi, $sql2);
 
 if (isset($_GET['id_edit'])) {
     $id_absensi = $_GET['id_edit'];
-    
+
     // Logika verifikasi data, misalnya mengubah status_absensi menjadi "Terverifikasi"
     $sql = "UPDATE absensi SET status_absensi = 'ACC' WHERE id_absensi = $id_absensi";
     mysqli_query($koneksi, $sql);
@@ -85,9 +85,9 @@ if (isset($_GET['id_hapus'])) {
         $hasill = mysqli_query($conn, $sql);
         $bariss = mysqli_fetch_assoc($hasill);
         ?>
-        
+
         <?php
-            include 'siderbar/sidebar.php';
+        include 'siderbar/sidebar.php';
         ?>
 
         <!-- Content Wrapper. Contains page content -->
@@ -146,13 +146,17 @@ if (isset($_GET['id_hapus'])) {
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $a; ?></td>
-                                                        <td><?php echo $baris["jadwal_latihan"]; ?></td>
-                                                        <td><?php echo $baris["tanggal_absensi"]; ?></td>
-                                                        <td><?php echo $baris["resume_materi"]; ?></td>
-                                                        <td><?php echo $baris["status_absensi"]; ?></td>
+                                                        <td><?php echo htmlspecialchars($baris["jadwal_latihan"]); ?></td>
+                                                        <td><?php echo htmlspecialchars($baris["tanggal_absensi"]); ?></td>
+                                                        <td><?php echo htmlspecialchars($baris["resume_materi"]); ?></td>
+                                                        <td><?php echo htmlspecialchars($baris["status_absensi"]); ?></td>
                                                         <td>
-                                                            <a href="?id_edit=<?php echo $baris['id_absensi']; ?>" class="btn btn-primary">Verifikasi</a>
-                                                            <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" onclick="setDeleteURL(<?php echo $baris['id_absensi']; ?>)">Hapus</a>
+                                                            <?php if ($baris["status_absensi"] == "Belum ACC") { ?>
+                                                                <a href="?id_edit=<?php echo $baris['id_absensi']; ?>" class="btn btn-primary btn-sm">Verifikasi</a>
+                                                                <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" onclick="setDeleteURL(<?php echo $baris['id_absensi']; ?>)">Hapus</a>
+                                                            <?php } else { ?>
+                                                                <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" onclick="setDeleteURL(<?php echo $baris['id_absensi']; ?>)">Hapus</a>
+                                                            <?php } ?>
                                                         </td>
                                                     </tr>
                                                 <?php } ?>
