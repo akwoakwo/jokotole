@@ -660,7 +660,7 @@ ALTER TABLE `materi`
 -- AUTO_INCREMENT for table `merchandise`
 --
 ALTER TABLE `merchandise`
-  MODIFY `id_merchandise` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_merchandise` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `message`

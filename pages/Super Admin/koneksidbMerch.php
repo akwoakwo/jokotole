@@ -37,10 +37,8 @@ function add($data)
     }
 
     // Buat Query Insert untuk menambah data ke database
-    $query = "INSERT INTO merchandise
-                VALUES
-                ('', '$nama_merchandise', '$harga_merchandise', '$deskripsi_merchandise', '$foto_merchandise')
-                ";
+    $query = "INSERT INTO merchandise(nama_merchandise, harga_merchandise, deskripsi_merchandise, foto_merchandise) 
+        VALUES('$nama_merchandise', '$harga_merchandise', '$deskripsi_merchandise', '$foto_merchandise')";
 
     mysqli_query($conn, $query);
 
