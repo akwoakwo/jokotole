@@ -93,7 +93,7 @@ $hasil = mysqli_query($koneksi, $sql);
                                 <div class="card-body">
                                     <div class="row mb-3">
                                         <div class="col-md-8">
-                                            <a href="tambahgaleri.php" class="btn btn-success">Tambah</a>
+                                            <a href="tambahgaleri.php" class="btn btn-primary">Tambah</a>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group">
@@ -111,7 +111,7 @@ $hasil = mysqli_query($koneksi, $sql);
                                                     <th>Prestasi</th>
                                                     <th>Tingkat</th>
                                                     <th>Deskripsi</th>
-                                                    <th>Foro Prestasi</th>
+                                                    <th>Foto Prestasi</th>
                                                     <th>Murid</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -128,7 +128,7 @@ $hasil = mysqli_query($koneksi, $sql);
                                                             <td><?php echo $baris['nama_prestasi']; ?></td>
                                                             <td><?php echo $baris['tingkat_prestasi']; ?></td>
                                                             <td class="deskripsi"><?php echo $baris['deskripsi_prestasi']; ?></td>
-                                                            <td><img style="max-width: 120px; max-height: 80px;" src="../../dist/img/<?php echo $baris['foto_prestasi']; ?>" class="img-fluid"></td>
+                                                            <td><img style="max-width: 175px; max-height: 125px;" src="../../dist/img/prestasi/<?php echo $baris['foto_prestasi']; ?>" class="img-fluid"></td>
                                                             <td><?php echo $baris['nama']; ?></td>
                                                             <!--button edit dan hapus-->
                                                             <td class="action-icons">
@@ -192,7 +192,7 @@ $hasil = mysqli_query($koneksi, $sql);
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
+                td = tr[i].getElementsByTagName("td")[5];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {

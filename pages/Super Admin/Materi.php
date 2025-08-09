@@ -173,7 +173,7 @@ if (isset($_GET['id_materi'])) {
                                                     <th>No</th>
                                                     <th>Gambar</th>
                                                     <th>Nama Teknik</th>
-                                                    <th style="width: 250px;">Deskripsi</th>
+                                                    <th>Deskripsi</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -181,9 +181,9 @@ if (isset($_GET['id_materi'])) {
                                                 <?php while ($data_baru = mysqli_fetch_assoc($hasil)) { ?>
                                                     <tr class="kolom">
                                                         <td><?php echo $no++ ?></td>
-                                                        <td><img src="../../dist/assets/img/materi/<?php echo $data_baru["foto_materi"]; ?>" alt="Gambar Materi" width="150"></td>
+                                                        <td><img src="../../dist/assets/img/materi/<?php echo $data_baru["foto_materi"]; ?>" alt="Gambar Materi" width="500"></td>
                                                         <td><?php echo $data_baru["nama_materi"]; ?></td>
-                                                        <td style="width: 250px;"><?php echo $data_baru["deskripsi_materi"]; ?></td>
+                                                        <td class="text-justify"><?php echo $data_baru["deskripsi_materi"]; ?></td>
                                                         <td class="aksi">
                                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $data_baru['id_materi'] ?>">Delete</button>
                                                             <div class="modal fade" id="hapus<?php echo $data_baru['id_materi'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -241,12 +241,13 @@ if (isset($_GET['id_materi'])) {
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../../dist/js/pages/search.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Script Fitur pencarian-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 

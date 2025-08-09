@@ -92,7 +92,7 @@ $bariss = mysqli_fetch_assoc($hasill);
         <div class="content-wrapper" style="background-color: #BED2BE;">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1 style="color: #000;margin-top:70px; text-align:center"><b>Daftar Pengajuan Lomba</b></h1>
+                <h1 style="color: #000;margin-top:70px"><b>Daftar Pengajuan Lomba</b></h1>
             </section>
             <!-- Main content -->
             <section class="content">

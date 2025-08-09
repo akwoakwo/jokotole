@@ -21,7 +21,7 @@ $no_semua = 1;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin | View Student</title>
+    <title>Admin | Data Siswa</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -76,7 +76,7 @@ $no_semua = 1;
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 style="color: #000;margin-top:70px;"><b>View Student</b></h1>
+                            <h1 style="color: #000;margin-top:70px;"><b>Data Siswa</b></h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->

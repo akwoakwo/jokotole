@@ -231,7 +231,7 @@ if (isset($_GET['id_materi'])) {
 
                             <div class="card-body">
 
-                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#tambah_materi">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah_materi">
                                     <i class="bi bi-plus-square"></i> Tambah
                                 </button>
                                 <br><br>
@@ -283,7 +283,7 @@ if (isset($_GET['id_materi'])) {
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" name="tambah_materi" class="btn btn-success text-white shadow-none">Tambah</button>
+                                                    <button type="submit" name="tambah_materi" class="btn btn-primary text-white shadow-none">Tambah</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -306,11 +306,11 @@ if (isset($_GET['id_materi'])) {
                                             <?php while ($data_baru = mysqli_fetch_assoc($hasil)) { ?>
                                                 <tr class="kolom">
                                                     <td><?php echo $no++ ?></td>
-                                                    <td><img src="../../dist/assets/img/materi/<?php echo $data_baru["foto_materi"]; ?>" alt="Gambar Materi" width="150"></td>
+                                                    <td><img src="../../dist/assets/img/materi/<?php echo $data_baru["foto_materi"]; ?>" alt="Gambar Materi" width="500"></td>
                                                     <td><?php echo $data_baru["nama_materi"]; ?></td>
-                                                    <td><?php echo $data_baru["deskripsi_materi"]; ?></td>
+                                                    <td class="text-justify"><?php echo $data_baru["deskripsi_materi"]; ?></td>
                                                     <td class="aksi">
-                                                        <a href='materi_edit.php?id_edit=<?php echo $data_baru['id_materi']; ?>' class="btn btn-success">Edit</a>
+                                                        <a href='materi_edit.php?id_edit=<?php echo $data_baru['id_materi']; ?>' class="btn btn-primary">Edit</a>
 
                                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $data_baru['id_materi'] ?>">Delete</button>
                                                         <div class="modal fade" id="hapus<?php echo $data_baru['id_materi'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

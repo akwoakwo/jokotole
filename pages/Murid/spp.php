@@ -92,7 +92,7 @@ if ($warna == '3') {
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 style="color: #fff;margin-top:70px;"><b>INFORMASI PEMBAYARAN SPP</b></h1>
+                            <h1 style="color: #fff;margin-top:70px;"><b>Informasi Pembayaran SPP</b></h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -122,13 +122,13 @@ if ($warna == '3') {
                                         <table class="table table-bordered table-striped" id="taBelinventaris" style="text-align: center;">
                                             <thead>
                                                 <tr>
-                                                <th>ID</th>
-                                                <th>NAMA_MURID</th>
-                                                <th>BULAN</th>
-                                                <th>TANGGAL_BAYAR</th>
-                                                <th>NOMINAL</th>
-                                                <th>DEADLINE_BAYAR</th>
-                                                <th>STATUS</th>
+                                                <th>No</th>
+                                                <th>Nama Murid</th>
+                                                <th>Bulan</th>
+                                                <th>Tanggal Bayar</th>
+                                                <th>Nominal</th>
+                                                <th>Deadline Bayar</th>
+                                                <th>Status</th>
                                                 
                                                 </tr>
                                             </thead>

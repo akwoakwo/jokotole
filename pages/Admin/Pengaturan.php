@@ -239,74 +239,70 @@ if (isset($_POST['submit'])) {
                         <!-- End modal -->
                         <div class="col-lg-12 mb-4 px-lg-2 p-3" style="margin-right:auto; margin-left: auto">
                             <div class="card mb-4 shadow">
-                                <div class="row g-0 p-3 align-items-center">
-                                    <div class="conten">
-                                        <img id="profileImage" src="../../dist/img/profile/<?php echo $row["foto"]; ?>" alt="Gambar Materi" class="image" width="100">
-                                        <div class="middle">
-                                            <div class="text">
-                                                <button type="button" class="btn btn-outline-dark w-10 shadow-none" data-bs-toggle="modal" data-bs-target="#image-profil">
-                                                    Update
-                                                </button>
+                                <div class="card-body">
+                                    <div class="row g-0 p-3 align-items-center">
+                                        <div class="conten">
+                                            <img id="profileImage" src="../../dist/img/profile/<?php echo $row["foto"]; ?>" alt="Gambar Materi" class="image" width="100">
+                                            <div class="middle">
+                                                <div class="text">
+                                                    <button type="button" class="btn btn-outline-dark w-10 shadow-none" data-bs-toggle="modal" data-bs-target="#image-profil">
+                                                        Update
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row g-0 p-3 align-items-center">
-                                    <div class="">
-                                        <form action="" method="post">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12 mb-3">
-                                                            <label class="form-label fw-bold" for="username"> Username </label>
-                                                            <input type="text" id="username" name="username" class="form-control shadow-none" value="<?php echo $row['username']; ?>" required>
-                                                        </div>
-                                                        <div class="col-md-12 mb-3">
-                                                            <label class="form-label fw-bold" for="passowrd"> Pasword </label>
-                                                            <input type="password" id="password" name="password" class="form-control shadow-none" value="<?php echo $row['password']; ?>" required>
-                                                            <input type="checkbox" id="showPassword"> Tampilkan Password
-                                                        </div>
-                                                        <div class="col-md-12 mb-3">
-                                                            <label class="form-label fw-bold" for="nama"> Nama </label>
-                                                            <input type="text" id="nama" name="nama" class="form-control shadow-none" value="<?php echo $row['nama']; ?>" required>
-                                                        </div>
-                                                        <div class="col-md-12 mb-3">
-                                                            <label class="form-label fw-bold" for="tanggal_lahir"> Tanggal lahir </label>
-                                                            <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control shadow-none" value="<?php echo $row['tanggal_lahir']; ?>" required>
-                                                        </div>
-                                                        <div class="col-md-12 mb-3">
-                                                            <label class="form-label fw-bold" for="email"> E-mail </label>
-                                                            <input type="text" id="email" name="email" class="form-control shadow-none" value="<?php echo $row['email']; ?>" required>
-                                                            <span id="error_email" style="color: red;"></span>
-                                                        </div>
-                                                        <div class="col-md-12 mb-3">
-                                                            <label class="form-label fw-bold"> Telepon </label>
-                                                            <input type="text" id="telepon" name="telepon" class="form-control shadow-none" value="<?php echo $row['telepon']; ?>" required>
-                                                            <span id="error_telepon" style="color: red;"></span>
-                                                        </div>
-                                                        <div class="col-md-12 mb-3">
-                                                            <label class="form-label fw-bold" for="gender"> Gender </label>
-                                                            <select name="gender" id="gender" class="form-control shadow-none">
-                                                                <option selected hidden><?php echo $row['gender']; ?></option>
-                                                                <option value="Laki-laki">Laki-laki</option>
-                                                                <option value="Perempuan">Perempuan</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-12 mb-3">
-                                                            <label class="form-label fw-bold"> Alamat </label>
-                                                            <input type="text" id="alamat" name="alamat" class="form-control shadow-none" value="<?php echo $row['alamat']; ?>" required>
-                                                        </div>
-                                                        <div class="col-md-12 mb-3">
-                                                            <label class="form-label fw-bold" for="tingkatan"> Tingkatan </label>
-                                                            <input type="text" id="tingkatan" name="tingkatan" class="form-control shadow-none" value="<?php echo $row['tingkatan']; ?>" disabled>
-                                                        </div>
+                                    <div class="row p-3 align-items-center">
+                                        <div class="">
+                                            <form action="" method="post">
+                                                <div class="row">
+                                                    <div class="col-md-12 mb-3">
+                                                        <label class="form-label fw-bold" for="username"> Username </label>
+                                                        <input type="text" id="username" name="username" class="form-control shadow-none" value="<?php echo $row['username']; ?>" required>
+                                                    </div>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label class="form-label fw-bold" for="passowrd"> Pasword </label>
+                                                        <input type="password" id="password" name="password" class="form-control shadow-none" value="<?php echo $row['password']; ?>" required>
+                                                        <input type="checkbox" id="showPassword"> Tampilkan Password
+                                                    </div>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label class="form-label fw-bold" for="nama"> Nama </label>
+                                                        <input type="text" id="nama" name="nama" class="form-control shadow-none" value="<?php echo $row['nama']; ?>" required>
+                                                    </div>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label class="form-label fw-bold" for="tanggal_lahir"> Tanggal lahir </label>
+                                                        <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control shadow-none" value="<?php echo $row['tanggal_lahir']; ?>" required>
+                                                    </div>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label class="form-label fw-bold" for="email"> E-mail </label>
+                                                        <input type="text" id="email" name="email" class="form-control shadow-none" value="<?php echo $row['email']; ?>" required>
+                                                        <span id="error_email" style="color: red;"></span>
+                                                    </div>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label class="form-label fw-bold"> Telepon </label>
+                                                        <input type="text" id="telepon" name="telepon" class="form-control shadow-none" value="<?php echo $row['telepon']; ?>" required>
+                                                        <span id="error_telepon" style="color: red;"></span>
+                                                    </div>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label class="form-label fw-bold" for="gender"> Gender </label>
+                                                        <select name="gender" id="gender" class="form-control shadow-none">
+                                                            <option selected hidden><?php echo $row['gender']; ?></option>
+                                                            <option value="Laki-laki">Laki-laki</option>
+                                                            <option value="Perempuan">Perempuan</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label class="form-label fw-bold"> Alamat </label>
+                                                        <input type="text" id="alamat" name="alamat" class="form-control shadow-none" value="<?php echo $row['alamat']; ?>" required>
+                                                    </div>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label class="form-label fw-bold" for="tingkatan"> Tingkatan </label>
+                                                        <input type="text" id="tingkatan" name="tingkatan" class="form-control shadow-none" value="<?php echo $row['tingkatan']; ?>" disabled>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
                                                 <button id="submitButton" name="kirim" class="btn btn-outline-dark w-175 shadow-none" disabled>Simpan</button>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

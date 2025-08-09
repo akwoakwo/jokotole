@@ -374,7 +374,7 @@ $hasil_galeri = mysqli_query($koneksi, $galeri);
                 </div>
 
                 <div class="row gy-4">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 text-center">
                         <img src="dist/img/Jokotole.png" style="width: 60%;" class="img-fluid rounded-4 mb-4" alt="">
                     </div>
                     <div class="col-lg-6">
@@ -412,7 +412,7 @@ $hasil_galeri = mysqli_query($koneksi, $galeri);
 
     <section>
       <div class="container" data-aos="fade-up">
-        <div class="section-header" style="color: white; min-width:1000px" id="Lokasi">
+        <div class="section-header text-center text-white mb-4" id="Lokasi">
           <h2>Maps Perguruan</h2>
           <?php
           echo $baris['frame_map']
@@ -553,12 +553,12 @@ $hasil_galeri = mysqli_query($koneksi, $galeri);
             </div>
 
             <div class="container my-5" data-aos="fade-up" id="galeri">
-              <div class="section-header" style="color: white; min-width:1000px">
+              <div class="section-header text-center text-white mb-4">
                 <h2>Galeri Prestasi</h2>
               </div>
                 <div class="row justify-content-center">
                     <?php foreach ($hasil_galeri as $row) : ?>
-                        <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
+                        <div class="col-lg-4 col-sm-6 mb-4 d-flex align-items-stretch">
                             <div class="card shadow w-100" style="border-radius: 15px;">
                                 <img src="dist/img/prestasi/<?php echo $row["foto_prestasi"]; ?>" class="card-img-top" alt="Image" style="width: 100%; padding:15px; height: 250px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
                                 <div class="card-body d-flex flex-column justify-content-between">
