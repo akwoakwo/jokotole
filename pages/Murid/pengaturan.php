@@ -26,9 +26,9 @@ if (isset($_POST['kirim'])) {
     $telepon = $_POST["telepon"];
     $gender = $_POST["gender"];
     $alamat = $_POST["alamat"];
-    $tingkatan = $_POST["tingkatan"];
+    // $tingkatan = $_POST["tingkatan"];
 
-    $edit_data = "UPDATE aktor set nama = '$nama', tanggal_lahir = '$tanggal_lahir', email = '$email', telepon = '$telepon', gender = '$gender', alamat = '$alamat', tingkatan = '$tingkatan', username = '$username', password = '$password' where id_aktor = $id_murid ";
+    $edit_data = "UPDATE aktor set nama = '$nama', tanggal_lahir = '$tanggal_lahir', email = '$email', telepon = '$telepon', gender = '$gender', alamat = '$alamat', username = '$username', password = '$password' where id_aktor = $id_murid ";
     $update_data = mysqli_query($koneksi, $edit_data);
 
     if ($update_data) {
@@ -285,10 +285,10 @@ if (isset($_POST['submit'])) {
                                                         <label class="form-label fw-bold"> Alamat </label>
                                                         <input type="text" id="alamat" name="alamat" class="form-control shadow-none" value="<?php echo $row['alamat']; ?>" required>
                                                     </div>
-                                                    <div class="col-md-12 mb-3">
+                                                    <!-- <div class="col-md-12 mb-3">
                                                         <label class="form-label fw-bold" for="tingkatan"> Tingkatan </label>
                                                         <input type="text" id="tingkatan" name="tingkatan" class="form-control shadow-none" value="<?php echo $row['tingkatan']; ?>" disabled>
-                                                    </div>
+                                                    </div> -->
                                                     <!-- <div class="col-md-12 mb-3">
                                                             <input type="hidden" id="telepon_wali" name="telepon_wali" class="form-control shadow-none" value="<?php echo $row['telepon_wali']; ?>" required>
                                                         </div> -->

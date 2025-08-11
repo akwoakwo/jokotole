@@ -174,9 +174,9 @@ $hasil = mysqli_query($koneksi, $sql);
                                                                 $formattedDate = date('F Y', strtotime($baris['deadline_pembayaran']));
                                                                 echo $formattedDate; ?></td>
                                                             <td><?php echo $baris['tanggal_bayar']; ?></td>
-                                                            <td><?php echo $baris['nominal_bayar']; ?></td>
+                                                            <td><?php echo "Rp" . number_format($baris['nominal_bayar'], 0, ',', '.') ?></td>
                                                             <td><?php echo $baris['deadline_pembayaran']; ?></td>
-                                                            <td><?php echo $baris['status_bayar']; ?></td>
+                                                            <td><?php echo ucwords(strtolower($baris['status_bayar'])); ?></td>
                                                             <?php $i++; ?>
                                                         <?php endforeach; ?>
                                                         </tr>

@@ -52,12 +52,12 @@
                             <p>Inventaris</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="Verifikasi.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Verifikasi.php' ? 'active' : ''; ?>">
                             <i class="nav-icon fas fa-money-check-alt"></i>
                             <p>Verifikasi Pembayaran</p>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a href="Materi.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Materi.php' ? 'active' : ''; ?>">
                             <i class="nav-icon fas fa-chalkboard-teacher"></i>

@@ -1,13 +1,11 @@
 <?php
 session_start();
 $koneksi=mysqli_connect("localhost","root","","jokotole");
-$nama = $_SESSION['nama'];
-$sql="SELECT id_pembayaran, nama, tanggal_bayar, nominal_bayar, deadline_pembayaran, status_bayar 
-FROM pembayaran_spp m, aktor p where m.murid_id=p.id_aktor AND p.nama = '$nama' order by deadline_pembayaran, nama";
-$hasil=mysqli_query($koneksi,$sql);
-
-// Ambil data aktor untuk sidebar
 $aktorr = $_SESSION['id_aktor'];
+$nama = $_SESSION['nama'];
+// $sql="SELECT id_pembayaran, nama, tanggal_bayar, nominal_bayar, deadline_pembayaran, status_bayar FROM pembayaran_spp m, aktor p where m.murid_id=p.id_aktor AND p.nama = '$nama' order by deadline_pembayaran, nama";
+                                                
+// Ambil data aktor untuk sidebar
 $sqlAktor = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
 $hasilAktor = mysqli_query($koneksi, $sqlAktor);
 $bariss = mysqli_fetch_assoc($hasilAktor);
@@ -112,7 +110,7 @@ if ($warna == '3') {
                                 <div class="row mb-3 justify-content-end">
                                 <div class="col-md-4">
                                 <div class="input-group">
-                                    <input class="form-control" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+                                    <input class="form-control" type="search" id="myInput" onkeyup="myFunction()" placeholder="Cari status pembayaran..">
                                     <button class="btn btn-success"><i class="bi bi-search"></i></button>
                                 </div>
                                 </div>
@@ -122,39 +120,37 @@ if ($warna == '3') {
                                         <table class="table table-bordered table-striped" id="taBelinventaris" style="text-align: center;">
                                             <thead>
                                                 <tr>
-                                                <th>No</th>
-                                                <th>Nama Murid</th>
-                                                <th>Bulan</th>
-                                                <th>Tanggal Bayar</th>
-                                                <th>Nominal</th>
-                                                <th>Deadline Bayar</th>
-                                                <th>Status</th>
-                                                
+                                                    <th>No</th>
+                                                    <th>Nama Murid</th>
+                                                    <th>Bulan</th>
+                                                    <th>Tanggal Bayar</th>
+                                                    <th>Nominal</th>
+                                                    <th>Deadline Bayar</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                
-                                                while ($baris = mysqli_fetch_assoc($hasil)) {
+                                                    $sql = "SELECT p.*, a.nama 
+                                                            FROM pembayaran_spp p
+                                                            INNER JOIN aktor a ON p.murid_id = a.id_aktor
+                                                            WHERE p.murid_id = $aktorr";
+
+                                                    $hasil = mysqli_query($koneksi, $sql);
+                                                    $i = 1;
+                                                    while ($baris = mysqli_fetch_assoc($hasil)) {
+                                                        echo "<tr>
+                                                                <td>{$i}</td>
+                                                                <td>" . ucwords(strtolower($baris['nama'])) . "</td>
+                                                                <td>" . date('F Y', strtotime($baris['deadline_pembayaran'])) . "</td>
+                                                                <td>{$baris['tanggal_bayar']}</td>
+                                                                <td>Rp " . number_format($baris['nominal_bayar'], 0, ',', '.') . "</td>
+                                                                <td>{$baris['deadline_pembayaran']}</td>
+                                                                <td>" . ucwords(strtolower($baris['status_bayar'])) . "</td>
+                                                            </tr>";
+                                                        $i++;
+                                                    }
                                                 ?>
-                                                    <?php $i = 1;?>
-                                                    <?php foreach ($hasil as $baris) : ?>
-                                                    <tr>
-                                                    <td><?php echo $i ;?></td>
-                                                    <td><?php echo $baris['nama'];?></td>
-                                                    <td><?php
-                                                        // menampilkan data bulan dan tahun berupa teks
-                                                        $formattedDate = date('F Y', strtotime($baris['deadline_pembayaran']));
-                                                        echo $formattedDate;?></td>
-                                                        <td><?php echo $baris['tanggal_bayar'];?></td>
-                                                        <td><?php echo $baris['nominal_bayar'];?></td>
-                                                        <td><?php echo $baris['deadline_pembayaran'];?></td>
-                                                        <td><?php echo $baris['status_bayar'];?></td>
-                                                        
-                                                    <?php $i++;?>
-                                                    <?php endforeach; ?> 
-                                                    </tr>
-                                                <?php }; ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -208,8 +204,8 @@ function myFunction() {
   tr = table.getElementsByTagName("tr");
 
   for (i = 0; i < tr.length; i++) {
-        td1 = tr[i].getElementsByTagName("td")[1]; // Use index 1 for the second column
-        td2 = tr[i].getElementsByTagName("td")[2]; // Use index 2 for the third column
+        td1 = tr[i].getElementsByTagName("td")[2]; // Use index 1 for the second column
+        td2 = tr[i].getElementsByTagName("td")[6]; // Use index 2 for the third column
         if (td1 || td2) {
             txtValue1 = td1.textContent || td1.innerText;
             txtValue2 = td2.textContent || td2.innerText;

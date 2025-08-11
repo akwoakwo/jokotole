@@ -179,9 +179,9 @@ $hasil = mysqli_query($koneksi, $sql);
                                                                 echo $formattedDate; ?>
                                                             </td>
                                                             <td><?php echo $baris['tanggal_bayar']; ?></td>
-                                                            <td><?php echo $baris['nominal_bayar']; ?></td>
+                                                            <td><?php echo "Rp" . number_format($baris['nominal_bayar'], 0, ',', '.') ?></td>
                                                             <td><?php echo $baris['deadline_pembayaran']; ?></td>
-                                                            <td><?php echo $baris['status_bayar']; ?></td>
+                                                            <td><?php echo ucwords(strtolower($baris['status_bayar'])); ?></td>
                                                             <!--button edit dan hapus-->
                                                             <td class="action-icons">
                                                                 <a href="ubahspp.php?id=<?php echo $baris['id_pembayaran']; ?>" class="btn btn-sm btn-primary "><i class="bi bi-pencil-square"></i></a>

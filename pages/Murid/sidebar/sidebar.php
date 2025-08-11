@@ -23,6 +23,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="materi.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'materi.php' ? 'active' : ''; ?>">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>Materi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="Jadwal.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Jadwal.php' ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-calendar-check"></i>
                         <p>Jadwal</p>
@@ -41,45 +47,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="History.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'History.php' ? 'active' : ''; ?>">
+                    <a href="history_kenaikan_tingkat.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'history_kenaikan_tingkat.php' ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-road"></i>
                         <p>Riwayat Tingkatan</p>
                     </a>
                 </li>
-
-                <?php
-                $id = $_SESSION['id_aktor'];
-                $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
-                $sql = "SELECT * FROM aktor a WHERE id_aktor = $id";
-                $hasil = mysqli_query($koneksi, $sql);
-                $baris = mysqli_fetch_assoc($hasil);
-                $pengajuan = $baris['jurusan_id'];
-
-                if ($pengajuan == '1') {
-                    echo '<li class="nav-item">
-                            <a href="pengaturan.php" class="nav-link ' . (basename($_SERVER['PHP_SELF']) == 'pengaturan.php' ? 'active' : '') . '">
-                                <i class="nav-icon fas fa-trophy"></i>
-                                <p>Pengajuan Lomba</p>
-                            </a>
-                        </li>';
-                }
-                if ($pengajuan == '2') {
-                    echo '<li class="nav-item">
-                            <a href="pengajuanlomba_tanding.php" class="nav-link ' . (basename($_SERVER['PHP_SELF']) == 'pengajuanlomba_tanding.php' ? 'active' : '') . '">
-                                <i class="nav-icon fas fa-trophy"></i>
-                                <p>Pengajuan Lomba</p>
-                            </a>
-                        </li>';
-                }
-                if ($pengajuan == '3') {
-                    echo '<li class="nav-item">
-                            <a href="pengajuanlomba_seni.php" class="nav-link ' . (basename($_SERVER['PHP_SELF']) == 'pengajuanlomba_seni.php' ? 'active' : '') . '">
-                                <i class="nav-icon fas fa-trophy"></i>
-                                <p>Pengajuan Lomba</p>
-                            </a>
-                        </li>';
-                }
-                ?>
 
                 <li class="nav-item">
                     <a href="spp.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'spp.php' ? 'active' : ''; ?>">
@@ -93,6 +65,41 @@
                         <p>Logout</p>
                     </a>
                 </li>
+
+                <?php
+                $id = $_SESSION['id_aktor'];
+                $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+                $sql = "SELECT * FROM aktor a WHERE id_aktor = $id";
+                $hasil = mysqli_query($koneksi, $sql);
+                $baris = mysqli_fetch_assoc($hasil);
+                $pengajuan = $baris['jurusan_id'];
+                
+
+                // if ($pengajuan == '1') {
+                //     echo '<li class="nav-item">
+                //             <a href="pengaturan.php" class="nav-link ' . (basename($_SERVER['PHP_SELF']) == 'pengaturan.php' ? 'active' : '') . '">
+                //                 <i class="nav-icon fas fa-trophy"></i>
+                //                 <p>Pengajuan Lomba</p>
+                //             </a>
+                //         </li>';
+                // }
+                // if ($pengajuan == '2') {
+                //     echo '<li class="nav-item">
+                //             <a href="pengajuanlomba_tanding.php" class="nav-link ' . (basename($_SERVER['PHP_SELF']) == 'pengajuanlomba_tanding.php' ? 'active' : '') . '">
+                //                 <i class="nav-icon fas fa-trophy"></i>
+                //                 <p>Pengajuan Lomba</p>
+                //             </a>
+                //         </li>';
+                // }
+                // if ($pengajuan == '3') {
+                //     echo '<li class="nav-item">
+                //             <a href="pengajuanlomba_seni.php" class="nav-link ' . (basename($_SERVER['PHP_SELF']) == 'pengajuanlomba_seni.php' ? 'active' : '') . '">
+                //                 <i class="nav-icon fas fa-trophy"></i>
+                //                 <p>Pengajuan Lomba</p>
+                //             </a>
+                //         </li>';
+                // }
+                ?>
             </ul>
         </nav>
 

@@ -6,18 +6,20 @@ if (!isset($_SESSION['nama']) && !isset($_SESSION['id_aktor'])) {
     header("Location: index.php");
 }
 $aktorr = $_SESSION['id_aktor'];
-$conn = mysqli_connect("localhost", "root", "", "jokotole");
 $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
-$hasill = mysqli_query($conn, $sql);
+$hasill = mysqli_query($koneksi, $sql);
 $bariss = mysqli_fetch_assoc($hasill);
-$id_super_admin = $_SESSION['id_aktor'];
 
 //melakukan query menampilkan data
-$data_murid = "SELECT aktor.*, jurusan.nama_jurusan FROM aktor LEFT JOIN jurusan ON aktor.jurusan_id = jurusan.id_jurusan WHERE aktor.id_aktor = $id_super_admin";
+$data_murid = "SELECT aktor.*, jurusan.nama_jurusan FROM aktor LEFT JOIN jurusan ON aktor.jurusan_id = jurusan.id_jurusan WHERE aktor.id_aktor = $aktorr";
 $hasil = mysqli_query($koneksi, $data_murid);
 $row = mysqli_fetch_assoc($hasil);
 
 if (isset($_POST['kirim'])) {
+    //     echo "<pre>";
+    // print_r($_POST);
+    // echo "</pre>";
+    // exit();
     $username = $_POST["username"];
     $password = $_POST["password"];
     $nama = $_POST["nama"];
@@ -26,18 +28,18 @@ if (isset($_POST['kirim'])) {
     $telepon = $_POST["telepon"];
     $gender = $_POST["gender"];
     $alamat = $_POST["alamat"];
-    $tingkatan = $_POST["tingkatan"];
+    // $tingkatan = $_POST["tingkatan"];
 
-    $edit_data = "UPDATE aktor set nama = '$nama', tanggal_lahir = '$tanggal_lahir', email = '$email', telepon = '$telepon', gender = '$gender', alamat = '$alamat', tingkatan = '$tingkatan', username = '$username', password = '$password' where id_aktor = $id_super_admin ";
+    $edit_data = "UPDATE aktor set nama = '$nama', tanggal_lahir = '$tanggal_lahir', email = '$email', telepon = '$telepon', gender = '$gender', alamat = '$alamat', username = '$username', password = '$password' where id_aktor = $aktorr ";
     $update_data = mysqli_query($koneksi, $edit_data);
 
     if ($update_data) {
         $_SESSION['success'] = "Profile berhasil diupdate !";
-        header("Location: pengaturan_super_admin.php");
+        header("Location: Pengaturan.php");
         exit();
     } else {
         $_SESSION['error'] = "Gagal mengupdate !";
-        header("Location: pengaturan_super_admin.php");
+        header("Location: Pengaturan.php");
         exit();
     }
 }
@@ -62,21 +64,21 @@ if (isset($_POST['submit'])) {
 
             if ($update_foto) {
                 $_SESSION['success'] = "Foto rofile berhasil diupdate !";
-                header("Location: pengaturan_super_admin.php");
+                header("Location: Pengaturan.php");
                 exit();
             } else {
                 $_SESSION['error'] = "Gagal mengupdate foto profile";
-                header("Location: pengaturan_super_admin.php");
+                header("Location: Pengaturan.php");
                 exit();
             }
         } else {
             $_SESSION['error'] = "Gagal mengunggah foto profile";
-            header("Location: pengaturan_super_admin.php");
+            header("Location: Pengaturan.php");
             exit();
         }
     } else {
         $_SESSION['error'] = "Gagal mengunggah foto profile";
-        header("Location: pengaturan_super_admin.php");
+        header("Location: Pengaturan.php");
         exit();
     }
 }
@@ -267,10 +269,10 @@ if (isset($_POST['submit'])) {
                                                         <label class="form-label fw-bold"> Alamat </label>
                                                         <input type="text" id="alamat" name="alamat" class="form-control shadow-none" value="<?php echo $row['alamat']; ?>" required>
                                                     </div>
-                                                    <div class="col-md-12 mb-3">
+                                                    <!-- <div class="col-md-12 mb-3">
                                                         <label class="form-label fw-bold" for="tingkatan"> Tingkatan </label>
                                                         <input type="text" id="tingkatan" name="tingkatan" class="form-control shadow-none" value="<?php echo $row['tingkatan']; ?>" disabled>
-                                                    </div>
+                                                    </div> -->
                                                     <!-- <div class="col-md-12 mb-3">
                                                             <input type="hidden" id="telepon_wali" name="telepon_wali" class="form-control shadow-none" value="<?php echo $row['telepon_wali']; ?>" required>
                                                         </div> -->

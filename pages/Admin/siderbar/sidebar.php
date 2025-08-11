@@ -74,12 +74,12 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="pengajuan_lomba.php" class="nav-link <?= $current_page == 'pengajuan_lomba.php' ? 'active' : '' ?>">
                         <i class="nav-icon fa fa-trophy"></i>
                         <p>Pengajuan Lomba</p>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-item">
                     <a href="Pengaturan.php" class="nav-link <?= $current_page == 'Pengaturan.php' ? 'active' : '' ?>">
