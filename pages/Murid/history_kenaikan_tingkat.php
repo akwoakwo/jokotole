@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 $sql = "SELECT * FROM kenaikan_tingkat k";
 $hasil = mysqli_query($koneksi, $sql);
 ?>
@@ -10,7 +10,7 @@ require_once("../Koneksi.php");
 ?>
 
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 $id_murid = $_SESSION['id_aktor'];
 $sql = "SELECT a.nama,k.* FROM kelayakan_naik_tingkat k INNER JOIN aktor a ON k.murid_id = a.id_aktor WHERE murid_id = $id_murid";
 // $sql = "SELECT COUNT(*) FROM kelayakan_naik_tingkat WHERE murid_id = SESSION['murid_id']";
@@ -181,7 +181,7 @@ while ($data1 = mysqli_fetch_array($tampil2)) {
         }
         // session_start();
         $aktorr = $_SESSION['id_aktor'];
-        $conn = mysqli_connect("localhost", "root", "", "jokotole");
+        $conn = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
         $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
         $hasill = mysqli_query($conn, $sql);
         $bariss = mysqli_fetch_assoc($hasill);
@@ -189,7 +189,7 @@ while ($data1 = mysqli_fetch_array($tampil2)) {
 
         <?php
         $aktorr = $_SESSION['id_aktor'];
-        $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+        $koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
         $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
         $hasil = mysqli_query($koneksi, $sql);
         ?>

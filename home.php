@@ -4,7 +4,7 @@ session_start();
 if (!isset($_SESSION['nama']) && !isset($_SESSION['id_aktor'])) {
     header("Location: index.php");
 }
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 $sql = "SELECT * FROM aktor a";
 $hasil = mysqli_query($koneksi, $sql);
 require_once("pages/Koneksi.php");
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 
 ?>
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 
 $data_materi = "SELECT * FROM materi";
 $hasil_materi = mysqli_query($koneksi, $data_materi);
@@ -93,7 +93,7 @@ $hasil_materi = mysqli_query($koneksi, $data_materi);
         </div>
         <?php
         $aktorr = $_SESSION['id_aktor'];
-        $conn = mysqli_connect("localhost", "root", "", "jokotole");
+        $conn = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
         $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
         $hasill = mysqli_query($conn, $sql);
         ?>
@@ -328,7 +328,7 @@ $hasil_materi = mysqli_query($koneksi, $data_materi);
                         <h3 style="background-color: dimgrey; color:yellow; padding:2%; border-radius:20px; border:4px solid white;">Sejarah</h3>
                         <p class="fst-italic" style="text-align: justify;">
                             <?php
-                            $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+                            $koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
                             $sql = "SELECT * FROM profile_perguruan pm";
                             $hasil = mysqli_query($koneksi, $sql);
                             $baris = mysqli_fetch_assoc($hasil);
@@ -509,7 +509,7 @@ $hasil_materi = mysqli_query($koneksi, $data_materi);
                                                 <h2 style="background-color: #fff; font-weight: bold;"><?php echo $bariss['nama'] ?></h2>
                                                 <?php
 
-                                                $konek = mysqli_connect("localhost", "root", "", "jokotole");
+                                                $konek = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
                                                 $kolom_hafal = array(
                                                     'salam_perguruan', 'dasar_kaki', 'dasar_tangan', 'jurus_tangan', 'jurus_kaki',
                                                     'langkah_segitiga', 'hindaran', 'zigzag_abc', 'pasangan', 'seni'
@@ -669,7 +669,7 @@ $hasil_materi = mysqli_query($koneksi, $data_materi);
         <!-- Section Materi -->
         <section id="materi" style="min-height: 100vh;">  
             <?php
-                $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+                $koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 
                 $data_materi = "SELECT * FROM materi";
                 $hasil_materi = mysqli_query($koneksi, $data_materi);
@@ -719,7 +719,7 @@ $hasil_materi = mysqli_query($koneksi, $data_materi);
                 <!-- <div class="container"> -->
                 <div class="row">
                     <?php
-                    $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+                    $koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
                     $daftar = mysqli_query($koneksi, "select * from berita");
                     while ($hasil = mysqli_fetch_array($daftar)) {
                     ?>

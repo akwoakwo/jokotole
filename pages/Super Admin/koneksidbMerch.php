@@ -4,7 +4,7 @@
 //     header("Location: index.php");
 // }
 // Koneksi ke Data Base
-$conn = mysqli_connect("localhost", "root", "", "jokotole");
+$conn = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 
 
 // fungsi query sintak MySql ke Data Base

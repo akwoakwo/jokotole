@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 
 // $id_prestasi = $_POST['id_prestasi'];
 $nama_prestasi = $_POST['nama_prestasi'];

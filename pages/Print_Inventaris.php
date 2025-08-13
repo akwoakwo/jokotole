@@ -1,7 +1,7 @@
 <?php
 
 // Koneksi ke database
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 
 // Query untuk mengambil data inventaris barang
 $sql = "SELECT * FROM inventaris";

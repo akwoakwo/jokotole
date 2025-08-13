@@ -6,7 +6,7 @@ if (!isset($_SESSION['nama']) && !isset($_SESSION['id_aktor'])) {
 $id = $_GET['id'];
 $id_jur = $_GET['id_jur'];
 
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 $sql = "SELECT * FROM aktor a WHERE id_aktor = $id";
 $hasil = mysqli_query($koneksi, $sql);
 $data = mysqli_fetch_array($hasil);

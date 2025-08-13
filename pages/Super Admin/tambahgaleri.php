@@ -46,7 +46,7 @@
             header("Location: index.php");
         }
         $aktorr = $_SESSION['id_aktor'];
-        $conn = mysqli_connect("localhost", "root", "", "jokotole");
+        $conn = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
         $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
         $hasill = mysqli_query($conn, $sql);
         $bariss = mysqli_fetch_assoc($hasill);
@@ -129,7 +129,7 @@
                                             </div>
 
                                             <?php
-                                                $conn = mysqli_connect("localhost", "root", "", "jokotole");
+                                                $conn = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
                                                 $data_murid = "SELECT * FROM aktor WHERE role = 'siswa'";
                                                 $result = mysqli_query($conn, $data_murid);
                                             ?>

@@ -1,6 +1,6 @@
 <?php
 // Menghubungkan dengan database
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 
 // Cek apakah ada parameter 'id_edit' dalam URL
 if (isset($_GET['id_edit'])) {

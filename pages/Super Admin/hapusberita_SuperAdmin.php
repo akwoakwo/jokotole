@@ -1,6 +1,6 @@
 <?php
 // Pastikan Anda sudah memiliki koneksi ke database, atau tambahkan koneksi ke database di sini.
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 
 // Periksa apakah parameter 'id' telah dikirim melalui metode GET
 if (isset($_GET['id'])) {

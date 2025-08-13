@@ -1,6 +1,6 @@
 <?php
 session_start();
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 
 // Pastikan pengguna sudah login dan role adalah Siswa
 if (!isset($_SESSION['nama']) || !isset($_SESSION['id_aktor']) || $_SESSION['role'] != 'Siswa') {

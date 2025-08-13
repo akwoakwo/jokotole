@@ -1,7 +1,7 @@
 <?php
 $id = $_GET['id'];
 
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 $sql = "SELECT * FROM inventaris i WHERE id_inventaris = $id";
 $hasil = mysqli_query($koneksi, $sql);
 $data = mysqli_fetch_array($hasil);
@@ -65,7 +65,7 @@ if (isset($_POST['simpan'])) {
             header("Location: index.php");
         }
         $aktorr = $_SESSION['id_aktor'];
-        $conn = mysqli_connect("localhost", "root", "", "jokotole");
+        $conn = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
         $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
         $hasill = mysqli_query($conn, $sql);
         $bariss = mysqli_fetch_assoc($hasill);

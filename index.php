@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
 }
 ?>
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 
 // Mengambil nomor telepon penjual
 $sql_penjual = "SELECT no_hp FROM penjual WHERE id_penjual = 0";

@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 $query_murid = "SELECT * FROM kelayakan_naik_tingkat inner join aktor on kelayakan_naik_tingkat.murid_id= aktor.id_aktor  where role='Siswa'";
 $hasil = mysqli_query($koneksi, $query_murid);
 ?>
@@ -52,7 +52,7 @@ require_once("../Koneksi.php");
             header("Location: ../../index.php");
         }
         $aktorr = $_SESSION['id_aktor'];
-        $conn = mysqli_connect("localhost", "root", "", "jokotole");
+        $conn = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
         $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
         $hasill = mysqli_query($conn, $sql);
         $bariss = mysqli_fetch_assoc($hasill);

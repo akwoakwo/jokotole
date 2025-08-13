@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 $sql2 = "SELECT * FROM aktor WHERE role = 'Admin'";
 $tampil2 = mysqli_query($koneksi, $sql2);
 ?>

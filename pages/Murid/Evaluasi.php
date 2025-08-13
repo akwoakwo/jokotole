@@ -1,5 +1,5 @@
 <?php
-    $koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+    $koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
     
     session_start();
     $id_murid = $_SESSION['id_aktor'];

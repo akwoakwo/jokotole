@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 $sql = "SELECT * FROM aktor ORDER BY id_aktor DESC LIMIT 1";
 $hasil = mysqli_query($koneksi, $sql);
 $baris = mysqli_fetch_assoc($hasil);

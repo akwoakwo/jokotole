@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "jokotole");
+$koneksi = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $selectedJadwal = $_POST["id_jadwal"];
     $sql = "SELECT jadwal_latihan.jadwal_latihan, absensi.* FROM absensi INNER JOIN jadwal_latihan ON absensi.jadwal_latihan_id = jadwal_latihan.id_jadwal WHERE jadwal_latihan.id_jadwal = $selectedJadwal";
@@ -80,7 +80,7 @@ if (isset($_GET['id_hapus'])) {
             header("Location: ../../index.php");
         }
         $aktorr = $_SESSION['id_aktor'];
-        $conn = mysqli_connect("localhost", "root", "", "jokotole");
+        $conn = mysqli_connect('localhost', 'urbeing1_jokotole_user', 'jokotoleuser0', 'urbeing1_jokotole');
         $sql = "SELECT * FROM aktor a WHERE id_aktor = $aktorr";
         $hasill = mysqli_query($conn, $sql);
         $bariss = mysqli_fetch_assoc($hasill);
